@@ -1,0 +1,28 @@
+.dots{
+    stroke: #afa2dc;
+}
+
+.selected {
+    stroke: #2f225d;
+}
+
+.clear-button {
+    font: 14px sans-serif;
+    cursor: pointer;
+}
+.yy.axis path,
+.yy.axis line,
+.xx.axis path,
+.xx.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.timeline_brush .extent {
+    fill: white;
+    stroke: #fff;
+    fill-opacity: .125;
+    shape-rendering: crispEdges;
+}
+

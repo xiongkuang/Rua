@@ -1,0 +1,188 @@
+#end_screen {
+    position:relative;
+    height: 675px;
+    width: 1060px;
+}
+
+#end_screen .header {
+    font-size: 12px;
+}
+
+#winner_spacer {
+    width: 300px;
+    height: 12px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#winner {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 26px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: lightgray;
+    text-align: center;
+    border: 5px ridge darkgray;
+    border-radius:10px;
+}
+
+.radiant {
+    color: #598307;
+}
+
+.dire {
+    color: #A83806;
+}
+
+#match_data {
+    height: 90px;
+}
+
+#left_col {
+    float: left;
+}
+
+#right_col {
+    float: right;
+    text-align: right;
+}
+
+#closebutton {
+    width: 55px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    z-index: 2;
+}
+
+.buttonholder {
+    text-align: center;
+}
+
+#players {
+    position: relative;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+#players table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 0px;
+}
+
+#players table#dire {
+    margin-top: 5px;
+}
+
+#players tbody tr:nth-child(odd) {
+    background-color: lightgrey;
+}
+
+#players td, #players th {
+    padding: 3px;
+    white-space: nowrap;
+}
+
+#players .headers {
+    background-color: darkgray;
+}
+
+#players .team th{
+    text-align:left;
+    border: none;
+    font-size: 22px;
+}
+
+#players tr.headers {
+    height: 26px;
+}
+
+#players td {
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+#players td * {
+    vertical-align:middle;
+}
+
+#players #user {
+    background-color: yellow;
+}
+
+#players .player_name {
+    text-align: left;
+    min-width: 150px;
+    max-width: 150px;
+}
+
+.level {
+    text-align: right;
+    width: 40px;
+}
+
+#players .hero {
+    text-align: left;
+    width: 200px;
+}
+
+.kills, .deaths, .assists {
+    text-align: right;
+    width: 20px;
+}
+
+.items {
+    text-align: center;
+    width: 310px;
+}
+
+.gold {
+    text-align: right;
+    width: 45px;
+}
+
+.last_hits {
+    text-align: right;
+    width: 70px;
+}
+
+.denies {
+    text-align: right;
+    width: 45px;
+}
+
+.gold_per_min {
+    text-align: right;
+    width: 45px;
+}
+
+.xp_per_min {
+    text-align: right;
+    width: 45px;
+}
+
+.end_screen_item_pic {
+    margin: 0px 2px;
+}
+
+.ability_build {
+    position: absolute;
+    width: 700px;
+    height: 236px;
+    left: 390px;
+    background-color: white;
+    border: 2px solid black;
+}
+
+.ability_build_img {
+    height: 50px;
+    width: 50px;
+}
+
+#players img {
+    border: 1px solid black;
+}
