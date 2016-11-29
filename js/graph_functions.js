@@ -133,7 +133,7 @@ d3.select(".more_info_button button")
 // bind handlers for going back to main screen
 function return_to_splash () {
     $(window).scrollTop("0px")
-    introguide.exit();
+    // introguide.exit();
     d3.select("#not-splash")
         .style("display", "none")
     d3.select("#splash")

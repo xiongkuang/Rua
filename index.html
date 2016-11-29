@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Rua Dota</title>
     <meta charset="utf-8">
-    <title>Data Driven Dota</title>
+    <title>Rua Dota</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/intro.js/0.6.0/introjs.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/introjs.css"/>
@@ -12,44 +12,36 @@
     <link rel="stylesheet" type="text/css" href="css/selectors.css"/>
     <link rel="stylesheet" type="text/css" href="css/timeline.css"/>
     <link rel="stylesheet" type="text/css" href="css/end_screen.css"/>
+    <link rel="stylesheet" media="screen" href="css/particle_style.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <script src="js/dataManager.js"></script>
     <script src="js/intro.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
 <div id="splash">
-    <div class="logoimage"><img src="img/possible.png" width="700px" height="560px" align="middle"></div>
+    <div id="particles-js"></div>
     <div class="splash-nav">
-
-        <div class="left-nav">
-            <span class="visit_video"><a class="btn btn-link" href="https://www.youtube.com/watch?v=dqEPDAj5nlc" target="_blank">View our Video</a></span>
-            <span class="to_github"><a class="btn btn-link" href="https://github.com/rkgibson2/data-driven-dota" target="_blank">View Project on Github</a></span>
-            <span class="process_book"><button class="btn btn-link" href="#" onclick="window.open('process_book/Process_Book_Final.pdf', '_blank', 'fullscreen=yes', 'channelmode=yes'); return false;">View Process Book</button></span>
-        </div>
-
         <div class="right-nav">
-            <span class="more_info_button"><button class="btn btn-info" data-loading-text="Loading...">Walkthrough</button></span>
-            <span class="move_on_button"><button class="btn btn-success" data-loading-text="Loading...">To Visualization</button></span>
+            <span id="receptionlist" class="move_on_button"><button class="btn btn-success" data-loading-text="Loading...">To Visualization</button></span>
         </div>
-
     </div>
 </div>
 
 <div id="not-splash" style="display:none;">
     <div id="page-header">
         <div id="corner">
-            <img id="corner-logo" src="img/LogoSmall.png" alt="Data Driven Dota Logo" title="Data Driven Dota" onclick="return_to_splash()">
-            <button class="btn btn-default btn-sm" onclick="return_to_splash()">Return to Title</button>
-        </div>
-        <div id="nav">
-            <!-- FILTERS -->
-            <div id="filters">
+            <button class="btn btn-default btn-sm" onclick="return_to_splash()">Return to Particle</button>
+            </div>
+            <div id="nav">
+                <!-- FILTERS -->
+                <div id="filters">
 
-                <!--USER DROPDOWN -->
-                <span id="selectuser"></span>
+                    <!--USER DROPDOWN -->
+                    <span id="selectuser"></span>
 
                 <!--FILTER HERO MODAL BUTTON -->
                 <span id="filterbutton"><button class="btn btn-default" data-toggle="modal" data-target="#selector" onclick="reselectHeroes()">Filter by Heroes</button></span>
@@ -61,13 +53,13 @@
 
             <div id="colorblindtoggle">
                 <!-- COLOR BLIND TOGGLE -->
-                <span id="colorblind" class="checkbox"><label>Color Blind Mode<input type="checkbox" id="color-blind" name="color-blind-box" onclick="changeCSS()" ></input></label></span>
+                <!--<span id="colorblind" class="checkbox"><label>Color Blind Mode<input type="checkbox" id="color-blind" name="color-blind-box" onclick="changeCSS()" /></label></span>-->
             </div>
         </div>
 
         <div id="questionmark">
             <!-- HELP QUESTION MARK -->
-            <span  class="question"><strong>?</strong></span>
+            <!--<span  class="question"><strong>?</strong></span>-->
         </div>
 
 
@@ -249,19 +241,7 @@
             <!-- <label id="item_filter"><input class="this1" type="range" name="points" min="0" max="51" step="1" value="50" disabled> <span class="filterInput">51 </span> Items</label> -->
 
         </div>
-        <div class="footer">
-      <span class="creators">
-        Created for <a href="http://www.cs171.org/">Harvard CS171</a> | 2014 |
-        <a href="https://github.com/huihuifan" target="_blank">Angela Fan</a>, <a href="https://github.com/rkgibson2" target="_blank">Robbie Gibson</a>, <a href="https://github.com/benjylevin" target="_blank">Benjy Levin</a>
-      </span>
-            <br>
-            <span class="credits">
-        Artwork from: <a href="http://store.steampowered.com/app/570/" target="_blank">Valve</a>,
-                      <a href="http://www.freetoplaythemovie.com/" target="_blank">Free to Play</a>,
-                      <a href="http://99hunters.tumblr.com/" target="_blank">99hunters</a> |
-        Data from: <a href="http://dev.dota2.com/showthread.php?t=47115" target="_blank">Valve Web API</a>
 
-        </div>
     </div>
 
 
@@ -361,5 +341,6 @@
 <script src="js/records.js"></script>
 <script src="js/colorblind.js"></script>
 <script src="js/introscript.js"></script>
+<script src="js/par.js"></script>
 </body>
 </html>

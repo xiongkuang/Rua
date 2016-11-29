@@ -423,6 +423,12 @@ div.graph_description strong {
     background-color:black;
 }
 
+#receptionlist{
+    position: absolute;
+    top: 45%;
+    left: 45%;
+}
+
 #splash {
     margin-left: auto;
     margin-right: auto;
@@ -466,6 +472,8 @@ div.graph_description strong {
     margin-right: auto;
     margin-bottom: 20px;
 }
+
+
 
 #splash_page2 {
     margin-left: auto;
