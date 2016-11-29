@@ -126,8 +126,8 @@ label {
 #timeline {
     margin-right: auto;
     margin-left: auto;
-    height: 120px;
-    width: 980px;
+    height: 0px;
+    width: 0px;
 }
 
 .end_screen_selected {
@@ -157,16 +157,16 @@ label {
 }
 
 .win_loss rect {
-    stroke: black;
+    stroke: null;
     stroke-width: 2px;
 }
 
 .win {
-    fill: #1a9641;
+    fill: #92A525;
 }
 
 .loss {
-    fill: #d7191c;
+    fill: #9C3627;
 }
 
 .gpm_brush .extent{

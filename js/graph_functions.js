@@ -1056,87 +1056,87 @@ function draw_legend(graph) {
 
     graph.selectAll(".legend").remove();
 
-    var gradient = graph.append("svg:defs")
-        .attr("class", "grad")
-        .append("svg:linearGradient")
-        .attr("id", "gradient")
-        .attr("x1", "0%")
-        .attr("x2", "100%")
-        .attr("y1", "0%")
-        .attr("y2", "0%")
-        .attr("spreadMethod", "pad");
+    // var gradient = graph.append("svg:defs")
+    //     .attr("class", "grad")
+    //     .append("svg:linearGradient")
+    //     .attr("id", "gradient")
+    //     .attr("x1", "0%")
+    //     .attr("x2", "100%")
+    //     .attr("y1", "0%")
+    //     .attr("y2", "0%")
+    //     .attr("spreadMethod", "pad");
+    //
+    // if ($("#color-blind").is(":checked")) {
+    //     gradient.append("svg:stop")
+    //         .attr("offset", "0%")
+    //         .attr("stop-color", "#762a83")
+    //         .attr("stop-opacity", 1);
+    //
+    //     gradient.append("svg:stop")
+    //         .attr("offset", "50%")
+    //         .attr("stop-color", "#8d8d8d")
+    //         .attr("stop-opacity", 1);
+    //
+    //     gradient.append("svg:stop")
+    //         .attr("offset", "100%")
+    //         .attr("stop-color", "#ff7f00")
+    //         .attr("stop-opacity", 1);
+    // }
+    //
+    // else {
+    //     gradient.append("svg:stop")
+    //         .attr("offset", "0%")
+    //         .attr("stop-color", "#1a9641")
+    //         .attr("stop-opacity", 1);
+    //
+    //     gradient.append("svg:stop")
+    //         .attr("offset", "50%")
+    //         .attr("stop-color", "#8d8d8d")
+    //         .attr("stop-opacity", 1);
+    //
+    //     gradient.append("svg:stop")
+    //         .attr("offset", "100%")
+    //         .attr("stop-color", "#d7191c")
+    //         .attr("stop-opacity", 1);
+    // }
 
-    if ($("#color-blind").is(":checked")) {
-        gradient.append("svg:stop")
-            .attr("offset", "0%")
-            .attr("stop-color", "#762a83")
-            .attr("stop-opacity", 1);
-
-        gradient.append("svg:stop")
-            .attr("offset", "50%")
-            .attr("stop-color", "#8d8d8d")
-            .attr("stop-opacity", 1);
-
-        gradient.append("svg:stop")
-            .attr("offset", "100%")
-            .attr("stop-color", "#ff7f00")
-            .attr("stop-opacity", 1);
-    }
-
-    else {
-        gradient.append("svg:stop")
-            .attr("offset", "0%")
-            .attr("stop-color", "#1a9641")
-            .attr("stop-opacity", 1);
-
-        gradient.append("svg:stop")
-            .attr("offset", "50%")
-            .attr("stop-color", "#8d8d8d")
-            .attr("stop-opacity", 1);
-
-        gradient.append("svg:stop")
-            .attr("offset", "100%")
-            .attr("stop-color", "#d7191c")
-            .attr("stop-opacity", 1);
-    }
-
-    graph.append("svg:rect")
-        .attr("class", "grad")
-        .attr("width", 150)
-        .attr("height", 25)
-        .attr("x", 246)
-        .attr("y", -30)
-        .style("fill", "url(#gradient)")
-        .style("stroke-width", "1px")
-        .style("stroke", "white")
-        .style("opacity", 0)
-        .transition()
-        .duration(1000)
-        .style("opacity", 1);
-
-    graph.append("text")
-        .attr("x", 243)
-        .attr("y", -15)
-        .attr("class", "legend")
-        .style("font-size", "14px")
-        .style("text-anchor", "end")
-        .text("100% win")
-        .style("opacity", 0)
-        .transition()
-        .duration(1000)
-        .style("opacity", 1);
-
-    graph.append("text")
-        .attr("class", "legend")
-        .attr("x", 460)
-        .attr("y", -15)
-        .style("font-size", "14px")
-        .style("text-anchor", "end")
-        .text("100% loss")
-        .style("opacity", 0)
-        .transition()
-        .duration(1000)
-        .style("opacity", 1);
+    // graph.append("svg:rect")
+    //     .attr("class", "grad")
+    //     .attr("width", 150)
+    //     .attr("height", 25)
+    //     .attr("x", 246)
+    //     .attr("y", -30)
+    //     .style("fill", "url(#gradient)")
+    //     .style("stroke-width", "1px")
+    //     .style("stroke", "white")
+    //     .style("opacity", 0)
+    //     .transition()
+    //     .duration(1000)
+    //     .style("opacity", 1);
+    //
+    // graph.append("text")
+    //     .attr("x", 243)
+    //     .attr("y", -15)
+    //     .attr("class", "legend")
+    //     .style("font-size", "14px")
+    //     .style("text-anchor", "end")
+    //     .text("100% win")
+    //     .style("opacity", 0)
+    //     .transition()
+    //     .duration(1000)
+    //     .style("opacity", 1);
+    //
+    // graph.append("text")
+    //     .attr("class", "legend")
+    //     .attr("x", 460)
+    //     .attr("y", -15)
+    //     .style("font-size", "14px")
+    //     .style("text-anchor", "end")
+    //     .text("100% loss")
+    //     .style("opacity", 0)
+    //     .transition()
+    //     .duration(1000)
+    //     .style("opacity", 1);
 }
 
 
@@ -1627,7 +1627,7 @@ function create_matrix (data) {
     d3.selectAll(".chord").remove();
     d3.selectAll(".arcs").remove();
 
-    draw_hero_chord_graph(new_arr, lookup_dict);
+    // draw_hero_chord_graph(new_arr, lookup_dict);
 }
 
 
@@ -1882,19 +1882,19 @@ function draw_gpm() {
         .attr("x", bb_gpm.w/2)
         .text("GPM Statistics")
 
-    gpm_graph.append("text")
-        .attr("y", -25)
-        .attr("text-anchor", "middle")
-        .attr("x", bb_gpm.w/2)
-        .style("font-size", "12px")
-        .text("Select a region to zoom in. Click 'Clear Zoom' to zoom out.")
-
-    gpm_graph.append("text")
-        .attr("y", -10)
-        .attr("text-anchor", "middle")
-        .attr("x", bb_gpm.w/2)
-        .style("font-size", "12px")
-        .text("Click on a game to bring up the corresponding endgame screen.")
+    // gpm_graph.append("text")
+    //     .attr("y", -25)
+    //     .attr("text-anchor", "middle")
+    //     .attr("x", bb_gpm.w/2)
+    //     .style("font-size", "12px")
+    //     .text("Select a region to zoom in. Click 'Clear Zoom' to zoom out.")
+    //
+    // gpm_graph.append("text")
+    //     .attr("y", -10)
+    //     .attr("text-anchor", "middle")
+    //     .attr("x", bb_gpm.w/2)
+    //     .style("font-size", "12px")
+    //     .text("Click on a game to bring up the corresponding endgame screen.")
 
 }
 
@@ -2213,19 +2213,19 @@ function draw_xpm() {
         .attr("x", bb_xpm.w/2)
         .text("XPM Statistics")
 
-    xpm_graph.append("text")
-        .attr("y", -25)
-        .attr("text-anchor", "middle")
-        .attr("x", bb_xpm.w/2)
-        .style("font-size", "12px")
-        .text("Select a region to zoom in. Click 'Clear Zoom' to zoom out.")
-
-    xpm_graph.append("text")
-        .attr("y", -10)
-        .attr("text-anchor", "middle")
-        .attr("x", bb_xpm.w/2)
-        .style("font-size", "12px")
-        .text("Click on a game to bring up the corresponding endgame screen.")
+    // xpm_graph.append("text")
+    //     .attr("y", -25)
+    //     .attr("text-anchor", "middle")
+    //     .attr("x", bb_xpm.w/2)
+    //     .style("font-size", "12px")
+    //     .text("Select a region to zoom in. Click 'Clear Zoom' to zoom out.")
+    //
+    // xpm_graph.append("text")
+    //     .attr("y", -10)
+    //     .attr("text-anchor", "middle")
+    //     .attr("x", bb_xpm.w/2)
+    //     .style("font-size", "12px")
+    //     .text("Click on a game to bring up the corresponding endgame screen.")
 
 }
 
@@ -2506,18 +2506,18 @@ function draw_user_interact(){
 
     user_interact_graph.selectAll(".error").remove();
 
-    user_interact_graph.append("text")
-        .attr("text-anchor", "middle")
-        .attr("y", -75)
-        .attr("x", 180)
-        .text("Users Played with More than Once")
-
-    user_interact_graph.append("text")
-        .attr("text-anchor", "middle")
-        .attr("y", -60)
-        .attr("x", 180)
-        .style("font-size", "12px")
-        .text("Click a user to see their Steam profile.")
+    // user_interact_graph.append("text")
+    //     .attr("text-anchor", "middle")
+    //     .attr("y", -75)
+    //     .attr("x", 180)
+    //     .text("Users Played with More than Once")
+    //
+    // user_interact_graph.append("text")
+    //     .attr("text-anchor", "middle")
+    //     .attr("y", -60)
+    //     .attr("x", 180)
+    //     .style("font-size", "12px")
+    //     .text("Click a user to see their Steam profile.")
 
     if (user_flare.children.length == 0) {
         user_interact_graph.append("text")
