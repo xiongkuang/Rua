@@ -76,7 +76,7 @@ label {
 }
 
 #page-content {
-    margin-top: 180px;
+    margin-top: 50px;
 }
 
 #page-content>div {
@@ -121,12 +121,6 @@ label {
     vertical-align: middle;
 }
 
-#timeline {
-    margin-right: auto;
-    margin-left: auto;
-    height: 0px;
-    width: 0px;
-}
 
 .end_screen_selected {
     fill: aquamarine !important;
@@ -141,7 +135,7 @@ label {
 #stat_graphs {
     position: relative;
     width: 1060px;
-    height: 1705px;
+    height: 1205px;
     margin: 0px 0px 10px 0px;
     padding-top: 20px;
 }
