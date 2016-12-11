@@ -372,7 +372,7 @@ function loadData(username) {
         resetSelectedHeroes();
 
 
-        create_timeline(user_data);
+        // create_timeline(user_data);
         // updateGraphs(user_data)
         // filter out random modes etc. and updateGraphs
         tripleFilterUpdate();
@@ -507,7 +507,7 @@ function updateGraphs (filtered_data) {
 
     update_user_interact(filtered_data);
 
-    update_timeline(filtered_data);
+    // update_timeline(filtered_data);
 
     // draw_kda(filtered_data);
 

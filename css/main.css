@@ -68,13 +68,11 @@ label {
 #page-header {
     position: fixed;
     width: 100%;
-    height: 175px;
+    height: 65px;
     top: 0px;
     left: 0px;
     padding: 5px;
-    background-color: #9f9f9f;
-    z-index: 100;
-    border-bottom: 2px solid black;
+    background-color: #ffffff;
 }
 
 #page-content {
