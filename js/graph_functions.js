@@ -171,10 +171,7 @@ svg_item_percent= d3.select("#item_percent_container").append("svg").attr({
     height: bb_item_percent.h + bb_item_percent.margin.bottom + bb_item_percent.margin.top
 })
 
-// svg_user_interact = d3.select("#user_interact_container").append("svg").attr({
-//     width: bb_user_interact.w + bb_user_interact.margin.left + bb_user_interact.margin.right,
-//     height: bb_user_interact.h + bb_user_interact.margin.bottom + bb_user_interact.margin.top
-// })
+
 
 svg_gpm = d3.select("#gpm_container").append("svg").attr({
     width: bb_gpm.w + bb_gpm.margin.left + bb_gpm.margin.right,
@@ -186,10 +183,6 @@ svg_xpm = d3.select("#xpm_container").append("svg").attr({
     height: bb_xpm.h + bb_xpm.margin.bottom + bb_xpm.margin.top
 })
 
-// svg_hero_chord = d3.select("#hero_chord_container").append("svg").attr({
-//     width: bb_hero_chord.w + bb_hero_chord.margin.left + bb_hero_chord.margin.right,
-//     height: bb_hero_chord.h + bb_hero_chord.margin.bottom + bb_hero_chord.margin.top
-// })
 
 var win_loss_graph = svg_win_loss.append("g")
     .attr("class", "win_loss")
@@ -214,14 +207,6 @@ var gpm_graph = svg_gpm.append("g")
 var xpm_graph = svg_xpm.append("g")
     .attr("class", "xpm")
     .attr("transform", "translate(" + bb_gpm.margin.left + "," + bb_gpm.margin.top + ")");
-//
-// var hero_chord_graph = svg_hero_chord.append("g")
-//     .attr("class", "hero_chord")
-//     .attr("transform", "translate(" + (bb_hero_chord.w/2 + bb_hero_chord.margin.left) + "," + (bb_hero_chord.h / 2 + bb_hero_chord.margin.top) + ")");
-
-// var kda_graph = svg.append("g")
-// 	.attr("class", "kda")
-// 	.attr("transform", "translate(" + bb_kda.x + "," + bb_kda.y + ")");
 
 var item_percent_x, item_percent_y, item_percent_xAxis, item_percent_yAxis, item_percent_color;
 var hero_pie_radius, hero_pie_color, hero_pie_x, hero_pie_y, partition, hero_pie_arc, hero_pie_path;
@@ -231,9 +216,8 @@ var graph_tip = d3.tip()
     .attr("class", "d3-tip")
     .offset([0,0]);
 
-// svg_hero_chord.call(graph_tip);
-//svg_xpm.call(graph_tip);
-//svg_gpm.call(graph_tip);
+svg_xpm.call(graph_tip);
+svg_gpm.call(graph_tip);
 
 //function calls
 d2.loadJson(function() {
@@ -2213,19 +2197,7 @@ function draw_xpm() {
         .attr("x", bb_xpm.w/2)
         .text("XPM Statistics")
 
-    // xpm_graph.append("text")
-    //     .attr("y", -25)
-    //     .attr("text-anchor", "middle")
-    //     .attr("x", bb_xpm.w/2)
-    //     .style("font-size", "12px")
-    //     .text("Select a region to zoom in. Click 'Clear Zoom' to zoom out.")
-    //
-    // xpm_graph.append("text")
-    //     .attr("y", -10)
-    //     .attr("text-anchor", "middle")
-    //     .attr("x", bb_xpm.w/2)
-    //     .style("font-size", "12px")
-    //     .text("Click on a game to bring up the corresponding endgame screen.")
+
 
 }
 
@@ -2471,64 +2443,7 @@ function xpm_brushend() {
     }
 }
 
-var diameter, user_interact_color, bubble, user_flare, node;
 
-// function draw_user_interact(){
-//
-//     if ($("#color-blind").is(":checked")) {
-//         user_interact_color_win = d3.scale.linear()
-//             .domain([0, .5, 1])
-//             .range(["#ff7f00", "#8d8d8d", "#762a83"]);
-//     }
-//     else {
-//         user_interact_color_win = d3.scale.linear()
-//             .domain([0, .5, 1])
-//             .range(["#d7191c", "#8d8d8d", "#1a9641"]);
-//     }
-//
-//     diameter= bb_user_interact.w;
-//     user_interact_color = d3.scale.ordinal()
-//         .domain([])
-//         .range(["#9e0142","#d53e4f","#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd","#5e4fa2"]);
-//
-//     bubble = d3.layout.pack()
-//         .sort(null)
-//         .size([diameter, diameter])
-//         .padding(1.5)
-//
-//     user_interact_graph.attr("class", "bubble");
-//
-//     user_flare = {
-//         name: "user_flare",
-//         child_dict: {},
-//         children: []
-//     };
-//
-//     user_interact_graph.selectAll(".error").remove();
-//
-//     // user_interact_graph.append("text")
-//     //     .attr("text-anchor", "middle")
-//     //     .attr("y", -75)
-//     //     .attr("x", 180)
-//     //     .text("Users Played with More than Once")
-//     //
-//     // user_interact_graph.append("text")
-//     //     .attr("text-anchor", "middle")
-//     //     .attr("y", -60)
-//     //     .attr("x", 180)
-//     //     .style("font-size", "12px")
-//     //     .text("Click a user to see their Steam profile.")
-//
-//     if (user_flare.children.length == 0) {
-//         user_interact_graph.append("text")
-//             .attr("class", "error")
-//             .attr("y", 100)
-//             .text("Sorry, no data matches your selection criteria.")
-//             .style("font-size", "12px")
-//             .attr("dx", "3.3em")
-//         return;
-//     }
-// }
 
 // Returns a flattened hierarchy containing all leaf nodes under the root.
 function classes(root) {
@@ -2543,182 +2458,4 @@ function classes(root) {
     return {children: classes};
 }
 
-// function update_user_interact(data) {
-//
-//     user_interact_graph.selectAll(".error").remove();
-//
-//     user_flare = {
-//         name: "user_flare",
-//         child_dict: {},
-//         children: []
-//     };
-//
-//     for (var i = 0; i < data.matches.length; i++) {
-//         var all_players = data.matches[i].players;
-//
-//         if (all_players.length == 10) {
-//             for (var j = 0; j < 10; j++) {
-//
-//                 var account_id_num = all_players[j].account_id;
-//
-//                 if (account_id_num === undefined) {
-//                     continue;
-//                 }
-//                 if (account_id_num == 4294967295) {
-//                     continue;
-//                 }
-//
-//                 if (!(account_id_num in user_flare.child_dict)) {
-//                     user_flare.child_dict[account_id_num] = {
-//                         name: account_id_num,
-//                         count: 1,
-//                         num_wins: 0
-//                     };
-//                 }
-//                 else {
-//                     user_flare.child_dict[account_id_num].count += 1;
-//                     if (data.matches[i].player_win == true) {
-//                         user_flare.child_dict[account_id_num].num_wins += 1;
-//                     }
-//                 }
-//
-//             }
-//
-//         }
-//     }
-//
-//     for (var k in user_flare.child_dict) {
-//         if (user_flare.child_dict[k].count == 1) {
-//             delete user_flare.child_dict[k];
-//         }
-//         else {
-//             user_flare.children.push(user_flare.child_dict[k]);
-//         }
-//     }
-//
-//     if (user_flare.children.length == 0) {
-//         user_interact_graph.selectAll(".node").remove();
-//
-//         user_interact_graph.append("text")
-//             .attr("class", "error")
-//             .attr("y", 100)
-//             .text("Sorry, no data matches your selection criteria.")
-//             .style("font-size", "12px")
-//             .attr("dx", "3.3em")
-//         return;
-//     }
-//
-//     d3.selectAll(".node").remove();
-//
-//     node = user_interact_graph.selectAll(".node")
-//         .data(bubble.nodes(classes(user_flare), function(d) {
-//             return d.className;
-//         })
-//             .filter(function(d) {return !d.children;}))
-//
-//     node
-//         .enter().append("g")
-//         .attr("class", "node")
-//         .append("a")
-//         .attr("xlink:href", function(d) {
-//             return d2.getUserInfo(d.className).profileurl
-//         })
-//         .style("fill", function(d) {
-//             if (d3.select("input#winrate").property("checked")) {
-//                 return user_interact_color_win(d.wins/d.value);
-//             }
-//             else {
-//                 return user_interact_color(d.value)
-//             }
-//         })
-//         .attr("xlink:show", "new") //opens link in a new tab
-//         .append("circle")
-//         .attr("z-index", "1")
-//         .attr("r", function(d) {return d.r})
-//         .on("mouseover", function(d) {
-//
-//             format = d3.format(".2%")
-//
-//             graph_tip.html("User: " + d2.getUserName(d.className) + "<br>Number of games: " + d.value + "<br>Winrate Playing Together : " + format(d.wins/d.value));
-//
-//             //from Video
-//             // if (d2.getUserName(d.className) == "Nukeydog") {
-//             // 	graph_tip.html("User: " + "Robbie" + "<br>Number of games: " + d.value + "<br>Winrate Playing Together : " + "11.0%");
-//             // 	d.wins = 0;
-//             // }
-//
-//             if (d.className != user_data.id32) {
-//                 graph_tip.show(d);
-//             }
-//         })
-//         .on("mouseout", function(d) {
-//
-//             graph_tip.hide(d);
-//         })
-//
-//
-//     if ($("#color-blind").is(":checked")) {
-//         user_interact_color_win = d3.scale.linear()
-//             .domain([0, .5, 1])
-//             .range(["#ff7f00", "#8d8d8d", "#762a83"]);
-//     }
-//     else {
-//         user_interact_color_win = d3.scale.linear()
-//             .domain([0, .5, 1])
-//             .range(["#d7191c", "#8d8d8d", "#1a9641"]);
-//     }
-//
-//     node
-//         .transition()
-//         .duration(1000)
-//         .attr("transform", function(d) {
-//             return "translate(" + d.x + "," + d.y + ")";
-//         })
-//
-//     node.selectAll("circle")
-//         .style("fill", function(d) {
-//             if (d3.select("input#winrate").property("checked")) {
-//                 return user_interact_color_win(d.wins/d.value);
-//             }
-//             else {
-//                 return user_interact_color(d.value)
-//             }
-//         });
-//
-//     d3.selectAll(".node").append("text")
-//         .attr("dy", ".3em")
-//         .style("text-anchor", "middle")
-//         .style("pointer-events", "none")
-//         .text(function(d) {
-//             var username = d2.getUserName(d.className)
-//             //from Video
-//             // if (username == "Nukeydog") {
-//             // 	username = "Robbie"
-//             // }
-//             if (username.length < d.r*.3) {
-//                 return username
-//             }
-//         })
-//         .style("fill", "black")
-//         .style("font-size", "12px");
-//
-//
-//     if($("input#winrate").is(":checked")) {
-//         draw_legend(user_interact_graph);
-//     }
-//
-//     d3.select("input#rainbow").on("change", function() {
-//
-//         user_interact_graph.selectAll(".legend").transition().duration(1000).style("opacity", 0).remove();
-//         user_interact_graph.selectAll(".grad").transition().duration(1000).style("opacity", 0).remove();
-//
-//         d3.selectAll(".node circle").transition().duration(1000).style("fill", function(d){ return user_interact_color(d.value) })
-//
-//     });
-//
-//     d3.select("input#winrate").on("change", function() {
-//         d3.selectAll(".node circle").transition().duration(1000).style("fill", function(d){ return user_interact_color_win(d.wins/d.value) })
-//         draw_legend(user_interact_graph);
-//     });
-//
-// }
+
