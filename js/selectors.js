@@ -82,7 +82,7 @@ function reselectHeroes() {
     resetSelectedHeroes();
     // then select previous selection
     selectedarr.forEach( function (d,i) {
-        d3.select("#" + d2.getHeroInfo(d).name)
+        d3.select("#" + dM.getHeroInfo(d).name)
             .classed("selected",true)
             .style("border", "1px solid white");
     });

@@ -105,7 +105,7 @@ function displayRecords(){
             .html($("#" + key).data().value + "<br>" +records[key].value)
             .classed("dullness",true)
             .classed("brightnessfilter",true)
-            .style("background-image", "url(" + d2.getHeroInfo(records[key].match.player_info.hero_id).img + ")")
+            .style("background-image", "url(" + dM.getHeroInfo(records[key].match.player_info.hero_id).img + ")")
             .on("click",function() {
                 update_end_screen(records[this.id].match);
             });

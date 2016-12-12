@@ -67,11 +67,7 @@ function update_end_screen(game) {
     d3.select("#match_id .text").text(game.match_id)
 
     // set game mode text
-    d3.select("#game_mode .text").text(d2.getGameModeInfo(game.game_mode).name)
-
-    // game.start_time is in seconds since UNIX Epoch, but d3 new Date needs milliseconds
-    var start = new Date(game.start_time * 1000)
-    d3.select("#date .text").text(date_string_utc(start))
+    d3.select("#game_mode .text").text(dM.getGameModeInfo(game.game_mode).name)
 
     // convert duration (in seconds) to hours + seconds
     var hours = Math.floor(game.duration / 60);
@@ -115,7 +111,7 @@ function update_end_screen(game) {
                 var name_text = "Private account";
             } else {
                 try {
-                    var name_text = d2.getUserName(d.account_id);
+                    var name_text = dM.getUserName(d.account_id);
                 } catch (e) {
                     var name_text = d.account_id;
                 }
@@ -127,7 +123,7 @@ function update_end_screen(game) {
         } else if (this_cell.attr("class") == "items") {
             return ""
         } else if (this_cell.attr("class") == "hero") {
-            var hero = d2.getHeroInfo(d.hero_id)
+            var hero = dM.getHeroInfo(d.hero_id)
             var hero_name = "<img src='" + hero.img + "' height='36px'> " + d.level
             return hero_name
         } else {
@@ -154,9 +150,9 @@ function update_end_screen(game) {
     for (var i = 0; i < 6; i++) {
         rows.selectAll(".items").append("img")
             .attr("class", "end_screen_item_pic")
-            .attr("src", function(d) { return (i in d.items) ? d2.getItemInfo(d.items[i]).img : "" })
-            .attr("alt", function(d) { return (i in d.items) ? d2.getItemInfo(d.items[i]).dname : "" })
-            .attr("title", function(d) { return (i in d.items) ? d2.getItemInfo(d.items[i]).dname : "empty" })
+            .attr("src", function(d) { return (i in d.items) ? dM.getItemInfo(d.items[i]).img : "" })
+            .attr("alt", function(d) { return (i in d.items) ? dM.getItemInfo(d.items[i]).dname : "" })
+            .attr("title", function(d) { return (i in d.items) ? dM.getItemInfo(d.items[i]).dname : "empty" })
             .attr("height", "36px")
             .attr("width", "48px")
     }
@@ -213,7 +209,7 @@ function update_ability_build (player) {
             .attr("y", 10)
 
         levels.append("image")
-            .attr("xlink:href", function(d) { return (d.ability == 5522) ? d2.getAbilityInfo(5329).img : d2.getAbilityInfo(d.ability).img })
+            .attr("xlink:href", function(d) { return (d.ability == 5522) ? dM.getAbilityInfo(5329).img : dM.getAbilityInfo(d.ability).img })
             .attr("class", "ability_build_img")
             .attr("height", ability_img_dimension)
             .attr("width", ability_img_dimension)
@@ -223,7 +219,7 @@ function update_ability_build (player) {
                 if (d.ability == 5002) {
                     ability_tip.html("Attribute Upgrade")
                 } else {
-                    ability_tip.html((d.ability == 5522) ? d2.getAbilityInfo(5329).dname : d2.getAbilityInfo(d.ability).dname)
+                    ability_tip.html((d.ability == 5522) ? dM.getAbilityInfo(5329).dname : dM.getAbilityInfo(d.ability).dname)
                 }
 
                 ability_tip.show(d)

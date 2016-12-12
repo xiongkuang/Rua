@@ -221,16 +221,16 @@ svg_xpm.call(graph_tip);
 svg_gpm.call(graph_tip);
 
 //function calls
-d2.loadJson(function() {
+dM.loadJson(function() {
 
     // Benjy's stuff
-    hero_keys = d2.getKeys("heroes");
+    hero_keys = dM.getKeys("heroes");
     var intheroes = new Array();
     var agiheroes = new Array();
     var strheroes = new Array();
     for (var i = 0; i < hero_keys.length; i++)
     {
-        var hero = d2.getHeroInfoCopy(hero_keys[i]);
+        var hero = dM.getHeroInfoCopy(hero_keys[i]);
         if (hero)
         {
             if (hero.stat == "strength")
@@ -289,7 +289,7 @@ d2.loadJson(function() {
 
     for (var i = 0; i < hero_keys.length; i++)
     {
-        var hero = d2.getHeroInfoCopy(hero_keys[i]);
+        var hero = dM.getHeroInfoCopy(hero_keys[i]);
 
         hero.items = [];
 
@@ -321,7 +321,7 @@ function tripleFilterUpdate(){
     // repopulate filtered_data by hero selection
     updateFilteredSelectionByHero();
     // further filter by game mode and lobby type
-    filtered_data.matches = filtered_data.matches.filter(function(d){if((selected_modes.indexOf(d2.getGameModeInfo(d.game_mode).short_name) >= 0)&& (selected_lobby_modes.indexOf(d2.getLobbyInfo(d.lobby_type).short_name) >= 0)) return 1;});
+    filtered_data.matches = filtered_data.matches.filter(function(d){if((selected_modes.indexOf(dM.getGameModeInfo(d.game_mode).short_name) >= 0)&& (selected_lobby_modes.indexOf(dM.getLobbyInfo(d.lobby_type).short_name) >= 0)) return 1;});
 
     updateGraphs(filtered_data);
 }
@@ -339,7 +339,7 @@ draw_xpm();
 
 function loadData(username) {
 
-    d2.loadUserData(username, function(error,data) {
+    dM.loadUserData(username, function(error, data) {
 
         user_data = data;
         filtered_data = data;
@@ -772,7 +772,7 @@ function update_flare(data) {
 
     data.matches.forEach(function(d,i) {
 
-        var current_hero = d2.getHeroInfo(d.player_info.hero_id)
+        var current_hero = dM.getHeroInfo(d.player_info.hero_id)
 
         // find which child array holds the heroes for this stat
         var children_pos = hero_flare.children.map(function (d) { return d.name }).indexOf(current_hero.stat);
@@ -795,12 +795,12 @@ function update_flare(data) {
 
         for (var j = 0; j < 6; j++) {
 
-            var current_item = d2.getItemInfoCopy(data.matches[i].player_info["item_"+j]);
+            var current_item = dM.getItemInfoCopy(data.matches[i].player_info["item_"+j]);
 
             if (current_item.dname == "empty") {
                 continue;
             }
-            var current_hero = d2.getHeroInfo(data.matches[i].player_info.hero_id);
+            var current_hero = dM.getHeroInfo(data.matches[i].player_info.hero_id);
 
             // find which child array holds the heroes for this stat
             var children_pos = hero_flare.children.map(function (d) { return d.name }).indexOf(current_hero.stat);
@@ -1081,7 +1081,7 @@ function update_item_percent(data) {
                 var topthree = findLargest3(d.hero_array);
 
                 for (var i = 0; i < topthree.length; i++) {
-                    var img_text = "<img src='" + d2.getHeroInfo(topthree[i][0]).img + "' height='36px' width='64px'>"
+                    var img_text = "<img src='" + dM.getHeroInfo(topthree[i][0]).img + "' height='36px' width='64px'>"
                     most_purchased = most_purchased + img_text
                 }
 
@@ -1424,10 +1424,10 @@ function update_gpm(data) {
             //console.log(d.player_info.hero_avg_gpm)
             var format = d3.format(".2f");
 
-            var text = "<strong>" + d2.getHeroName(d.player_info.hero_id) + "</strong>" + "<br>GPM this Game: " + d.player_info.gold_per_min + "<br>Average GPM on this hero: " + format(d.player_info.hero_avg_gpm);
+            var text = "<strong>" + dM.getHeroName(d.player_info.hero_id) + "</strong>" + "<br>GPM this Game: " + d.player_info.gold_per_min + "<br>Average GPM on this hero: " + format(d.player_info.hero_avg_gpm);
 
             //get the correct hero image and build the tooltip with an image
-            var hero_data = d2.getHeroInfo(d.player_info.hero_id);
+            var hero_data = dM.getHeroInfo(d.player_info.hero_id);
 
             var hero_image = hero_data.img;
 
@@ -1740,10 +1740,10 @@ function update_xpm(data) {
 
             var format = d3.format(".2f");
 
-            var text = "<strong>" + d2.getHeroName(d.player_info.hero_id) + "</strong>" + "<br>XPM this Game: " + d.player_info.xp_per_min + "<br>Average XPM on this hero: " + format(d.player_info.hero_avg_gpm);
+            var text = "<strong>" + dM.getHeroName(d.player_info.hero_id) + "</strong>" + "<br>XPM this Game: " + d.player_info.xp_per_min + "<br>Average XPM on this hero: " + format(d.player_info.hero_avg_gpm);
 
             //get the correct hero image and build the tooltip with an image
-            var hero_data = d2.getHeroInfo(d.player_info.hero_id);
+            var hero_data = dM.getHeroInfo(d.player_info.hero_id);
 
             var hero_image = hero_data.img;
 

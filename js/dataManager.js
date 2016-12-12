@@ -1,7 +1,7 @@
 /**
  * Created by xiongkuang on 11/29/16.
  */
-var d2 = (function() {
+var dM = (function() {
 
     var heroData = [];
     var itemData = [];
