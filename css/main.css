@@ -1,8 +1,8 @@
 body {
-    font-family: Trebuchet, sans-serif;
-    color: black;
+    font-family: sans-serif;
     font-size: 14px;
     font-weight: normal;
+    color:white;
 }
 
 label {
@@ -68,15 +68,19 @@ label {
 #page-header {
     position: fixed;
     width: 100%;
-    height: 65px;
+    height: 45px;
     top: 0px;
     left: 0px;
-    padding: 5px;
-    background-color: #ffffff;
+    padding: 0px;
+    background-color: rgb(17,17,17);
+    z-index: 1000;
 }
 
 #page-content {
-    margin-top: 50px;
+    margin-top: 45px;
+    background-color: rgb(33,33,33);
+    font-family: sans-serif;
+    font-color: white;
 }
 
 #page-content>div {
@@ -108,7 +112,7 @@ label {
     width: 950px;
     height: 40px;
     margin-right: auto;
-    margin-left: auto;
+    margin-left: 250px;
 }
 
 #filters {
@@ -118,7 +122,27 @@ label {
 #userdropdown {
     display: inline-block;
     width: 150px;
+    height: 45px;
+    border-radius:0px !important;
+    border: none;
     vertical-align: middle;
+    color:white;
+    background-color:rgba(0,0,0,0);
+    appearance:none;
+    background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;
+}
+select {
+
+
+
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+  
+
+
+  /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+  padding-right: 14px;
 }
 
 
@@ -173,7 +197,7 @@ label {
 
 text {
     font-family: Georgia;
-    color: black;
+    color: white !important;
     font-size: 18px;
 }
 
@@ -417,8 +441,8 @@ div.graph_description strong {
 
 #receptionlist{
     position: absolute;
-    top: 45%;
-    left: 45%;
+    top: 35%;
+    left: 40%;
 }
 
 #splash {
@@ -535,4 +559,38 @@ hr {
 
 .footer a {
     color: #4f4f4f;
+}
+
+#corner {
+    margin:0px;
+}
+
+#corner-btn {
+    height:45px;
+    width: 200px;
+    color:white;
+    margin:0 20px;
+    border: 0px;
+    outline:none;
+    background-color:rgba(0,0,0,0);
+    border-radius: 0px;
+    background-image:url(../max_logo.png);
+}
+#filters {
+    height:45px;
+}
+
+span button {
+    height:45px;
+    padding:0 20px;
+    margin:0 5px;
+    color:white !important;
+    border: 0px !important;
+    outline:none !important;
+    background-color:rgba(0,0,0,0) !important;
+    border-radius: 0px !important;
+}
+
+span button:hover {
+    background-color:rgb(100,100,100) !important;
 }
