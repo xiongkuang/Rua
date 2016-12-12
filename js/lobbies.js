@@ -1,10 +1,48 @@
 /**
  * Created by xiongkuang on 11/29/16.
  */
-all_lobby_modes =  ["public","practice","tournament","tutorial","co_op_bot","team_match","solo_queue","ranked"];
-init_lobby_modes = ["public","tournament","team_match","solo_queue","ranked"];
-selected_lobby_modes = ["public","practice","tournament","tutorial","co_op_bot","team_match","solo_queue","ranked"];
-update_selected_lobby_modes = ["public","practice","tournament","tutorial","co_op_bot","team_match","solo_queue","ranked"];
+all_lobby_modes =
+    [   "public",
+        "practice",
+        "tournament",
+        "tutorial",
+        "co_op_bot",
+        "team_match",
+        "solo_queue",
+        "ranked"
+    ];
+
+init_lobby_modes =
+    [
+        "public",
+        "tournament",
+        "team_match",
+        "solo_queue",
+        "ranked"
+    ];
+selected_lobby_modes =
+    [
+        "public",
+        "practice",
+        "tournament",
+        "tutorial",
+        "co_op_bot",
+        "team_match",
+        "solo_queue",
+        "ranked"
+    ];
+
+update_selected_lobby_modes =
+    [
+        "public",
+        "practice",
+        "tournament",
+        "tutorial",
+        "co_op_bot",
+        "team_match",
+        "solo_queue",
+        "ranked"
+    ];
 
 function changeLobbyColor(gamemode) {
     if (update_selected_lobby_modes.indexOf(gamemode)<0)

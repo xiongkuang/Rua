@@ -1,9 +1,12 @@
 /**
  * Created by xiongkuang on 11/29/16.
  */
-users = [{username : "Aui_2000", realname : "aui_2000"},
+users = [
+    {username : "Aui_2000", realname : "aui_2000"},
     {username : "Na`Vi.Dendi", realname : "dendi"},
-    {username : "Merlini", realname : "merlini"}
+    {username : "Merlini", realname : "merlini"},
+    {username : "bangkura", realname : "bangkura"},
+    {username : "Chun", realname : "chun"},
     ];
 
 users.sort(function(a, b) {
@@ -23,5 +26,5 @@ d3.select("#selectuser")
     .attr("value", function(d){ return d.realname })
     .text(function(d){ return d.username });
 
-// set default value to robbie (ME!!)
-d3.select("[value=dendi]").property("selected", true)
+// set default value
+d3.select("[value=bangkura]").property("selected", true)

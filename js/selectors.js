@@ -2,7 +2,6 @@
  * Created by xiongkuang on 11/29/16.
  */
 var selectedarr = new Array();
-// selecting label headings, highlights or unhighlights all imgs in that div
 var labels = ["str", "int", "agi"];
 labels.forEach(function (d) {
     d3.select("#" + d + "label").on("click", function () {
@@ -35,9 +34,7 @@ function highlight()
 
 function selected()
 {
-    // remove timeline clear selection button if filter was done after a brush
     d3.select(".clear-button_timeline").remove();
-    // super triple filter by all three types - game mode, lobby type and hero
     tripleFilterUpdate();
 }
 

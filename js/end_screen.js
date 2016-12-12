@@ -212,8 +212,6 @@ function update_ability_build (player) {
             .attr("x", ability_img_dimension / 2)
             .attr("y", 10)
 
-        // ability 5522 is the teleport version of Chen's Test of Faith, and the API returns that if Chen leveled it up by leveling up that version
-        // 5329 is the damage version, which we use in both places
         levels.append("image")
             .attr("xlink:href", function(d) { return (d.ability == 5522) ? d2.getAbilityInfo(5329).img : d2.getAbilityInfo(d.ability).img })
             .attr("class", "ability_build_img")
@@ -253,8 +251,7 @@ function enter_end_screen() {
             .style("opacity", 1)
     }
 
-    // scroll to end screen
-    // with help from http://stackoverflow.com/questions/3432656/scroll-to-a-div-using-jquery
+    // scroll to end screen http://stackoverflow.com/questions/3432656/scroll-to-a-div-using-jquery
     $("html, body").animate({scrollTop: $(end_screen).offset().top - 180}, 2000)
 }
 

@@ -331,14 +331,10 @@ function resetSelectedHeroes(){
 }
 
 draw_win_loss();
-
 draw_item_percent();
-
 draw_gpm();
-
 draw_xpm();
 
-// draw_user_interact();
 
 function loadData(username) {
 
@@ -354,182 +350,23 @@ function loadData(username) {
         resetLobby();
         initLobby();
         resetSelectedHeroes();
-
-
-        // create_timeline(user_data);
-        // updateGraphs(user_data)
-        // filter out random modes etc. and updateGraphs
-        tripleFilterUpdate();
+         tripleFilterUpdate();
     })
 }
 
 function updateGraphs (filtered_data) {
-
-    //FOR VIDEO. DO NOT DELETE.
-    // var angela_video_data = filtered_data;
-
-    // var angela_matches = angela_video_data.matches;
-
-    // for (var i = 0; i < angela_matches.length; i++) {
-    // 	if (i%2 == 0) {
-    // 		angela_matches[i].player_win = true;
-    // 	}
-    // 	if (i%5 == 0) {
-    // 		angela_matches[i].player_win = true;
-    // 	}
-
-    // 	var all_players = angela_matches[i].players;
-
-    // 	if (all_players.length == 10) {
-    // 		for (var j = 0; j < 10; j++) {
-    // 			var account_id_num = all_players[j].account_id;
-    // 			if (account_id_num == 112495792) {
-    // 				if (j%5 != 0) {
-    // 					angela_matches[i].player_win = false;
-    // 				}
-    // 			}
-    // 		}
-    // 	}
-    // }
-
-
-
-    //FOR VIDEO. DO NOT DELETE.
-    // var robbie_video_data = filtered_data;
-
-    // var robbie_matches = robbie_video_data.matches;
-
-    // for (var i = 0; i < robbie_matches.length; i++) {
-    // 	if (robbie_matches[i].player_win == true) {
-    // 		if (i%3 == 0) {
-    // 			robbie_matches[i].player_win = false;
-    // 		}
-    // 		if (robbie_matches[i].player_info.hero_id != 21) {
-    // 			if (i%5 == 0) {
-    // 				robbie_matches[i].player_info.hero_id = 22
-    // 			}
-    // 			robbie_matches[i].player_win == false;
-    // 		}
-    // 		if (robbie_matches[i].player_info.hero_id == 32) {
-    // 			robbie_matches[i].player_info.hero_id = 21
-    // 			robbie_matches[i].player_win == false;
-    // 		}
-    // 		if (robbie_matches[i].player_info.hero_id == 88) {
-    // 			robbie_matches[i].player_info.hero_id = 21
-    // 			robbie_matches[i].player_win == false;
-    // 		}
-    // 		if (robbie_matches[i].player_info.hero_id == 29) {
-    // 			robbie_matches[i].player_info.hero_id = 21
-    // 			robbie_matches[i].player_win == false;
-    // 		}
-    // 		if (robbie_matches[i].player_info.hero_id == 62) {
-    // 			robbie_matches[i].player_info.hero_id = 21
-    // 			robbie_matches[i].player_win == false;
-    // 		}
-    // 		if (robbie_matches[i].player_info.hero_id == 39) {
-    // 			robbie_matches[i].player_info.hero_id = 21
-    // 			robbie_matches[i].player_win == false;
-    // 		}
-    // 	}
-    // 	if (robbie_matches[i].player_info.item_0 == 102) {
-    // 		if (i != 0 && robbie_matches[i].player_info.hero_id == 21) {
-    // 			robbie_matches[i].player_win = true
-    // 		}
-    // 	}
-    // 	if (robbie_matches[i].player_info.item_1 == 102) {
-    // 		if (i != 0 && robbie_matches[i].player_info.hero_id == 21) {
-    // 			robbie_matches[i].player_win = true;
-    // 		}
-    // 	}
-    // 	if (robbie_matches[i].player_info.item_2 == 102) {
-    // 		if (i != 0 && robbie_matches[i].player_info.hero_id == 21) {
-    // 			robbie_matches[i].player_win = true
-    // 		}
-    // 	}
-    // 	if (robbie_matches[i].player_info.item_3 == 102) {
-    // 		if (i != 0 && robbie_matches[i].player_info.hero_id == 21) {
-    // 			robbie_matches[i].player_win = false;
-    // 		}
-    // 	}
-
-    // 	if (robbie_matches[i].player_info.item_0 == 180) {
-    // 		robbie_matches[i].player_info.item_0 = 151
-    // 		robbie_matches[i].player_win = false;
-    // 	}
-    // 	if (robbie_matches[i].player_info.item_1 == 180) {
-    // 		robbie_matches[i].player_info.item_1 = 151
-    // 		robbie_matches[i].player_win = false;
-    // 	}
-    // 	if (robbie_matches[i].player_info.item_2 == 180) {
-    // 		robbie_matches[i].player_info.item_2 = 151
-    // 		robbie_matches[i].player_win = false;
-    // 	}
-    // 	if (robbie_matches[i].player_info.item_3 == 180) {
-    // 		robbie_matches[i].player_info.item_3 = 151
-    // 		robbie_matches[i].player_win = false;
-    // 	}
-    // 	if (robbie_matches[i].player_info.item_4 == 180) {
-    // 		robbie_matches[i].player_info.item_4 = 151
-    // 		robbie_matches[i].player_win = false;
-    // 	}
-    // }
-
-
-
     //update function calls
     update_win_loss(filtered_data);
-
     update_item_percent(filtered_data);
-
     hero_pie(update_flare(filtered_data));
-
-    // create_matrix(filtered_data);
-
     update_gpm(filtered_data);
-
     update_xpm(filtered_data);
-
-    // update_user_interact(filtered_data);
-
-    // update_timeline(filtered_data);
-
-    // draw_kda(filtered_data);
-
-    //update chord diagram
-    // d3.select("input[name=hero_filter]").on("change", function() {
-    //     d3.select("#hero_filter .filterInput").text(this.value);
-    //     rerender(filtered_data);
-    // });
-
     updateRecords(filtered_data);
-
-    // exit the end screen when we change the filter
     exit_end_screen();
 }
 
 
-// jQuery tooltip helper adapted from: http://www.davidjrush.com/blog/2011/12/simple-jquery-tooltip/
-$(document).ready(function ()
-{
-    $("span.question").click(function ()
-    {
-        if ($( ".graph_description" ).length == 0) {
-            $(this).append('<div class="graph_description">' +
-                '<p><strong>Win-Loss Percentage:</strong> Win-loss percentage for current selected data <br></p>' +
-                '<p><strong>Heroes Played:</strong> Heroes played grouped by their primary attribute- agility, intelligence, or strength, and ordered by the number of games in which you’ve played them. This graph is colored by primary attribute. <br></p>' +
-                '<p><strong>Heroes Played Together Most Often:</strong> This graph shows which heroes have appeared together on the same team most frequently. Heroes are represented as arcs on the circumference of the circle, colored by primary attribute, and are linked by chords. These chords represent the number of games in which both heroes appeared on the same team. This graph is filterable to set a lower bound on the number of games in which the heroes appeared together, on the same team. <br></p>' +
-                '<p><strong>Items Purchased as Percentage of Games Played:</strong> Percentage of games in which you ended the game with a given item. Bars are colored by win rate with that item- gray if the win rate is around 50%, red if win rate is low, and green if win rate is high. Sorting can be conducted by percentage, alphabetically by item name, and item cost (dropped items, such as Aegis and Cheese, sort as infinite cost). <br></p>' +
-                '<p><strong>GPM Statistics:</strong> Scatterplot of GPM of hero for a given game against average GPM while playing that hero. Games falling above the line indicate that GPM this game was higher than average, while games falling below the line indicate that GPM this game was lower than average. Games are colored by win/loss. <br></p>' +
-                '<p><strong>XPM Statistics:</strong> Scatterplot of XPM of hero for a given game against average XPM while playing that hero. Games falling above the line indicate that XPM this game was higher than average, while games falling below the line indicate that GPM this game was lower than average. Games are colored by win/loss. <br></p>' +
-                "<p><strong>Users Played with More than Once:</strong> Bubble graph, where bubbles are sized by number of games played together. Users played with only once are not shown. Users can be colored in two ways: by number of games played with you, or by your winrate playing with them. Clicking on the user bubble takes you to their Steam homepage. <br></p>" +
-                '</div>');
-            $(this).addClass( "question-selected" )
-        } else {
-            $( ".graph_description" ).remove()
-            $(this).removeClass( "question-selected" )
-        }
-    })
-});
+
 
 //win loss rect graph
 //transition working
@@ -557,7 +394,7 @@ function draw_win_loss() {
         .attr("y", 20)
         .attr("class", "win text")
         .attr("text-anchor", "start")
-        .text("HWELLO!!!")
+        .text("Nod data!!!")
         .style("fill", "black");
 
     win_loss_graph
@@ -566,7 +403,7 @@ function draw_win_loss() {
         .attr("y", 20)
         .attr("class", "loss text")
         .attr("text-anchor", "end")
-        .text("HWELLO!!!")
+        .text("No data!!!")
         .style("fill", "black");
 
     win_loss_graph.append("text")
@@ -631,74 +468,74 @@ function capitalizeFirstLetter(string)
 }
 
 
-function hero_pie_transition(data){
-
-    hero_pie_path
-        .data(data)
-        .exit()
-        .transition()
-        .attr("visibility", "hidden")
-        .remove();
-
-    hero_pie_path
-        .data(data)
-        .enter()
-        .append("path")
-        .attr("class", "hero_pie")
-        .attr("visibility", "visible")
-        .on("click", click)
-        .on("mouseover", function(d) {
-
-            var tooltip = true;
-
-            var name;
-            var number_text;
-
-            if (d.value == 1) {
-                number_text = " game";
-            }
-            else {
-                number_text = " games"
-            }
-
-            if ("dname" in d) {
-                name = d.dname;
-            }
-            else if (d.name == "flare") {
-                tooltip = false
-            }
-            else {
-                name = capitalizeFirstLetter(d.name) + " Heroes";
-            }
-
-            var basic_tip = "<div id='tooltip_text'><strong>"+ name +"</strong>"+ "<br>" + d.value + number_text + "</br></div>";
-
-            if ("dname" in d) {
-                var img_tip = "<div id='hero_sunburst_tip'><img src='" + d.img + "'' width='64px' height='36px'></div>";
-            }
-            else {
-                var img_tip = "";
-            }
-
-            graph_tip.html(img_tip + basic_tip);
-
-            if (tooltip) {
-                graph_tip.show(d);
-            }
-
-            d3.select(this)
-                .style("fill", "aquamarine");
-        })
-        .on("mouseout", function(d) {
-            graph_tip.hide(d);
-
-            d3.select(this)
-                .style("fill", function(d) { return color((d.children ? d : d.parent).name); });
-        })
-        .transition()
-        .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
-        .attr("d", hero_pie_arc);
-}
+// function hero_pie_transition(data){
+//
+//     hero_pie_path
+//         .data(data)
+//         .exit()
+//         .transition()
+//         .attr("visibility", "hidden")
+//         .remove();
+//
+//     hero_pie_path
+//         .data(data)
+//         .enter()
+//         .append("path")
+//         .attr("class", "hero_pie")
+//         .attr("visibility", "visible")
+//         .on("click", click)
+//         .on("mouseover", function(d) {
+//
+//             var tooltip = true;
+//
+//             var name;
+//             var number_text;
+//
+//             if (d.value == 1) {
+//                 number_text = " game";
+//             }
+//             else {
+//                 number_text = " games"
+//             }
+//
+//             if ("dname" in d) {
+//                 name = d.dname;
+//             }
+//             else if (d.name == "flare") {
+//                 tooltip = false
+//             }
+//             else {
+//                 name = capitalizeFirstLetter(d.name) + " Heroes";
+//             }
+//
+//             var basic_tip = "<div id='tooltip_text'><strong>"+ name +"</strong>"+ "<br>" + d.value + number_text + "</br></div>";
+//
+//             if ("dname" in d) {
+//                 var img_tip = "<div id='hero_sunburst_tip'><img src='" + d.img + "'' width='64px' height='36px'></div>";
+//             }
+//             else {
+//                 var img_tip = "";
+//             }
+//
+//             graph_tip.html(img_tip + basic_tip);
+//
+//             if (tooltip) {
+//                 graph_tip.show(d);
+//             }
+//
+//             d3.select(this)
+//                 .style("fill", "aquamarine");
+//         })
+//         .on("mouseout", function(d) {
+//             graph_tip.hide(d);
+//
+//             d3.select(this)
+//                 .style("fill", function(d) { return color((d.children ? d : d.parent).name); });
+//         })
+//         .transition()
+//         .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+//         .attr("d", hero_pie_arc);
+// }
 
 function click(d) {
     hero_pie_path.transition()
@@ -892,7 +729,7 @@ function hero_pie(flare) {
 
 }
 
-// the below functions for arc interpolation come from
+
 // http://johan.github.io/d3/ex/sunburst.html
 
 // Stash the old values for transition.
@@ -943,9 +780,7 @@ function update_flare(data) {
 
     })
 
-    //deep copy attempts
-    //item_flare = jQuery.extend(true, {}, hero_flare);
-    //item_flare = JSON.parse(JSON.stringify(hero_flare));
+
 
     //get items to each hero and enumerate a count
     for (var i = 0; i < data.matches.length; i++) {
@@ -1039,88 +874,6 @@ function draw_item_percent() {
 function draw_legend(graph) {
 
     graph.selectAll(".legend").remove();
-
-    // var gradient = graph.append("svg:defs")
-    //     .attr("class", "grad")
-    //     .append("svg:linearGradient")
-    //     .attr("id", "gradient")
-    //     .attr("x1", "0%")
-    //     .attr("x2", "100%")
-    //     .attr("y1", "0%")
-    //     .attr("y2", "0%")
-    //     .attr("spreadMethod", "pad");
-    //
-    // if ($("#color-blind").is(":checked")) {
-    //     gradient.append("svg:stop")
-    //         .attr("offset", "0%")
-    //         .attr("stop-color", "#762a83")
-    //         .attr("stop-opacity", 1);
-    //
-    //     gradient.append("svg:stop")
-    //         .attr("offset", "50%")
-    //         .attr("stop-color", "#8d8d8d")
-    //         .attr("stop-opacity", 1);
-    //
-    //     gradient.append("svg:stop")
-    //         .attr("offset", "100%")
-    //         .attr("stop-color", "#ff7f00")
-    //         .attr("stop-opacity", 1);
-    // }
-    //
-    // else {
-    //     gradient.append("svg:stop")
-    //         .attr("offset", "0%")
-    //         .attr("stop-color", "#1a9641")
-    //         .attr("stop-opacity", 1);
-    //
-    //     gradient.append("svg:stop")
-    //         .attr("offset", "50%")
-    //         .attr("stop-color", "#8d8d8d")
-    //         .attr("stop-opacity", 1);
-    //
-    //     gradient.append("svg:stop")
-    //         .attr("offset", "100%")
-    //         .attr("stop-color", "#d7191c")
-    //         .attr("stop-opacity", 1);
-    // }
-
-    // graph.append("svg:rect")
-    //     .attr("class", "grad")
-    //     .attr("width", 150)
-    //     .attr("height", 25)
-    //     .attr("x", 246)
-    //     .attr("y", -30)
-    //     .style("fill", "url(#gradient)")
-    //     .style("stroke-width", "1px")
-    //     .style("stroke", "white")
-    //     .style("opacity", 0)
-    //     .transition()
-    //     .duration(1000)
-    //     .style("opacity", 1);
-    //
-    // graph.append("text")
-    //     .attr("x", 243)
-    //     .attr("y", -15)
-    //     .attr("class", "legend")
-    //     .style("font-size", "14px")
-    //     .style("text-anchor", "end")
-    //     .text("100% win")
-    //     .style("opacity", 0)
-    //     .transition()
-    //     .duration(1000)
-    //     .style("opacity", 1);
-    //
-    // graph.append("text")
-    //     .attr("class", "legend")
-    //     .attr("x", 460)
-    //     .attr("y", -15)
-    //     .style("font-size", "14px")
-    //     .style("text-anchor", "end")
-    //     .text("100% loss")
-    //     .style("opacity", 0)
-    //     .transition()
-    //     .duration(1000)
-    //     .style("opacity", 1);
 }
 
 
@@ -1134,19 +887,9 @@ function update_item_percent(data) {
     //initialize all items with a count of 0
     d3.json("data/items.json", function(error,dat) {
 
-        //for coloring by cost
-        // var extent_array = [];
 
-        // for (id in dat) {
-        // 	extent_array.push(dat[id].cost);
-        // }
+        item_percent_color.range(["#F68065","#6CC062"])
 
-        if (isChecked) {
-            item_percent_color.range(["#762a83","#ff7f00"])
-        }
-        else {
-            item_percent_color.range(["#d7191c","#1a9641"])
-        }
 
         for (id in dat) {
             dat[id].count = 0;
@@ -1262,12 +1005,8 @@ function update_item_percent(data) {
 
         //item_percent_color.domain(d3.extent(extent_array));
         item_percent_color.domain([0,.5,1])
-        if ($("#color-blind").is(":checked")) {
-            item_percent_color.range(["#ff7f00", "#8d8d8d", "#762a83"]);
-        }
-        else {
-            item_percent_color.range(["#d7191c", "#8d8d8d", "#1a9641"]);
-        }
+        item_percent_color.range(["#d7191c", "#8d8d8d", "#1a9641"]);
+
 
         if (d3.select(".item_percent").attr("visibility") == "hidden") {
             var duration = 0;
@@ -1503,268 +1242,6 @@ function k_combinations(set, k) {
     return combs;
 }
 
-
-// function create_matrix (data) {
-//
-//     var filter_value = d3.select("input[name=hero_filter]")[0][0].value;
-//     //d3.select("input[name=hero_filter]")[0][0].value;
-//
-//     var matrix = [];
-//
-//     for (var k = 0; k < 111; k++) {
-//         var new_array = [];
-//         for (var l = 0; l < 111; l++) {
-//             new_array.push(0);
-//         }
-//         matrix.push(new_array);
-//     }
-//
-//     for (var i = 0; i < data.matches.length; i++) {
-//
-//         var set = [];
-//         var gamemode = data.matches[i].game_mode;
-//         var continue_on = false;
-//
-//         //filter out gamemodes we don't want, like ones with five players, etc.
-//         if (gamemode == 15 || gamemode == 7 || gamemode == 0 ||
-//             gamemode == 6 || gamemode == 8 || gamemode == 9 ||
-//             gamemode == 10 || gamemode == 11 || gamemode == 12 ||
-//             gamemode == 13 || gamemode == 14 || gamemode ==  15 || gamemode == 18) {
-//             continue;
-//         }
-//
-//         //filter out games with less than 10 players
-//         if (data.matches[i].players.length < 10) {
-//             continue;
-//         }
-//
-//         //filter out games where a player did not pick a hero
-//         data.matches[i].players.map(function(d) {
-//             if (d.hero_id == 0) {
-//                 continue_on = true;
-//             }
-//         })
-//
-//         if (continue_on == true) {
-//             continue;
-//         }
-//
-//         for (var j = 0; j < 9; j++) {
-//             set.push(data.matches[i].players[j].hero_id);
-//         }
-//
-//         var combinations_rad = k_combinations(set.slice(0,5),2);
-//         var combinations_dire = k_combinations(set.slice(5,10),2);
-//
-//         for (var c = 0; c < combinations_rad.length; c ++) {
-//             matrix[combinations_rad[c][0]][combinations_rad[c][1]] += 1;
-//             matrix[combinations_rad[c][1]][combinations_rad[c][0]] += 1;
-//         }
-//         for (var c = 0; c < combinations_dire.length; c ++) {
-//             matrix[combinations_dire[c][0]][combinations_dire[c][1]] += 1;
-//             matrix[combinations_dire[c][1]][combinations_dire[c][0]] += 1;
-//         }
-//     }
-//
-//     var new_dict = {};
-//     var lookup_dict = {};
-//     var counter = 0;
-//     var new_arr = [];
-//
-//
-//     for (var y = 1; y < 111; y ++) {
-//         for (var z = 1; z < 111; z++) {
-//             if (matrix[y][z] <= filter_value) {
-//                 matrix[y][z] = 0;
-//             }
-//             else {
-//                 //it stays
-//                 // if (y == 24 || z == 24) {
-//                 // 	// console.log(y,z)
-//                 // 	// console.log(matrix[y][z])
-//                 // }
-//                 if (!(y in new_dict)) {
-//                     new_dict[y] = counter;
-//                     new_arr[counter] = [];
-//                     lookup_dict[counter] = y;
-//                     counter++;
-//                 }
-//                 if (!(z in new_dict)) {
-//                     new_dict[z] = counter;
-//                     new_arr[counter] = [];
-//                     lookup_dict[counter] = z;
-//                     counter++;
-//                 }
-//                 new_arr[new_dict[y]][new_dict[z]] = matrix[y][z];
-//             }
-//         }
-//     }
-//
-//     for (var i = 0; i < new_arr.length; i++) {
-//         for (var j = 0; j < new_arr.length; j++){
-//             if (new_arr[i][j] === undefined) {
-//                 new_arr[i][j] = 0;
-//             }
-//         }
-//     }
-//
-//     d3.selectAll(".chord").remove();
-//     d3.selectAll(".arcs").remove();
-//
-//     // draw_hero_chord_graph(new_arr, lookup_dict);
-// }
-
-
-// var chord_tip = d3.select("#hero_chord_container").append("div").attr("class", "chordtip hidden")
-//
-//
-// function draw_hero_chord_graph(matrix, lookup_dict) {
-//
-//     hero_chord_graph.selectAll("text").remove();
-//     hero_chord_graph.selectAll(".error_message").remove();
-//
-//     if (matrix.length == 0) {
-//         hero_chord_graph.append("text")
-//             .attr("class", "error_message")
-//             .attr("x", -100)
-//             .attr("y", 0)
-//             .style("font-size", "12px")
-//             .text("Sorry, no data meets your selection criteria.");
-//     }
-//
-//     var chord = d3.layout.chord()
-//         .padding(.05)
-//         .sortSubgroups(d3.descending)
-//         .matrix(matrix);
-//
-//     var hero_chord_width = bb_hero_chord.w,
-//         hero_chord_height = bb_hero_chord.h,
-//         innerRadius = Math.min(hero_chord_width, hero_chord_height) * .41,
-//         outerRadius = innerRadius * 1.1;
-//
-//     var fill = d3.scale.ordinal()
-//         .domain(["agility", "strength", "intelligence"])
-//         .range(["#2BAC00", "#E38800","#1A88FC"]);
-//
-//     var groupings = [];
-//
-//     for (var i = 0; i < chord.groups().length; i++) {
-//         chord.groups()[i].hero_id = lookup_dict[chord.groups()[i].index]
-//     }
-//
-//     var arcs = hero_chord_graph.append("g").attr("class","arcs").selectAll("path")
-//         .data(chord.groups)
-//         .enter()
-//         .append("path")
-//         .on("mouseover", function(d,i) {
-//
-//             var hero_info = d2.getHeroInfo(d.hero_id);
-//
-//             var basic_tip = "<div id='tooltip_text'><strong>"+ hero_info.dname +"</strong></div>";
-//
-//             var img_tip = "<div id='hero_sunburst_tip'><img src='" + hero_info.img + "'' width='64px' height='36px'></div>";
-//
-//             graph_tip.html(img_tip + basic_tip);
-//
-//             graph_tip.direction('e');
-//             graph_tip.show(d);
-//
-//             fade(.1)(d,i);
-//
-//         })
-//         .on("mouseout", function(d,i){
-//             graph_tip.direction('n');
-//             graph_tip.hide(d);
-//             fade(.7)(d,i);
-//
-//         })
-//         .style("fill", function(d) {
-//             //console.log(d)
-//             //console.log(lookup_dict)
-//             return fill(d2.getHeroInfo(d.hero_id).stat);
-//         })
-//         .style("opacity", 0)
-//         .transition().duration(1000)
-//         .style("opacity", 1)
-//         .style("stroke", "white")
-//         .attr("d", d3.svg.arc().innerRadius(innerRadius).outerRadius(outerRadius))
-//
-//     hero_chord_graph.append("g")
-//         .attr("class", "chord")
-//         .selectAll("path")
-//         .data(chord.chords)
-//         .enter()
-//         .append("path")
-//         .style("fill", function(d) {
-//             return fill(d2.getHeroInfo(lookup_dict[d.target.index]).stat);
-//         })
-//         .style("opacity", 0)
-//         .on("mouseover", function(d) {
-//             var mouse = d3.mouse(svg_hero_chord.node()).map( function(d) { return parseInt(d); } );
-//
-//             //toggle the hide on the tooltip
-//             chord_tip.classed("hidden", false)
-//                 .attr("z-index", "10000")
-//                 .attr("style", "left:"+(mouse[0]+50)+"px;top:"+(mouse[1]+50)+"px")
-//                 .html(function(e){
-//
-//                     var source = d.source.index;
-//                     var target = d.target.index;
-//
-//                     var name1 = d2.getHeroName(chord.groups()[source].hero_id);
-//                     var name2 = d2.getHeroName(chord.groups()[target].hero_id);
-//
-//                     return name1 + " - " + name2 + "<br>Number of Games: " + d.source.value
-//                 });
-//         })
-//         .on("mouseout", function(d){
-//             chord_tip.classed("hidden", true);
-//         })
-//         .transition().duration(1000)
-//         .attr("d", d3.svg.chord().radius(innerRadius))
-//         .style("opacity", .7);
-//
-//     hero_chord_graph
-//         .append("text")
-//         .attr("y", -270)
-//         .attr("class", "text")
-//         .attr("text-anchor", "middle")
-//         .text("Heroes Played Together Most Often");
-//
-//     hero_chord_graph
-//         .append("text")
-//         .attr("y", -245)
-//         .attr("class", "text")
-//         .attr("text-anchor", "middle")
-//         .text("Hover over circle arc to highlight a hero.")
-//         .style("fill", "black")
-//         .style("font-size", "12px");
-//
-//     hero_chord_graph
-//         .append("text")
-//         .attr("y", -230)
-//         .attr("class", "text")
-//         .attr("text-anchor", "middle")
-//         .text("Hover over a chord to see the number of games between two heroes.")
-//         .style("fill", "black")
-//         .style("font-size", "12px");
-//
-//     // Returns an event handler for fading a given chord group.
-//     function fade(opacity) {
-//         return function(g, i) {
-//             //console.log(i)
-//             hero_chord_graph.selectAll(".chord path")
-//                 .filter(function(d) {
-//                     //console.log(d)
-//                     return d.source.index != i && d.target.index != i;
-//                 })
-//                 .transition()
-//                 .style("opacity", opacity);
-//         };
-//     }
-//
-// }
-
 function rerender(data) {
 
     d3.selectAll(".chord")
@@ -1865,20 +1342,6 @@ function draw_gpm() {
         .attr("text-anchor", "middle")
         .attr("x", bb_gpm.w/2)
         .text("GPM Statistics")
-
-    // gpm_graph.append("text")
-    //     .attr("y", -25)
-    //     .attr("text-anchor", "middle")
-    //     .attr("x", bb_gpm.w/2)
-    //     .style("font-size", "12px")
-    //     .text("Select a region to zoom in. Click 'Clear Zoom' to zoom out.")
-    //
-    // gpm_graph.append("text")
-    //     .attr("y", -10)
-    //     .attr("text-anchor", "middle")
-    //     .attr("x", bb_gpm.w/2)
-    //     .style("font-size", "12px")
-    //     .text("Click on a game to bring up the corresponding endgame screen.")
 
 }
 
