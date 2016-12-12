@@ -1,7 +1,7 @@
 /**
  * Created by xiongkuang on 11/29/16.
  */
-var selectedarr = new Array();
+var selectedarr = [];
 var labels = ["str", "int", "agi"];
 labels.forEach(function (d) {
     d3.select("#" + d + "label").on("click", function () {
@@ -36,9 +36,7 @@ function selected() {
 
 function sorting(a, b) {
     return a.dname.localeCompare(b.dname)
-};
-
-
+}
 function updateFilteredSelectionByHero() {
 
     filtered_data = {
@@ -46,7 +44,7 @@ function updateFilteredSelectionByHero() {
         id64: user_data.id64,
         matches: [],
         user: user_data.user
-    }
+    };
     // copy the user_data matches
     filtered_data.matches.push.apply(filtered_data.matches, user_data.matches);
 
@@ -60,7 +58,7 @@ function updateFilteredSelectionByHero() {
     // if filter is empty, use all heroes
     if (selectedarr.length == 0) {
         // already copied above so just return
-        return;
+
     } else {
         // filter for only selected heroes
         filtered_data.matches = filtered_data.matches.filter(function (d, i) {

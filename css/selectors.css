@@ -21,24 +21,23 @@
 }
 
 #selector .images td {
-    width:330px;
+    width: 330px;
     line-height: 0;
     vertical-align: top;
 }
 
 #selector td text {
-    padding-bottom:15px;
+    padding-bottom: 15px;
     display: flex;
     justify-content: center; /* align horizontal */
     align-items: center; /* align vertical */
 }
 
-
-#selector img{
+#selector img {
     border: 2px solid black;
 }
 
-#strlabel,#intlabel,#agilabel{
+#strlabel, #intlabel, #agilabel {
     color: white;
     font-size: 20px;
     font-family: sans-serif;
@@ -66,18 +65,18 @@
     padding: 10px;
     border: 0px solid black;
     width: 170px;
-    height :50px;
+    height: 50px;
 }
 
 #game_mode_table, #lobby_table {
     margin: 10px auto;
-    border-collapse:separate;
-    border-spacing:10px;
+    border-collapse: separate;
+    border-spacing: 10px;
 }
-
 
 /* GAME RECORD MODAL STYLING */
 #show_records .modal-dialog {
+
     width: 270px;
 }
 
@@ -104,16 +103,16 @@
     border: 1px solid white;
 }
 
-#record_content div{
+#record_content div {
     display: inline-block;
-    font-weight:bold;
+    font-weight: bold;
     font-size: 16px;
     height: 80px;
     width: 170px;
     margin: 10px auto 20px auto;
     text-shadow: black 0.2em 0.2em 0.3em;
-    cursor:pointer;
-    margin-bottom:5px;
+    cursor: pointer;
+    margin-bottom: 5px;
     text-align: center;
     color: white;
     background-size: 200px 112.5px;
@@ -124,12 +123,13 @@
 .brightnessfilter:hover {
     -webkit-filter: brightness(1.2);
     -moz-filter: brightness(1.2);
-    -o-filter:  brightness(1.2);
-    -ms-filter:  brightness(1.2);
+    -o-filter: brightness(1.2);
+    -ms-filter: brightness(1.2);
 }
-.dullness{
+
+.dullness {
     -webkit-filter: brightness(0.8);
     -moz-filter: brightness(0.8);
-    -o-filter:  brightness(0.8);
-    -ms-filter:  brightness(0.8);
+    -o-filter: brightness(0.8);
+    -ms-filter: brightness(0.8);
 }

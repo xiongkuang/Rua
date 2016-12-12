@@ -87,8 +87,7 @@ function reselectLobby() {
     selected_lobby_modes.forEach(function (d) {
         document.getElementById(d).style.border = "2px solid white";
     });
-};
-
+}
 function initLobby() {
     selected_lobby_modes = init_lobby_modes.slice();
 }

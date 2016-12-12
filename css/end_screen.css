@@ -1,5 +1,5 @@
 #end_screen {
-    position:relative;
+    position: relative;
     height: 675px;
     width: 1060px;
 }
@@ -23,8 +23,8 @@
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
-    margin-top:20px;
-    padding:10px;
+    margin-top: 20px;
+    padding: 10px;
 }
 
 .radiant {
@@ -83,30 +83,32 @@
 #radiant tbody tr:nth-child(even) {
     background-color: #141914;
 }
+
 #dire tbody tr:nth-child(odd) {
     background-color: #211e1e;
 }
+
 #dire tbody tr:nth-child(even) {
     background-color: #191414;
 }
+
 #players td, #players th {
     padding: 3px;
-    text-align: center!important;
+    text-align: center !important;
     vertical-align: middle;
     font-weight: 100;
 }
 
 #players .headers {
-    background-color: rgb(17,17,17);
+    background-color: rgb(17, 17, 17);
 }
 
-
-#players .team th{
-    text-align:left;
+#players .team th {
+    text-align: left;
     border: none;
     font-size: 20px;
     font-weight: 500;
-    padding:10px;
+    padding: 10px;
     text-shadow: 2px 2px 1.5px #000000;
 }
 
@@ -122,24 +124,22 @@
 }
 
 #players td * {
-    vertical-align:middle;
+    vertical-align: middle;
 }
 
 #players #user {
-    background-color: rgba(100,100,100,0.5);
+    background-color: rgba(100, 100, 100, 0.5);
 }
 
-
-
 #players tbody .player_name {
-    padding-left:20px;
-    text-align: left!important;
+    padding-left: 20px;
+    text-align: left !important;
     min-width: 150px;
     max-width: 150px;
 }
 
 #players tbody .hero {
-    text-align: left!important;
+    text-align: left !important;
 }
 
 .level {
@@ -196,7 +196,7 @@
     width: 700px;
     height: 236px;
     left: 390px;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     border: 2px solid black;
 }
 

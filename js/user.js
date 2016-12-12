@@ -11,7 +11,7 @@ users = [
 
 users.sort(function (a, b) {
     return d3.ascending(a.username.toLowerCase(), b.username.toLowerCase())
-})
+});
 
 d3.select("#selectuser")
     .append("select")
@@ -31,4 +31,4 @@ d3.select("#selectuser")
     });
 
 // set default value
-d3.select("[value=bangkura]").property("selected", true)
+d3.select("[value=bangkura]").property("selected", true);

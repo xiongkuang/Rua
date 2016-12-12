@@ -2,8 +2,8 @@ body {
     font-family: sans-serif;
     font-size: 14px;
     font-weight: normal;
-    color:white;
-    background-color: #1e211e!important;
+    color: white;
+    background-color: #1e211e !important;
 }
 
 label {
@@ -29,8 +29,8 @@ label {
 #win_loss_container {
     width: 100%;
     height: 163px;
-    margin:0px;
-    background-image:url(../img/back_banner.jpg);
+    margin: 0px;
+    background-image: url(../img/back_banner.jpg);
     background-position: center;
 }
 
@@ -74,18 +74,18 @@ label {
     top: 0px;
     left: 0px;
     padding: 0px;
-    background-color: rgb(17,17,17);
+    background-color: rgb(17, 17, 17);
     z-index: 1000;
 }
 
 #page-content {
     margin-top: 45px;
-    background-color: rgb(33,33,33);
+    background-color: rgb(33, 33, 33);
     font-family: sans-serif;
     font-color: white;
 }
 
-#page-content>div {
+#page-content > div {
     margin-right: auto;
     margin-left: auto;
 }
@@ -97,6 +97,7 @@ label {
     width: 100px;
     text-align: center;
 }
+
 #corner-logo {
     width: 100px;
     height: 100px;
@@ -124,10 +125,10 @@ label {
 #userdropdown {
     display: inline-block;
     width: 150px;
-    border-radius:0px !important;
+    border-radius: 0px !important;
     border: 1px solid rgba(0, 0, 0, 1);
     vertical-align: middle;
-    color:white;
+    color: white;
     background-image: linear-gradient(to bottom, #333333, #222222);
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -156,7 +157,7 @@ label {
     position: relative;
     width: 100%;
     height: 1505px;
-    margin:0px;
+    margin: 0px;
     padding-top: 20px;
 }
 
@@ -177,20 +178,20 @@ label {
 }
 
 .win {
-    fill: rgba(36,154,105,0.8);
+    fill: rgba(36, 154, 105, 0.8);
 }
 
 .loss {
-    fill: rgba(247,38,67,0.8);
+    fill: rgba(247, 38, 67, 0.8);
 }
 
-.gpm_brush .extent{
-    fill:gray;
+.gpm_brush .extent {
+    fill: gray;
     opacity: .3;
 }
 
-.xpm_brush .extent{
-    fill:gray;
+.xpm_brush .extent {
+    fill: gray;
     opacity: .3;
 }
 
@@ -202,15 +203,16 @@ text {
 
 path {
     /*  stroke: #fff;
-    */  fill-rule: evenodd;
+    */
+    fill-rule: evenodd;
     stroke: white;
 }
 
-.path:hover{
+.path:hover {
     fill: white;
 }
 
-.bar:hover{
+.bar:hover {
     fill: white;
 }
 
@@ -280,19 +282,19 @@ path {
 
 #hero_filter {
     z-index: 1;
-    position:absolute;
+    position: absolute;
     top: 90px;
     left: 250px;
 }
 
-#toggle_color_pretty{
+#toggle_color_pretty {
     z-index: 1;
     position: absolute;
     top: 55px;
     left: 73px;
 }
 
-#toggle_color_ugly{
+#toggle_color_ugly {
     z-index: 1;
     position: absolute;
     top: 55px;
@@ -300,9 +302,8 @@ path {
 }
 
 .bubble a:visited {
-    color:gray;
+    color: gray;
 }
-
 
 /*tooltip styles*/
 
@@ -421,24 +422,25 @@ div.graph_description strong {
     display: none;
 }
 
-#game_mode_table td, #lobby_table td{
+#game_mode_table td, #lobby_table td {
     background-color: #333333;
     text-align: center;
-    color :white;
+    color: white;
     vertical-align: middle
 }
 
-#game_mode_table th, #lobby_table th{
+#game_mode_table th, #lobby_table th {
     font-size: 20px;
     color: white;
     font-weight: bold;
     text-align: center;
 }
-#game_mode_table, #lobby_table{
-    background-color:black;
+
+#game_mode_table, #lobby_table {
+    background-color: black;
 }
 
-#receptionlist{
+#receptionlist {
     position: absolute;
     top: 35%;
     left: 40%;
@@ -488,8 +490,6 @@ div.graph_description strong {
     margin-bottom: 20px;
 }
 
-
-
 #splash_page2 {
     margin-left: auto;
     margin-right: auto;
@@ -525,7 +525,7 @@ div.graph_description strong {
 
 hr {
     width: 100%;
-    border-top:1px solid #D2D2D2;
+    border-top: 1px solid #D2D2D2;
     margin-top: 5px;
     margin-bottom: 5px;
 }
@@ -561,59 +561,60 @@ hr {
 }
 
 #corner {
-    margin:0px;
+    margin: 0px;
 }
 
 #corner-btn {
-    height:45px;
+    height: 45px;
     width: 200px;
-    color:white;
-    margin:0 20px;
+    color: white;
+    margin: 0 20px;
     border: 0px;
-    outline:none;
-    background-color:rgba(0,0,0,0);
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
     border-radius: 0px;
-    background-image:url(../img/max_logo.png);
+    background-image: url(../img/max_logo.png);
 }
+
 #filters {
-    height:45px;
+    height: 45px;
 }
 
 span button {
-    height:45px;
-    padding:0 20px;
-    margin:0 5px;
-    color:white !important;
+    height: 45px;
+    padding: 0 20px;
+    margin: 0 5px;
+    color: white !important;
     border: 0px !important;
-    outline:none !important;
-    background-color:rgba(0,0,0,0) !important;
+    outline: none !important;
+    background-color: rgba(0, 0, 0, 0) !important;
     border-radius: 0px !important;
 }
 
 span button:hover {
-    background-color:rgb(100,100,100) !important;
+    background-color: rgb(100, 100, 100) !important;
 }
 
 button {
-    border-radius:0px!important;
+    border-radius: 0px !important;
 }
 
 .modal-footer button {
-    width:100px;
+    width: 100px;
 }
 
 #win_loss_bar {
-    display:block;
-    position:absolute;
-    left:50%;
-    margin-left:-355px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -355px;
     margin-top: 50px;
 }
 
 text {
-    fill:white!important;
-    font-family: sans-serif!important;
-    font-size:15px;
+    fill: white !important;
+    font-family: sans-serif !important;
+    font-size: 15px;
     font-weight: 100;
 }
 
@@ -626,10 +627,10 @@ text {
 }
 
 .match-info {
-    position:absolute;
-    margin-left:10px;
-    margin-top:50px;
-    background-color: rgba(15,15,15,0.5);
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 50px;
+    background-color: rgba(15, 15, 15, 0.5);
 }
 
 table {
@@ -658,21 +659,21 @@ thead {
 
 #close_btn {
     width: 100px;
-    position:absolute;
-    margin-left:-150px;
-    left:100%;
+    position: absolute;
+    margin-left: -150px;
+    left: 100%;
     display: inline-block;
-    border-radius:0px !important;
+    border-radius: 0px !important;
     border: 1px solid rgba(0, 0, 0, 1);
     vertical-align: middle;
-    color:white;
+    color: white;
     background-image: linear-gradient(to bottom, #333333, #222222);
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .graphs_row {
-    margin-top:60px;
-    margin-left:-500px;
+    margin-top: 60px;
+    margin-left: -500px;
     padding-left: 50%;
 }

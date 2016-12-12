@@ -31,7 +31,7 @@ function updateRecords(data) {
             "value": 0,
             "match": 0
         }
-    }
+    };
     if (data.matches.length) {
         data.matches.forEach(function (d) {
             records =
@@ -69,15 +69,15 @@ function updateRecords(data) {
         var seconds = records["longest_match"]["value"] % 60;
 
         // if seconds is one digit, pad with 0
-        seconds = (seconds / 10 < 1) ? "0" + seconds : seconds
+        seconds = (seconds / 10 < 1) ? "0" + seconds : seconds;
 
-        records["longest_match"]["value"] = hours + ":" + seconds
+        records["longest_match"]["value"] = hours + ":" + seconds;
 
         // change hero and tower damage numbers to include thousands separator
-        var thousands = d3.format(",d")
+        var thousands = d3.format(",d");
 
-        records["most_hero_damage"]["value"] = thousands(records["most_hero_damage"]["value"])
-        records["most_tower_damage"]["value"] = thousands(records["most_tower_damage"]["value"])
+        records["most_hero_damage"]["value"] = thousands(records["most_hero_damage"]["value"]);
+        records["most_tower_damage"]["value"] = thousands(records["most_tower_damage"]["value"]);
 
         displayRecords();
     }
@@ -93,8 +93,7 @@ function updateRecords(data) {
         }
 
     }
-};
-
+}
 function displayRecords() {
     for (key in records) {
         d3.select("#" + key)

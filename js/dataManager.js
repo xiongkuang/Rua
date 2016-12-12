@@ -15,7 +15,7 @@ var dM = (function () {
         // if no callback was passed, make function that does nothing
         if (callback === undefined)
             callback = function () {
-            }
+            };
         var remaining = 6;
 
         d3.json("data/heroes.json", function (error, data) {            // an array of all the hero names indexed appropriately - starting at 1
@@ -43,14 +43,14 @@ var dM = (function () {
             gameModes = data;
 
             if (!--remaining) callback();
-        })
+        });
 
         d3.json("data/lobbies.json", function (error, data) {
             // array of all the lobby modes
             lobbyModes = data;
 
             if (!--remaining) callback();
-        })
+        });
 
         d3.json("data/mini_usernames.json", function (error, data) {
             // array of all usernames we've pulled
@@ -65,7 +65,7 @@ var dM = (function () {
     // returns hero data for a given id
     function idToHeroInfo(id) {
         if (id in heroData)
-            return heroData[id]
+            return heroData[id];
         else
             throw new Error("No hero with id " + id)
     }
@@ -77,7 +77,7 @@ var dM = (function () {
 
     function idToItemInfo(id) {
         if (id in itemData)
-            return itemData[id]
+            return itemData[id];
         else
             throw new Error("No item with id " + id)
     }
@@ -88,21 +88,21 @@ var dM = (function () {
 
     function idToAbilityInfo(id) {
         if (id in abilityData)
-            return abilityData[id]
+            return abilityData[id];
         else
             throw new Error("No ability with id " + id)
     }
 
     function idToGameMode(id) {
         if (id in gameModes)
-            return gameModes[id]
+            return gameModes[id];
         else
             throw new Error("No game mode with id " + id)
     }
 
     function idToLobby(id) {
         if (id in lobbyModes)
-            return lobbyModes[id]
+            return lobbyModes[id];
         else
             throw new Error("No game mode with id " + id)
     }
@@ -111,7 +111,7 @@ var dM = (function () {
     // returns user data for a given id
     function idToUserInfo(id) {
         if (id in userData)
-            return userData[id][0]
+            return userData[id][0];
         else
             throw new Error("No user with account id " + id)
     }
@@ -140,7 +140,7 @@ var dM = (function () {
 
     // loads user data using d3.json
     function loadUserData(username, callback) {
-        username_lower = username.toLowerCase()
+        username_lower = username.toLowerCase();
 
         if (username_lower != "bangkura" && username_lower != "dendi" &&
             username_lower != "aui_2000" && username_lower != "merlini" &&
@@ -153,7 +153,7 @@ var dM = (function () {
             data.matches.forEach(function (d, i) {
                 our_player = d.players.filter(function (e) {
                     return (e.account_id == data.id32)
-                })
+                });
 
                 //pull out player array
                 d.player_info = our_player[0];
@@ -175,12 +175,12 @@ var dM = (function () {
                     d.player_win = false;
                 }
 
-            })
+            });
 
             //player left game before s/he even picked a hero, get rid of these matches
             data.matches = data.matches.filter(function (d) {
                 return (d.player_info.hero_id != 0);
-            })
+            });
 
             callback(error, data);
         })
@@ -195,9 +195,7 @@ var dM = (function () {
             .attr('src', function (d) {
                 return "img/heroes/" + d + ".jpg";
             });
-    };
-
-
+    }
     function displayItemImg(itemname) {
         d3.select("body").select(".itempicture").remove();
 
@@ -207,12 +205,11 @@ var dM = (function () {
             .attr('src', function (d) {
                 return "img/items/" + d + ".jpg";
             });
-    };
-
+    }
     var pubFunctionList = "getHeroName(id): returns hero name from ID\n"
         + "getItemName(id): returns item name from ID\n"
         + "displayHeroImg(name): displays the image for hero 'name'\n"
-        + "displayItemImg(name): displays the image for item 'name'\n"
+        + "displayItemImg(name): displays the image for item 'name'\n";
 
     return {
         getUserData: function () {
@@ -234,7 +231,7 @@ var dM = (function () {
         },
 
         getHeroInfoCopy: function (id) {
-            object = idToHeroInfo(id)
+            object = idToHeroInfo(id);
             return jQuery.extend(true, {}, object)
         },
 
@@ -247,7 +244,7 @@ var dM = (function () {
         },
 
         getItemInfoCopy: function (id) {
-            object = idToItemInfo(id)
+            object = idToItemInfo(id);
             return jQuery.extend(true, {}, object)
         },
 

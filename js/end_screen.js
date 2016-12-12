@@ -20,14 +20,14 @@ var ability_img_dimension = 50;
 
 var ability_tip = d3.tip().attr('class', 'd3-tip').html("init").offset([-5, 0]);
 
-var end_screen_height = d3.select("#end_screen").style("height")
+var end_screen_height = d3.select("#end_screen").style("height");
 
 create_end_screen();
 
 function create_end_screen() {
     // copy all the player slots
     for (var i = 1; i < 5; i++) {
-        $("#radiant .slot0").clone().removeClass().addClass("slot" + i).appendTo("#radiant tbody")
+        $("#radiant .slot0").clone().removeClass().addClass("slot" + i).appendTo("#radiant tbody");
         $("#dire .slot0").clone().removeClass().addClass("slot" + i).appendTo("#dire tbody")
     }
 
@@ -53,39 +53,39 @@ function update_end_screen(game) {
             if (d["item_" + i] != 0)
                 d.items.push(d["item_" + i])
         }
-    })
+    });
 
     // set winner
     d3.select("#winner")
         .text(((game.radiant_win) ? "Radiant" : "Dire") + " Victory")
-        .attr("class", (game.radiant_win) ? "radiant" : "dire")
+        .attr("class", (game.radiant_win) ? "radiant" : "dire");
 
     // set match id text
-    d3.select("#match_id .text").text(game.match_id)
+    d3.select("#match_id .text").text(game.match_id);
 
     // set game mode text
-    d3.select("#game_mode .text").text(dM.getGameModeInfo(game.game_mode).name)
+    d3.select("#game_mode .text").text(dM.getGameModeInfo(game.game_mode).name);
 
     // convert duration (in seconds) to hours + seconds
     var hours = Math.floor(game.duration / 60);
     var seconds = game.duration % 60;
 
     // if seconds is one digit, pad with 0
-    seconds = (seconds / 10 < 1) ? "0" + seconds : seconds
+    seconds = (seconds / 10 < 1) ? "0" + seconds : seconds;
 
-    d3.select("#duration .text").text(hours + ":" + seconds)
+    d3.select("#duration .text").text(hours + ":" + seconds);
 
     // filter dire and radiant players for data binding
 
     var radiant_players = game.players.filter(function (d) {
         return (d.player_slot & 0x80) == 0
-    })
+    });
     var dire_players = game.players.filter(function (d) {
         return d.player_slot & 0x80
-    })
+    });
 
     d3.selectAll("#radiant tbody tr").data(radiant_players);
-    d3.selectAll("#dire tbody tr").data(dire_players)
+    d3.selectAll("#dire tbody tr").data(dire_players);
 
     var rows = d3.selectAll("#players tbody tr");
 
@@ -96,7 +96,7 @@ function update_end_screen(game) {
         } else {
             d3.select(this).attr("id", null)
         }
-    })
+    });
 
     // propagate data binding to children
     rows.selectAll("td").data(function (row) {
@@ -106,7 +106,7 @@ function update_end_screen(game) {
     });
 
     rows.selectAll("td").html(function (d) {
-        this_cell = d3.select(this)
+        this_cell = d3.select(this);
         if (this_cell.attr("class") == "player_name") {
             if (d.account_id == 4294967295) {
                 var name_text = "Private account";
@@ -118,19 +118,19 @@ function update_end_screen(game) {
                 }
             }
 
-            d3.select(this).attr("title", name_text)
+            d3.select(this).attr("title", name_text);
 
             return name_text
         } else if (this_cell.attr("class") == "items") {
             return ""
         } else if (this_cell.attr("class") == "hero") {
-            var hero = dM.getHeroInfo(d.hero_id)
-            var hero_name = "<img src='" + hero.img + "' height='36px'> " + d.level
+            var hero = dM.getHeroInfo(d.hero_id);
+            var hero_name = "<img src='" + hero.img + "' height='36px'> " + d.level;
             return hero_name
         } else {
             return d[this_cell.attr("class")]
         }
-    })
+    });
 
     // set up ability build event handler
     d3.selectAll("td.hero")
@@ -141,11 +141,11 @@ function update_end_screen(game) {
             } else {
                 d3.select(".ability_build").style("visibility", "hidden")
             }
-        })
+        });
 
     // add item images
     // remove old item images
-    d3.selectAll(".end_screen_item_pic").remove()
+    d3.selectAll(".end_screen_item_pic").remove();
 
     // add new images, one to each at a time for six times
     for (var i = 0; i < 6; i++) {
@@ -166,12 +166,12 @@ function update_end_screen(game) {
 
 
     // update dot color and selection
-    d3.selectAll("#timeline .end_screen_selected").classed("end_screen_selected", false).attr("r", 3)
-    d3.selectAll("#stat_graphs .end_screen_selected").classed("end_screen_selected", false).attr("r", 3.5)
-    d3.selectAll("[match_id='" + game.match_id + "']").classed("end_screen_selected", true).attr("r", 5)
+    d3.selectAll("#timeline .end_screen_selected").classed("end_screen_selected", false).attr("r", 3);
+    d3.selectAll("#stat_graphs .end_screen_selected").classed("end_screen_selected", false).attr("r", 3.5);
+    d3.selectAll("[match_id='" + game.match_id + "']").classed("end_screen_selected", true).attr("r", 5);
 
     // give end screen a match_shown attribute, so we can reset the dots on exit
-    d3.select("#end_screen").attr("match_shown", game.match_id)
+    d3.select("#end_screen").attr("match_shown", game.match_id);
 
     enter_end_screen();
 
@@ -179,8 +179,8 @@ function update_end_screen(game) {
 }
 
 function update_ability_build(player) {
-    ability_svg.selectAll(".level").remove()
-    ability_svg.selectAll(".no_abilities_error").remove()
+    ability_svg.selectAll(".level").remove();
+    ability_svg.selectAll(".no_abilities_error").remove();
 
     // position div over whichever team the player is on
     // if radiant
@@ -204,10 +204,10 @@ function update_ability_build(player) {
             .enter().append("g")
             .attr("class", "level")
             .attr("transform", function (d, i) {
-                var x_pos = (ability_g_dimension + 5) * (i % 9)
-                var y_pos = (ability_g_dimension + 5) * Math.floor(i / 9)
+                var x_pos = (ability_g_dimension + 5) * (i % 9);
+                var y_pos = (ability_g_dimension + 5) * Math.floor(i / 9);
                 return "translate(" + x_pos + "," + y_pos + ")"
-            })
+            });
 
         levels.append("text")
             .text(function (d) {
@@ -215,7 +215,7 @@ function update_ability_build(player) {
             })
             .attr("text-anchor", "middle")
             .attr("x", ability_img_dimension / 2)
-            .attr("y", 10)
+            .attr("y", 10);
 
         levels.append("image")
             .attr("xlink:href", function (d) {
@@ -245,13 +245,13 @@ function update_ability_build(player) {
 
 function enter_end_screen() {
     // remove ability build when we switch end screen
-    d3.select(".ability_build").style("visibility", "hidden")
+    d3.select(".ability_build").style("visibility", "hidden");
 
     if (d3.select("#end_screen").style("display") == "none") {
         d3.select("#end_screen").style("display", null)
             .style("height", "0px")
             .transition().duration(2000)
-            .style("height", end_screen_height)
+            .style("height", end_screen_height);
 
         d3.selectAll("#end_screen>*").style("opacity", 0)
             .transition().delay(1250).duration(750)
@@ -271,15 +271,15 @@ function exit_end_screen() {
             // set div display to none at end to remove margin space
             .each("end", function () {
                 d3.select(this).style("display", "none")
-            })
+            });
 
         d3.selectAll("#end_screen>*").style("opacity", 1)
             .transition().duration(750)
-            .style("opacity", 0)
+            .style("opacity", 0);
 
         // reset dots to original sizes
-        d3.selectAll("#timeline .end_screen_selected").classed("end_screen_selected", false).attr("r", 3)
-        d3.selectAll("#stat_graphs .end_screen_selected").classed("end_screen_selected", false).attr("r", 3.5)
+        d3.selectAll("#timeline .end_screen_selected").classed("end_screen_selected", false).attr("r", 3);
+        d3.selectAll("#stat_graphs .end_screen_selected").classed("end_screen_selected", false).attr("r", 3.5);
 
         // get rid of match_shown attribute
         d3.select("#end_screen").attr("match_shown", null)

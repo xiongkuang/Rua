@@ -40,8 +40,7 @@ function reselectGameMode() {
     selected_modes.forEach(function (d) {
         document.getElementById(d).style.border = "2px solid white";
     });
-};
-
+}
 function initGameMode() {
     selected_modes = init_modes.slice();
 }
