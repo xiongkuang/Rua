@@ -26,7 +26,7 @@
     <div id="particles-js"></div>
     <div class="splash-nav">
         <div class="right-nav">
-            <span id="receptionlist" class="move_on_button"><button class="btn btn-default" data-loading-text="Loading...">Rua !</button></span>
+            <div id="receptionlist" class="move_on_button"><button id="logo" class="btn btn-default" data-loading-text=""></button></div>
         </div>
     </div>
 </div>
@@ -34,7 +34,7 @@
 <div id="not-splash" style="display:none;">
     <div id="page-header">
         <div id="corner">
-            <button class="btn btn-default btn-sm" onclick="return_to_splash()">Return to Particle</button>
+            <button class="btn btn-default btn-sm" onclick="return_to_splash()" id="corner-btn"></button>
         </div>
         <div id="nav">
             <!-- FILTERS -->
@@ -44,10 +44,10 @@
                 <span id="selectuser"></span>
 
                 <!--FILTER HERO MODAL BUTTON -->
-                <span id="filterbutton"><button class="btn btn-default" data-toggle="modal" data-target="#selector" onclick="reselectHeroes()">Filter by Heroes</button></span>
+                <span id="filterbutton"><button class="btn btn-default" data-toggle="modal" data-target="#selector" onclick="reselectHeroes()">Heroes</button></span>
 
                 <!--FILTER GAME MODE MODAL BUTTON -->
-                <span id="filterbutton_game_mode"><button class="btn btn-default" data-toggle="modal" data-target="#select_game_type" onclick="reselectLobby()">Filter by Game Type</button></span>
+                <span id="filterbutton_game_mode"><button class="btn btn-default" data-toggle="modal" data-target="#select_game_type" onclick="reselectLobby()">Game Type</button></span>
 
             </div>
 
