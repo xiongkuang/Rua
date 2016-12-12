@@ -47,7 +47,7 @@ update_selected_lobby_modes =
 function changeLobbyColor(gamemode) {
     if (update_selected_lobby_modes.indexOf(gamemode)<0)
     {
-        document.getElementById(gamemode).style.border = "2px solid red";
+        document.getElementById(gamemode).style.border = "2px solid white";
         update_selected_lobby_modes.push(gamemode);
 
     }
@@ -55,7 +55,7 @@ function changeLobbyColor(gamemode) {
     {
         var index = update_selected_lobby_modes.indexOf(gamemode);
         update_selected_lobby_modes.splice(index,1);
-        document.getElementById(gamemode).style.border = "2px solid white";
+        document.getElementById(gamemode).style.border = "none";
     }
 }
 
@@ -64,7 +64,7 @@ function resetLobby()
     all_lobby_modes.forEach(function(d){
         if (selected_lobby_modes.indexOf(d)<0)
         {
-            document.getElementById(d).style.border = "2px solid red";
+            document.getElementById(d).style.border = "2px solid white";
             selected_lobby_modes.push(d);
         }
     });
@@ -85,11 +85,11 @@ function reselectLobby() {
     update_selected_lobby_modes = selected_lobby_modes.slice();
     // first reset selection to all unselected
     all_lobby_modes.forEach(function(d) {
-        document.getElementById(d).style.border = "2px solid white";
+        document.getElementById(d).style.border = "none";
     });
     // then select previous selection
     selected_lobby_modes.forEach(function(d){
-        document.getElementById(d).style.border = "2px solid red";
+        document.getElementById(d).style.border = "2px solid white";
     });
 };
 

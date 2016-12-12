@@ -128,7 +128,7 @@ function update_end_screen(game) {
             return ""
         } else if (this_cell.attr("class") == "hero") {
             var hero = d2.getHeroInfo(d.hero_id)
-            var hero_name = "<img src='" + hero.img + "' height='36px'> " + hero.dname
+            var hero_name = "<img src='" + hero.img + "' height='36px'> " + d.level
             return hero_name
         } else {
             return d[this_cell.attr("class")]

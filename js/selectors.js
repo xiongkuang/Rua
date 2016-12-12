@@ -9,10 +9,10 @@ labels.forEach(function (d) {
         var numselected = d3.select("#" + d + "images").selectAll(".pic.selected")[0].length;
         if (numselected != images[0].length) {
             images.attr("class", "pic selected brightnessfilter")
-                .style("border", "2px solid red");
+                .style("border", "1px solid white");
         } else if (numselected == images[0].length) {
             images.classed("selected", false)
-                .style("border", "2px solid black");
+                .style("border", "1px solid black");
         }
     });
 });
@@ -23,12 +23,12 @@ function highlight()
     if (!this.classList.contains("selected"))
     {
         d3.select(this).attr("class", "pic selected brightnessfilter")
-            .style("border", "2px solid red");
+            .style("border", "1px solid white");
     }
     else
     {
         $(this).removeClass("selected");
-        d3.select(this).style("border", "2px solid black");
+        d3.select(this).style("border", "1px solid black");
     }
 }
 
@@ -84,6 +84,6 @@ function reselectHeroes() {
     selectedarr.forEach( function (d,i) {
         d3.select("#" + d2.getHeroInfo(d).name)
             .classed("selected",true)
-            .style("border", "2px solid red");
+            .style("border", "1px solid white");
     });
 }

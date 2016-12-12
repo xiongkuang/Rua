@@ -22,10 +22,9 @@
     font-size: 26px;
     font-weight: bold;
     text-transform: uppercase;
-    background: lightgray;
     text-align: center;
-    border: 5px ridge darkgray;
-    border-radius:10px;
+    margin-top:20px;
+    padding:10px;
 }
 
 .radiant {
@@ -63,7 +62,7 @@
 
 #players {
     position: relative;
-    margin: 0px;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
@@ -77,33 +76,49 @@
     margin-top: 5px;
 }
 
-#players tbody tr:nth-child(odd) {
-    background-color: lightgrey;
+#radiant tbody tr:nth-child(odd) {
+    background-color: #1e211e;
 }
 
+#radiant tbody tr:nth-child(even) {
+    background-color: #141914;
+}
+#dire tbody tr:nth-child(odd) {
+    background-color: #211e1e;
+}
+#dire tbody tr:nth-child(even) {
+    background-color: #191414;
+}
 #players td, #players th {
     padding: 3px;
-    white-space: nowrap;
+    text-align: center!important;
+    vertical-align: middle;
+    font-weight: 100;
 }
 
 #players .headers {
-    background-color: darkgray;
+    background-color: rgb(17,17,17);
 }
+
 
 #players .team th{
     text-align:left;
     border: none;
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: 500;
+    padding:10px;
+    text-shadow: 2px 2px 1.5px #000000;
 }
 
 #players tr.headers {
-    height: 26px;
+    height: 56px;
 }
 
 #players td {
     white-space: nowrap;
     overflow: hidden;
     vertical-align: middle;
+    padding: 0 15px;
 }
 
 #players td * {
@@ -111,13 +126,20 @@
 }
 
 #players #user {
-    background-color: yellow;
+    background-color: rgba(100,100,100,0.5);
 }
 
-#players .player_name {
-    text-align: left;
+
+
+#players tbody .player_name {
+    padding-left:20px;
+    text-align: left!important;
     min-width: 150px;
     max-width: 150px;
+}
+
+#players tbody .hero {
+    text-align: left!important;
 }
 
 .level {
@@ -127,7 +149,7 @@
 
 #players .hero {
     text-align: left;
-    width: 200px;
+    width: 100px;
 }
 
 .kills, .deaths, .assists {
@@ -174,7 +196,7 @@
     width: 700px;
     height: 236px;
     left: 390px;
-    background-color: white;
+    background-color: rgba(0,0,0,0.8);
     border: 2px solid black;
 }
 
