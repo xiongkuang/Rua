@@ -19,8 +19,8 @@ bb_records = {
 }
 
 bb_win_loss = {
-    w: 250,
-    h: 30,
+    w: 550,
+    h: 3,
     margin: {
         top: 40,
         right: 70,
@@ -158,7 +158,8 @@ $(window).load(function() {
 //set up those boxes
 svg_win_loss = d3.select("#win_loss_container").append("svg").attr({
     width: bb_win_loss.w + bb_win_loss.margin.left + bb_win_loss.margin.right + 20,
-    height: bb_win_loss.h + bb_win_loss.margin.bottom + bb_win_loss.margin.top
+    height: bb_win_loss.h + bb_win_loss.margin.bottom + bb_win_loss.margin.top,
+    id: "win_loss_bar"
 })
 
 svg_hero_pie = d3.select("#hero_pie_container").append("svg").attr({
@@ -391,7 +392,7 @@ function draw_win_loss() {
     win_loss_graph
         .append("text")
         .attr("x", -65)
-        .attr("y", 20)
+        .attr("y", 7)
         .attr("class", "win text")
         .attr("text-anchor", "start")
         .text("Nod data!!!")
@@ -399,17 +400,20 @@ function draw_win_loss() {
 
     win_loss_graph
         .append("text")
-        .attr("x", 315)
-        .attr("y", 20)
+        .attr("x", 615)
+        .attr("y", 7)
         .attr("class", "loss text")
         .attr("text-anchor", "end")
         .text("No data!!!")
         .style("fill", "black");
 
     win_loss_graph.append("text")
-        .attr("transform", "translate(130,-10)")
+        .attr("transform", "translate(280,-25)")
         .attr("text-anchor", "middle")
+        .attr("font-size", "10")
         .text("Win-Loss Percentage")
+        .attr("fill", "white")
+        .attr("id", "win_loss_text")
         .style("font-weight", null);
 }
 
@@ -600,7 +604,7 @@ function hero_pie(flare) {
     hero_pie_color = d3.scale.ordinal()
         .domain(["flare","agility", "strength", "intelligence"])
         //get them to be the correct dota colors
-        .range(["white", "#2BAC00", "#E38800","#1A88FC"])
+        .range(["rgba(0,0,0,0)", "#188a15", "#b6310d","#0f7fb4"])
     //.range(["white","#167c13", "#b9500b", "#257dae"]);
 
     hero_pie_x = d3.scale.linear()
@@ -691,9 +695,10 @@ function hero_pie(flare) {
                 graph_tip.direction('e')
                 graph_tip.show(d);
             }
-
-            d3.select(this)
-                .style("fill", "aquamarine");
+            if(tooltip) {
+                d3.select(this)
+                    .style("fill", "rgba(255,255,255,0.7)");
+            }
         })
         .on("mouseout", function(d) {
             graph_tip.hide(d);
@@ -705,7 +710,6 @@ function hero_pie(flare) {
         .each(stash); // store the initial angles
 
     hero_pie_path
-        .style("fill", "white")
         .transition()
         .duration(1000)
         .attrTween("d", heroPieArcTween)
@@ -852,11 +856,13 @@ function draw_item_percent() {
 
     item_percent_graph.append("g")
         .attr("class", "x axis")
+        .attr("id", "x-axis")
         .attr("transform", "translate(0," + bb_item_percent.h + ")")
         .call(item_percent_xAxis);
 
     item_percent_graph.append("g")
         .attr("class", "y axis")
+        .attr("id", "y-axis")
         .call(item_percent_yAxis);
 
     item_percent_graph.append("g")
@@ -1270,16 +1276,10 @@ function draw_gpm() {
     gpm_y = d3.scale.linear()
         .range([bb_gpm.h, 0]);
 
-    if ($("#color-blind").is(":checked")) {
-        gpm_color = d3.scale.ordinal()
-            .domain([true, false])
-            .range(["#762a83", "#ff7f00"]);
-    }
-    else {
-        gpm_color = d3.scale.ordinal()
+    gpm_color = d3.scale.ordinal()
             .domain([true, false])
             .range(["#1a9641", "#d7191c"]);
-    }
+
 
     gpm_xAxis = d3.svg.axis()
         .scale(gpm_x)
@@ -1301,6 +1301,7 @@ function draw_gpm() {
 
     gpm_graph.append("g")
         .attr("class", "x axis")
+        .attr("id", "x-axis")
         .attr("transform", "translate(0," + bb_gpm.h + ")")
         .call(gpm_xAxis)
         .append("text")
@@ -1313,6 +1314,7 @@ function draw_gpm() {
 
     gpm_graph.append("g")
         .attr("class", "y axis")
+        .attr("id", "y-axis")
         .call(gpm_yAxis)
         .append("text")
         .attr("class", "label")
@@ -1329,8 +1331,8 @@ function draw_gpm() {
             .attr('x2', gpm_x(1))
             .attr('y1', gpm_y(0))
             .attr('y2', gpm_y(1))
-            .style("stroke", "black")
-            .style("stroke-width", "3px")
+            .style("stroke", "white")
+            .style("stroke-width", "1px")
             .attr("clip-path", "url(#gpm_clip)");
     }
 
@@ -1499,20 +1501,17 @@ function gpm_brushend() {
             .attr("class", "clear-button_gpm");
 
         gpm_clear_button.append("rect")
-            .attr("width", 102)
-            .attr("height", 20)
+            .attr("width", 88)
+            .attr("height", 23)
             .attr("y", -17)
             .attr("x", -4)
-            .attr("rx", "10px")
-            .attr("ry", "10px")
             .style("fill", "#9f9f9f");
 
         gpm_clear_button
             .append('text')
             .attr("y", 0)
             .attr("x", 0)
-            .text("Clear Zoom")
-            .style("fill", "black");
+            .text("Clear Zoom");
     }
 
     gpm_x.domain(gpm_x_domain);
@@ -1592,16 +1591,10 @@ function draw_xpm() {
     xpm_y = d3.scale.linear()
         .range([bb_xpm.h, 0]);
 
-    if ($("#color-blind").is(":checked")) {
-        xpm_color = d3.scale.ordinal()
-            .domain([true, false])
-            .range(["#762a83", "#ff7f00"]);
-    }
-    else {
-        xpm_color = d3.scale.ordinal()
+   xpm_color = d3.scale.ordinal()
             .domain([true, false])
             .range(["#1a9641", "#d7191c"]);
-    }
+
 
     xpm_xAxis = d3.svg.axis()
         .scale(xpm_x)
@@ -1613,6 +1606,7 @@ function draw_xpm() {
 
     xpm_graph.append("g")
         .attr("class", "x axis")
+        .attr("id", "x-axis")
         .attr("transform", "translate(0," + bb_xpm.h + ")")
         .call(xpm_xAxis)
         .append("text")
@@ -1625,6 +1619,7 @@ function draw_xpm() {
 
     xpm_graph.append("g")
         .attr("class", "y axis")
+        .attr("id", "y-axis")
         .call(xpm_yAxis)
         .append("text")
         .attr("class", "label")
@@ -1640,8 +1635,8 @@ function draw_xpm() {
         .attr('x2', xpm_x(1))
         .attr('y1', xpm_y(0))
         .attr('y2', xpm_y(1))
-        .style("stroke", "black")
-        .style("stroke-width", "3px")
+        .style("stroke", "white")
+        .style("stroke-width", "1px")
         .attr("clip-path", "url(#xpm_clip)");
 
     xpm_graph.append("defs").append("clipPath")
@@ -1825,20 +1820,18 @@ function xpm_brushend() {
             .attr("class", "clear-button_xpm");
 
         xpm_clear_button.append("rect")
-            .attr("width", 102)
-            .attr("height", 20)
+            .attr("width", 88)
+            .attr("height", 23)
             .attr("y", -17)
             .attr("x", -4)
-            .attr("rx", "10px")
-            .attr("ry", "10px")
             .style("fill", "#9f9f9f");
 
         xpm_clear_button
             .append('text')
             .attr("y", 0)
             .attr("x", 0)
-            .text("Clear Zoom")
-            .style("fill", "black");
+            .style("margin","15px 13px")
+            .text("Clear Zoom");
     }
 
     xpm_x.domain(xpm_x_domain);

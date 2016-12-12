@@ -60,37 +60,30 @@
     <div id="page-content">
 
         <!-- END SCREEN -->
+
         <div id="end_screen" style="display:none">
             <div id="match_data">
-                <div id="left_col">
-                    <div id="match_id">
-                        <div class="header">Match ID</div>
-                        <div class="text">8</div>
-                    </div>
+                <table class="match-info">
+                    <tbody>
+                    <tr class="header">
+                        <td>Math ID</td>
+                        <td>Time Finished</td>
+                        <td>Duration</td>
+                        <td>Game Mode</td>
+                    </tr>
+                    <tr class="content">
+                        <td id="match_id"><p class="text"></p></td>
+                        <td id="date"><p class="text"></p></td>
+                        <td id="duration"><p class="text"></p></td>
+                        <td id="game_mode"><p class="text"></p></td>
+                    </tr>
+                    </tbody>
+                </table>
 
-                    <div id="game_mode">
-                        <div class="header">Game Mode</div>
-                        <div class="text">H Pick</div>
-                    </div>
-                </div>
-
-                <div id="right_col">
-                    <div id="date">
-                        <div class="header">Date</div>
-                        <div class="text">0:16:56 Mon Mar 24 2014</div>
-                    </div>
-
-                    <div id="duration">
-                        <div class="header">Duration</div>
-                        <div class="text">46:46</div>
-                    </div>
-                </div>
 
                 <div id="winner">Dire Victory</div>
                 <div id="closebutton">
-          <span class="buttonholder">
-            <button class="btn btn-default btn-sm" onclick="exit_end_screen()">Close</button>
-          </span>
+                <button class="btn btn-default btn-sm" id="close_btn" onclick="exit_end_screen()">Close</button>
                 </div>
 
             </div>
@@ -99,11 +92,10 @@
                 <table id="radiant">
                     <thead>
                     <tr class="team radiant">
-                        <th colspan="17">The Radiant</th>
+                        <th colspan="17" style="text-align:left!important;">Radiant</th>
                     </tr>
                     <tr class="headers">
                         <th class="player_name">Player</th>
-                        <th class="level">Level</th>
                         <th class="hero">Hero</th>
 
                         <th class="kills">K</th>
@@ -122,7 +114,6 @@
                     <tbody>
                     <tr class="slot0">
                         <td class="player_name">MindBlown</td>
-                        <td class="level">18</td>
                         <td class="hero">Vengeful Spirit</td>
 
                         <td class="kills">4</td>
@@ -142,12 +133,11 @@
 
                 <table id="dire">
                     <thead>
-                    <tr class="team dire">
-                        <th colspan="17">The Dire</th>
+                    <tr class="team dire" >
+                        <th colspan="17" style="text-align:left!important;">The Dire</th>
                     </tr>
                     <tr class="headers">
                         <th class="player_name">Player</th>
-                        <th class="level">Level</th>
                         <th class="hero">Hero</th>
 
                         <th class="kills">K</th>
@@ -166,7 +156,6 @@
                     <tbody>
                     <tr class="slot0">
                         <td class="player_name">MindBlown</td>
-                        <td class="level">18</td>
                         <td class="hero">Vengeful Spirit</td>
 
                         <td class="kills">4</td>
@@ -201,7 +190,7 @@
                 <div id="most_hero_damage" data-value = "Most Hero Damage" ></div>
                 <div id="most_tower_damage" data-value = "Most Tower Damage"></div>
             </div>
-            <hr>
+            <hr class="divide_line">
             <div class="graphs_row">
                 <div id="hero_pie_container"></div>
                 <div id="item_percent_container">
@@ -230,7 +219,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 id="hero_filter_label">Select Heroes to Filter</h4>
+                    <h4 id="hero_filter_label"></h4>
                 </div>
                 <div class="modal-body">
                     <table>
