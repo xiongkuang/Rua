@@ -3,6 +3,7 @@
  */
 var user_data;
 var filtered_data;
+
 //margins and bounding boxes for each graph visualization
 var bb_win_loss, bb_hero_pie, bb_item_percent, bb_hero_chord, bb_gpm, bb_xpm, bb_kda;
 
@@ -486,11 +487,11 @@ function hero_pie(flare) {
                 name = capitalizeFirstLetter(d.name) + " Heroes";
             }
 
-            var basic_tip = "<div id='tooltip_text'><strong>" + name + "</strong>" + "<br>" + d.value + number_text + "</br></div>";
+            var basic_tip = "<div id='tooltip_text'><strong>" + name + "</strong>" + "<br>" + d.value + number_text + "<br></div>";
 
             if ("item_max" in d) {
                 if (d.item_max.length < 3) {
-                    basic_tip = "<div id='tooltip_text'><strong>" + name + "</strong>" + "<br>" + d.value + number_text + "</br></div>";
+                    basic_tip = "<div id='tooltip_text'><strong>" + name + "</strong>" + "<br>" + d.value + number_text + "<br></div>";
                 }
 
                 else {
@@ -502,7 +503,7 @@ function hero_pie(flare) {
                     item_text2 = (d.item_max[1][1] == 1) ? "time" : "times";
                     item_text3 = (d.item_max[2][1] == 1) ? "time" : "times";
 
-                    basic_tip = "<div id='tooltip_text'><strong>" + name + "</strong>" + "<br>" + d.value + number_text + "</br>" + "<br><strong>Most bought items: </strong><br>" + d.item_max[0][0] + ", " + d.item_max[0][1] + " " + item_text1 + "<br>" + d.item_max[1][0] + ", " + d.item_max[1][1] + " " + item_text2 + "<br>" + d.item_max[2][0] + ", " + d.item_max[2][1] + " " + item_text3 + "</br></div>";
+                    basic_tip = "<div id='tooltip_text'><strong>" + name + "</strong>" + "<br>" + d.value + number_text + "<br>" + "<br><strong>Most bought items: </strong><br>" + d.item_max[0][0] + ", " + d.item_max[0][1] + " " + item_text1 + "<br>" + d.item_max[1][0] + ", " + d.item_max[1][1] + " " + item_text2 + "<br>" + d.item_max[2][0] + ", " + d.item_max[2][1] + " " + item_text3 + "</br></div>";
                 }
             }
 
