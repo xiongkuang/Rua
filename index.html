@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Rua Dota</title>
-    <meta charset="utf-8">
-    <title>Rua Dota</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
     <link rel="stylesheet" type="text/css" href="css/selectors.css"/>
-    <link rel="stylesheet" type="text/css" href="css/end_screen.css"/>
+    <link rel="stylesheet" type="text/css" href="css/match_detail.css"/>
     <link rel="stylesheet" media="screen" href="css/particle_style.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <script src="js/dataManager.js"></script>
-    <script src="js/intro.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
@@ -53,7 +50,7 @@
 
     <div id="page-content">
 
-        <!-- END SCREEN -->
+        <!-- Match Detail Screen -->
 
         <div id="end_screen" style="display:none">
             <div id="match_data">
@@ -61,13 +58,11 @@
                     <tbody>
                     <tr class="header">
                         <td>Math ID</td>
-                        <!--<td>Time Finished</td>-->
                         <td>Duration</td>
                         <td>Game Mode</td>
                     </tr>
                     <tr class="content">
                         <td id="match_id"><p class="text"></p></td>
-                        <!--<td id="date"><p class="text"></p></td>-->
                         <td id="duration"><p class="text"></p></td>
                         <td id="game_mode"><p class="text"></p></td>
                     </tr>
@@ -258,7 +253,6 @@
                     <!-- GAME MODE SELECTOR TABLE -->
                     <div id="game_mode_content">
                         <table id="game_mode_table">
-                            <!--th colspan="3"><text id = "modeheading"> Game Mode</text></th-->
                             <th colspan="3">Game Mode</th>
                             <tr>
                                 <td id="AP" onclick="changeColor(this.id);">All Pick</td>
@@ -307,9 +301,9 @@
 </div>
 
 
-<script src="js/graph_functions.js"></script>
+<script src="js/main.js"></script>
 <script src="js/user.js"></script>
-<script src="js/end_screen.js"></script>
+<script src="js/match_detail.js"></script>
 <script src="js/selectors.js"></script>
 <script src="js/game_mode.js"></script>
 <script src="js/lobbies.js"></script>

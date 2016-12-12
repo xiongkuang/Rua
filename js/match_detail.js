@@ -166,7 +166,7 @@ function update_end_screen(game) {
 
 
     // update dot color and selection
-    d3.selectAll("#timeline .end_screen_selected").classed("end_screen_selected", false).attr("r", 3);
+    d3.selectAll(".end_screen_selected").classed("end_screen_selected", false).attr("r", 3);
     d3.selectAll("#stat_graphs .end_screen_selected").classed("end_screen_selected", false).attr("r", 3.5);
     d3.selectAll("[match_id='" + game.match_id + "']").classed("end_screen_selected", true).attr("r", 5);
 
@@ -278,7 +278,7 @@ function exit_end_screen() {
             .style("opacity", 0);
 
         // reset dots to original sizes
-        d3.selectAll("#timeline .end_screen_selected").classed("end_screen_selected", false).attr("r", 3);
+        d3.selectAll(".end_screen_selected").classed("end_screen_selected", false).attr("r", 3);
         d3.selectAll("#stat_graphs .end_screen_selected").classed("end_screen_selected", false).attr("r", 3.5);
 
         // get rid of match_shown attribute

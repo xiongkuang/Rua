@@ -1,12 +1,8 @@
 /**
- * Created by xiongkuang on 11/29/16.
+ * Created by xiongkuang on 10/22/16.
  */
-//data global
 var user_data;
-
-//filtered data global
 var filtered_data;
-
 //margins and bounding boxes for each graph visualization
 var bb_win_loss, bb_hero_pie, bb_item_percent, bb_hero_chord, bb_gpm, bb_xpm, bb_kda;
 
@@ -30,10 +26,8 @@ bb_xpm = {h: 400, w: 400, margin: {top: 80, right: 50, bottom: 50, left: 50}};
 bb_kda = {x: 0, y: 1500, h: 300, w: 900};
 
 // button handlers for splash page to switch the divs around as desired
-
 d3.selectAll(".move_on_button button")
     .on("click", function () {
-        //force scroll to top if you're on the second page of the splash screen
         $(window).scrollTop("0px");
         d3.select("#not-splash")
             .style("display", null);
@@ -42,23 +36,9 @@ d3.selectAll(".move_on_button button")
     });
 
 
-d3.select(".more_info_button button")
-    .on("click", function () {
-        d3.select("#splash")
-            .style("display", "none");
-        d3.select("#not-splash")
-            .style("display", null);
-
-        //hack around fix positioning
-        d3.select("#page-header").style("position", "absolute");
-        //start the intro js
-        introguide.start();
-    });
-
 // bind handlers for going back to main screen
 function return_to_splash() {
     $(window).scrollTop("0px");
-    // introguide.exit();
     d3.select("#not-splash")
         .style("display", "none");
     d3.select("#splash")
@@ -66,16 +46,13 @@ function return_to_splash() {
 }
 
 
-// start with move on button in "loading" state (Twitter Bootstrap)
+// start with move on button in "loading" state
 $(".move_on_button button").button("loading");
-$(".more_info_button button").button("loading");
 
 
 // When DOM is ready, enable button
 $(window).load(function () {
-
     $(".move_on_button button").button("reset");
-    $(".more_info_button button").button("reset")
 });
 
 
@@ -255,8 +232,6 @@ function loadData(username) {
 
         user_data = data;
         filtered_data = data;
-
-        // clear the filtered heroes and game modes
         selectedarr = [];
         resetGameMode();
         initGameMode();
@@ -404,8 +379,6 @@ function clickArcTween(d) {
 }
 
 function findLargest3(array1) {
-// sort descending
-
     array1.sort(function (a, b) {
         if (a[1] < b[1]) {
             return 1;
@@ -425,27 +398,16 @@ function findLargest3(array1) {
 function hero_pie(flare) {
 
     for (var i = 0; i < hero_flare.children.length; i++) {
-
         for (var j = 0; j < hero_flare.children[i].children.length; j++) {
-
             var current_children = hero_flare.children[i].children[j];
-
             if ("items" in current_children) {
-
                 var max_item_array = [];
-
                 for (var k = 0; k < hero_flare.children[i].children[j].items.length; k++) {
-
                     var current_item = hero_flare.children[i].children[j].items[k];
-
                     max_item_array.push([current_item.dname, current_item.number]);
-
                 }
-
             }
-
             hero_flare.children[i].children[j].item_max = findLargest3(max_item_array)
-
         }
     }
 
@@ -453,9 +415,7 @@ function hero_pie(flare) {
 
     hero_pie_color = d3.scale.ordinal()
         .domain(["flare", "agility", "strength", "intelligence"])
-        //get them to be the correct dota colors
         .range(["rgba(0,0,0,0)", "#188a15", "#b6310d", "#0f7fb4"]);
-    //.range(["white","#167c13", "#b9500b", "#257dae"]);
 
     hero_pie_x = d3.scale.linear()
         .range([0, 2 * Math.PI]);
@@ -529,8 +489,6 @@ function hero_pie(flare) {
             var basic_tip = "<div id='tooltip_text'><strong>" + name + "</strong>" + "<br>" + d.value + number_text + "</br></div>";
 
             if ("item_max" in d) {
-
-                //if buy less than three items, you noob or maybe doob. No item array for you!
                 if (d.item_max.length < 3) {
                     basic_tip = "<div id='tooltip_text'><strong>" + name + "</strong>" + "<br>" + d.value + number_text + "</br></div>";
                 }
@@ -604,7 +562,6 @@ function hero_pie(flare) {
 
 
 // http://johan.github.io/d3/ex/sunburst.html
-
 // Stash the old values for transition.
 function stash(d) {
     d.x0 = d.x;
@@ -926,7 +883,6 @@ function update_item_percent(data) {
                     cost = d.cost
                 }
 
-
                 var basic_tip = "<div id='tooltip_text'><strong><span style='color:red';>" + d.dname +
                     "</span></strong>" + "<br> Number of Games: " + d.count +
                     "<br> Cost: " + cost + "<br> Winrate: " + (100 * d.winrate).toFixed(1) +
@@ -984,7 +940,6 @@ function update_item_percent(data) {
     });
 
     //sorting by value
-
     d3.select("input#value").on("change", change);
 
     var sortTimeout = setTimeout(function () {
@@ -1061,7 +1016,6 @@ function update_item_percent(data) {
     }
 
     //sorting by cost
-
     d3.select("input#cost").on("change", change_cost);
 
     function change_cost() {
@@ -1311,12 +1265,11 @@ function update_gpm(data) {
 
             sel.moveToFront();
 
-            //console.log(d.player_info.hero_avg_gpm)
             var format = d3.format(".2f");
 
             var text = "<strong>" + dM.getHeroName(d.player_info.hero_id) + "</strong>" + "<br>GPM this Game: " + d.player_info.gold_per_min + "<br>Average GPM on this hero: " + format(d.player_info.hero_avg_gpm);
 
-            //get the correct hero image and build the tooltip with an image
+            //get the correct hero image
             var hero_data = dM.getHeroInfo(d.player_info.hero_id);
 
             var hero_image = hero_data.img;
@@ -1329,12 +1282,12 @@ function update_gpm(data) {
         .on("mouseout", function (d) {
             // update dot styling, but only if not selected
             if (d3.select(this).classed("end_screen_selected") == false) {
-                d3.selectAll("#timeline .match_dot_hover").attr("r", 3);
+                d3.selectAll(".match_dot_hover").attr("r", 3);
                 d3.selectAll("#stat_graphs .match_dot_hover").attr("r", 3.5)
             }
 
             // but we always want to remove the match_dot_hover class
-            d3.selectAll("#timeline .match_dot_hover").classed("match_dot_hover", false);
+            d3.selectAll(".match_dot_hover").classed("match_dot_hover", false);
             d3.selectAll("#stat_graphs .match_dot_hover").classed("match_dot_hover", false);
 
             graph_tip.hide(d);
@@ -1376,9 +1329,6 @@ function gpm_brushend() {
 
     var gpm_x_domain = [gpm_brush.extent()[0][0], gpm_brush.extent()[1][0]];
     var gpm_y_domain = [gpm_brush.extent()[0][1], gpm_brush.extent()[1][1]];
-
-    // equal domain ends means click on graph
-    // coerce dates to numbers to check equality
     if (+gpm_x_domain[0] == +gpm_x_domain[1] && +gpm_y_domain[0] == +gpm_y_domain[1]) {
         return;
     }
@@ -1647,12 +1597,12 @@ function update_xpm(data) {
         .on("mouseout", function (d) {
             // update dot styling, but only if not selected
             if (d3.select(this).classed("end_screen_selected") == false) {
-                d3.selectAll("#timeline .match_dot_hover").attr("r", 3);
+                d3.selectAll(".match_dot_hover").attr("r", 3);
                 d3.selectAll("#stat_graphs .match_dot_hover").attr("r", 3.5)
             }
 
             // but we always want to remove the match_dot_hover class
-            d3.selectAll("#timeline .match_dot_hover").classed("match_dot_hover", false);
+            d3.selectAll(".match_dot_hover").classed("match_dot_hover", false);
             d3.selectAll("#stat_graphs .match_dot_hover").classed("match_dot_hover", false);
 
             graph_tip.hide(d);
@@ -1696,9 +1646,6 @@ function xpm_brushend() {
 
     var xpm_x_domain = [xpm_brush.extent()[0][0], xpm_brush.extent()[1][0]];
     var xpm_y_domain = [xpm_brush.extent()[0][1], xpm_brush.extent()[1][1]];
-
-    // equal domain ends means click on graph
-    // coerce dates to numbers to check equality
     if (+xpm_x_domain[0] == +xpm_x_domain[1] && +xpm_y_domain[0] == +xpm_y_domain[1]) {
         return;
     }
@@ -1789,7 +1736,6 @@ function xpm_brushend() {
     }
 }
 
-// Returns a flattened hierarchy containing all leaf nodes under the root.
 function classes(root) {
     var classes = [];
 
