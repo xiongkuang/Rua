@@ -18,28 +18,23 @@ labels.forEach(function (d) {
 });
 
 
-function highlight()
-{
-    if (!this.classList.contains("selected"))
-    {
+function highlight() {
+    if (!this.classList.contains("selected")) {
         d3.select(this).attr("class", "pic selected brightnessfilter")
             .style("border", "1px solid white");
     }
-    else
-    {
+    else {
         $(this).removeClass("selected");
         d3.select(this).style("border", "1px solid black");
     }
 }
 
-function selected()
-{
+function selected() {
     d3.select(".clear-button_timeline").remove();
     tripleFilterUpdate();
 }
 
-function sorting(a, b)
-{
+function sorting(a, b) {
     return a.dname.localeCompare(b.dname)
 };
 
@@ -58,8 +53,7 @@ function updateFilteredSelectionByHero() {
 
     var selectedheroes = d3.selectAll(".selected")[0];
     selectedarr = [];//new Array();
-    selectedheroes.forEach(function (d)
-    {
+    selectedheroes.forEach(function (d) {
         selectedarr.push(+d.getAttribute("value"));
     });
 
@@ -69,7 +63,7 @@ function updateFilteredSelectionByHero() {
         return;
     } else {
         // filter for only selected heroes
-        filtered_data.matches = filtered_data.matches.filter(function(d,i) {
+        filtered_data.matches = filtered_data.matches.filter(function (d, i) {
             var player_hero_id = d.player_info.hero_id;
 
             return selectedarr.indexOf(player_hero_id) > -1
@@ -81,9 +75,9 @@ function reselectHeroes() {
     // first reset selection to blank
     resetSelectedHeroes();
     // then select previous selection
-    selectedarr.forEach( function (d,i) {
+    selectedarr.forEach(function (d, i) {
         d3.select("#" + dM.getHeroInfo(d).name)
-            .classed("selected",true)
+            .classed("selected", true)
             .style("border", "1px solid white");
     });
 }

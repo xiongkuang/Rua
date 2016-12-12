@@ -3,43 +3,40 @@
  */
 var records;
 
-function updateRecords(data){
+function updateRecords(data) {
 
     records =
     {
-        "longest_match":
-        {
-            "value":0,
-            "match":0
+        "longest_match": {
+            "value": 0,
+            "match": 0
         },
         "most_kills": {
-            "value":0,
-            "match":0
+            "value": 0,
+            "match": 0
         },
         "most_deaths": {
-            "value":0,
-            "match":0
+            "value": 0,
+            "match": 0
         },
-        "most_last_hits":{
-            "value":0,
-            "match":0
+        "most_last_hits": {
+            "value": 0,
+            "match": 0
         },
-        "most_hero_damage":{
-            "value":0,
-            "match":0
+        "most_hero_damage": {
+            "value": 0,
+            "match": 0
         },
-        "most_tower_damage":{
-            "value":0,
-            "match":0
+        "most_tower_damage": {
+            "value": 0,
+            "match": 0
         }
     }
-    if (data.matches.length)
-    {
-        data.matches.forEach(function(d){
+    if (data.matches.length) {
+        data.matches.forEach(function (d) {
             records =
             {
-                "longest_match":
-                {
+                "longest_match": {
                     "value": d.duration > records["longest_match"]["value"] ? d.duration : records["longest_match"]["value"],
                     "match": d.duration > records["longest_match"]["value"] ? d : records["longest_match"]["match"]
                 },
@@ -51,15 +48,15 @@ function updateRecords(data){
                     "value": d.player_info.deaths > records["most_deaths"]["value"] ? d.player_info.deaths : records["most_deaths"]["value"],
                     "match": d.player_info.deaths > records["most_deaths"]["value"] ? d : records["most_deaths"]["match"]
                 },
-                "most_last_hits":{
-                    "value": d.player_info.last_hits  > records["most_last_hits"]["value"] ? d.player_info.last_hits : records["most_last_hits"]["value"],
-                    "match": d.player_info.last_hits  > records["most_last_hits"]["value"] ? d : records["most_last_hits"]["match"]
+                "most_last_hits": {
+                    "value": d.player_info.last_hits > records["most_last_hits"]["value"] ? d.player_info.last_hits : records["most_last_hits"]["value"],
+                    "match": d.player_info.last_hits > records["most_last_hits"]["value"] ? d : records["most_last_hits"]["match"]
                 },
-                "most_hero_damage":{
+                "most_hero_damage": {
                     "value": d.player_info.hero_damage > records["most_hero_damage"]["value"] ? d.player_info.hero_damage : records["most_hero_damage"]["value"],
                     "match": d.player_info.hero_damage > records["most_hero_damage"]["value"] ? d : records["most_hero_damage"]["match"]
                 },
-                "most_tower_damage":{
+                "most_tower_damage": {
                     "value": d.player_info.tower_damage > records["most_tower_damage"]["value"] ? d.player_info.tower_damage : records["most_tower_damage"]["value"],
                     "match": d.player_info.tower_damage > records["most_tower_damage"]["value"] ? d : records["most_tower_damage"]["match"]
                 }
@@ -84,29 +81,28 @@ function updateRecords(data){
 
         displayRecords();
     }
-    else
-    {
-        for (key in records)
-        {
+    else {
+        for (key in records) {
             d3.select("#" + key)
                 .html("No record available")
-                .classed("dullness",false)
-                .classed("brightnessfilter",false)
+                .classed("dullness", false)
+                .classed("brightnessfilter", false)
                 .style("background-image", "none")
-                .on("click",function(){});
+                .on("click", function () {
+                });
         }
 
     }
 };
 
-function displayRecords(){
+function displayRecords() {
     for (key in records) {
         d3.select("#" + key)
-            .html($("#" + key).data().value + "<br>" +records[key].value)
-            .classed("dullness",true)
-            .classed("brightnessfilter",true)
+            .html($("#" + key).data().value + "<br>" + records[key].value)
+            .classed("dullness", true)
+            .classed("brightnessfilter", true)
             .style("background-image", "url(" + dM.getHeroInfo(records[key].match.player_info.hero_id).img + ")")
-            .on("click",function() {
+            .on("click", function () {
                 update_end_screen(records[this.id].match);
             });
 

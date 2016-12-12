@@ -1,11 +1,11 @@
 /**
  * Created by xiongkuang on 11/29/16.
  */
-var dM = (function() {
+var dM = (function () {
 
     var heroData = [];
     var itemData = [];
-    var abilityData =[];
+    var abilityData = [];
     var gameModes = [];
     var lobbyModes = [];
     var userData = [];
@@ -14,11 +14,11 @@ var dM = (function() {
     function loadJSON(callback) {
         // if no callback was passed, make function that does nothing
         if (callback === undefined)
-            callback = function() {}
+            callback = function () {
+            }
         var remaining = 6;
 
-        d3.json("data/heroes.json", function (error, data)
-        {            // an array of all the hero names indexed appropriately - starting at 1
+        d3.json("data/heroes.json", function (error, data) {            // an array of all the hero names indexed appropriately - starting at 1
             heroData = data;
 
             if (!--remaining) callback();
@@ -31,8 +31,7 @@ var dM = (function() {
             if (!--remaining) callback();
         });
 
-        d3.json("data/items.json", function (error, data)
-        {
+        d3.json("data/items.json", function (error, data) {
             // an array of all the hero names indexed appropriately - starting at 1
             itemData = data;
 
@@ -53,7 +52,7 @@ var dM = (function() {
             if (!--remaining) callback();
         })
 
-        d3.json("data/mini_usernames.json", function(error, data) {
+        d3.json("data/mini_usernames.json", function (error, data) {
             // array of all usernames we've pulled
             userData = data;
 
@@ -68,12 +67,11 @@ var dM = (function() {
         if (id in heroData)
             return heroData[id]
         else
-            throw new Error ("No hero with id " + id)
+            throw new Error("No hero with id " + id)
     }
 
     // convenience method for getting name
-    function idToHeroDisplayName(id)
-    {
+    function idToHeroDisplayName(id) {
         return idToHeroInfo(id).dname;
     }
 
@@ -81,33 +79,32 @@ var dM = (function() {
         if (id in itemData)
             return itemData[id]
         else
-            throw new Error ("No item with id " + id)
+            throw new Error("No item with id " + id)
     }
 
-    function idToItemName(id)
-    {
+    function idToItemName(id) {
         return idToItemInfo(id).dname;
     }
 
-    function idToAbilityInfo (id) {
+    function idToAbilityInfo(id) {
         if (id in abilityData)
             return abilityData[id]
         else
-            throw new Error ("No ability with id " + id)
+            throw new Error("No ability with id " + id)
     }
 
     function idToGameMode(id) {
         if (id in gameModes)
             return gameModes[id]
         else
-            throw new Error ("No game mode with id " + id)
+            throw new Error("No game mode with id " + id)
     }
 
     function idToLobby(id) {
         if (id in lobbyModes)
             return lobbyModes[id]
         else
-            throw new Error ("No game mode with id " + id)
+            throw new Error("No game mode with id " + id)
     }
 
 
@@ -116,10 +113,10 @@ var dM = (function() {
         if (id in userData)
             return userData[id][0]
         else
-            throw new Error ("No user with account id " + id)
+            throw new Error("No user with account id " + id)
     }
 
-    function getKeys (datatype) {
+    function getKeys(datatype) {
         switch (datatype.toLowerCase()) {
             case "heroes":
                 return Object.keys(heroData);
@@ -137,7 +134,7 @@ var dM = (function() {
                 return Object.keys(userData);
                 break;
             default:
-                throw new Error ("datatype (you entered " + datatype + ") must be \'heroes,\" \"items,\" \"abilities,\" \"game_modes,\" or \"users.\"")
+                throw new Error("datatype (you entered " + datatype + ") must be \'heroes,\" \"items,\" \"abilities,\" \"game_modes,\" or \"users.\"")
         }
     }
 
@@ -148,13 +145,13 @@ var dM = (function() {
         if (username_lower != "bangkura" && username_lower != "dendi" &&
             username_lower != "aui_2000" && username_lower != "merlini" &&
             username_lower != "chun") {
-            throw new Error ("No data currently for user " + username)
+            throw new Error("No data currently for user " + username)
         }
 
-        d3.json("data/" + username_lower + "_match_details.json", function(error, data) {
+        d3.json("data/" + username_lower + "_match_details.json", function (error, data) {
             // find the player data for our given player and pull it to the top level
-            data.matches.forEach(function(d,i) {
-                our_player = d.players.filter(function(e) {
+            data.matches.forEach(function (d, i) {
+                our_player = d.players.filter(function (e) {
                     return (e.account_id == data.id32)
                 })
 
@@ -181,7 +178,7 @@ var dM = (function() {
             })
 
             //player left game before s/he even picked a hero, get rid of these matches
-            data.matches = data.matches.filter(function(d) {
+            data.matches = data.matches.filter(function (d) {
                 return (d.player_info.hero_id != 0);
             })
 
@@ -189,23 +186,27 @@ var dM = (function() {
         })
     }
 
-    function displayHeroImg(heroname){
+    function displayHeroImg(heroname) {
         d3.select("body").select(".heropicture").remove();
 
-        d3.select("body").selectAll(".heropicture").data([heroname.toLowerCase().replace(/ /g,"_")])
+        d3.select("body").selectAll(".heropicture").data([heroname.toLowerCase().replace(/ /g, "_")])
             .enter().append('img')
             .attr('class', 'heropicture')
-            .attr('src', function(d) { return "img/heroes/" +d+".jpg"; });
+            .attr('src', function (d) {
+                return "img/heroes/" + d + ".jpg";
+            });
     };
 
 
-    function displayItemImg(itemname){
+    function displayItemImg(itemname) {
         d3.select("body").select(".itempicture").remove();
 
         d3.select("body").selectAll(".itempicture").data([itemname])
             .enter().append('img')
             .attr('class', 'itempicture')
-            .attr('src', function(d) { return "img/items/" +d+".jpg"; });
+            .attr('src', function (d) {
+                return "img/items/" + d + ".jpg";
+            });
     };
 
     var pubFunctionList = "getHeroName(id): returns hero name from ID\n"
@@ -214,49 +215,51 @@ var dM = (function() {
         + "displayItemImg(name): displays the image for item 'name'\n"
 
     return {
-        getUserData: function() {return userData },
+        getUserData: function () {
+            return userData
+        },
 
         loadJson: loadJSON,
 
-        getAbilityData: function() {
+        getAbilityData: function () {
             return abilityData
         },
 
-        getHeroName: function(id) {
+        getHeroName: function (id) {
             return idToHeroDisplayName(id)
         },
 
-        getHeroInfo: function(id) {
+        getHeroInfo: function (id) {
             return idToHeroInfo(id)
         },
 
-        getHeroInfoCopy: function(id) {
+        getHeroInfoCopy: function (id) {
             object = idToHeroInfo(id)
             return jQuery.extend(true, {}, object)
         },
 
-        getItemName: function(id) {
+        getItemName: function (id) {
             return idToItemName(id)
         },
 
-        getItemInfo: function(id) {
+        getItemInfo: function (id) {
             return idToItemInfo(id)
         },
 
-        getItemInfoCopy: function(id) {
-            object =  idToItemInfo(id)
+        getItemInfoCopy: function (id) {
+            object = idToItemInfo(id)
             return jQuery.extend(true, {}, object)
         },
 
-        getAbilityInfo: function(id) {
+        getAbilityInfo: function (id) {
             return idToAbilityInfo(id);
         },
 
-        getUserInfo: function(id) {
+        getUserInfo: function (id) {
             return idToUserInfo(id);
         },
 
-        getUserName: function(id) {
+        getUserName: function (id) {
             return idToUserInfo(id).personaname;
         },
 
@@ -272,15 +275,15 @@ var dM = (function() {
 
         displayItemImg: displayItemImg,
 
-        functionList: function() {
+        functionList: function () {
             console.log(pubFunctionList)
         },
 
-        id64To32: function(id) {
-            return id -76561197960265728
+        id64To32: function (id) {
+            return id - 76561197960265728
         },
 
-        id32To64: function(id) {
+        id32To64: function (id) {
             return id + 76561197960265728
         }
 

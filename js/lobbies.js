@@ -2,7 +2,7 @@
  * Created by xiongkuang on 11/29/16.
  */
 all_lobby_modes =
-    [   "public",
+    ["public",
         "practice",
         "tournament",
         "tutorial",
@@ -45,25 +45,21 @@ update_selected_lobby_modes =
     ];
 
 function changeLobbyColor(gamemode) {
-    if (update_selected_lobby_modes.indexOf(gamemode)<0)
-    {
+    if (update_selected_lobby_modes.indexOf(gamemode) < 0) {
         document.getElementById(gamemode).style.border = "2px solid white";
         update_selected_lobby_modes.push(gamemode);
 
     }
-    else
-    {
+    else {
         var index = update_selected_lobby_modes.indexOf(gamemode);
-        update_selected_lobby_modes.splice(index,1);
+        update_selected_lobby_modes.splice(index, 1);
         document.getElementById(gamemode).style.border = "none";
     }
 }
 
-function resetLobby()
-{
-    all_lobby_modes.forEach(function(d){
-        if (selected_lobby_modes.indexOf(d)<0)
-        {
+function resetLobby() {
+    all_lobby_modes.forEach(function (d) {
+        if (selected_lobby_modes.indexOf(d) < 0) {
             document.getElementById(d).style.border = "2px solid white";
             selected_lobby_modes.push(d);
         }
@@ -84,11 +80,11 @@ function reselectLobby() {
     reselectGameMode();
     update_selected_lobby_modes = selected_lobby_modes.slice();
     // first reset selection to all unselected
-    all_lobby_modes.forEach(function(d) {
+    all_lobby_modes.forEach(function (d) {
         document.getElementById(d).style.border = "none";
     });
     // then select previous selection
-    selected_lobby_modes.forEach(function(d){
+    selected_lobby_modes.forEach(function (d) {
         document.getElementById(d).style.border = "2px solid white";
     });
 };

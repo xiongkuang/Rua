@@ -11,103 +11,28 @@ var filtered_data;
 var bb_win_loss, bb_hero_pie, bb_item_percent, bb_hero_chord, bb_gpm, bb_xpm, bb_kda;
 
 
-bb_records = {
-    x: 0,
-    y: 250,
-    h: 200,
-    w: 1060
-}
+bb_records = {x: 0, y: 250, h: 200, w: 1060}
 
-bb_win_loss = {
-    w: 550,
-    h: 3,
-    margin: {
-        top: 40,
-        right: 70,
-        bottom: 20,
-        left: 70
-    }
-};
+bb_win_loss = {w: 550, h: 3, margin: {top: 40, right: 70, bottom: 20, left: 70}};
 
-bb_hero_pie = {
-    w: 300,
-    h: 300,
-    margin: {
-        top: 60,
-        right: 20,
-        bottom: 20,
-        left: 20
-    }
-};
+bb_hero_pie = {w: 300, h: 300, margin: {top: 60, right: 20, bottom: 20, left: 20}};
 
-bb_item_percent = {
-    w: 600,
-    h: 300,
-    margin: {
-        top: 90,
-        right: 20,
-        bottom: 20,
-        left: 50
-    }
-};
+bb_item_percent = {w: 600, h: 300, margin: {top: 90, right: 20, bottom: 20, left: 50}};
 
-bb_hero_chord = {
-    w: 400,
-    h: 400,
-    margin: {
-        top: 110,
-        right: 20,
-        bottom: 20,
-        left: 20
-    }
-};
+bb_hero_chord = {w: 400, h: 400, margin: {top: 110, right: 20, bottom: 20, left: 20}};
 
-bb_user_interact = {
-    h: 400,
-    w: 400,
-    margin: {
-        top: 110,
-        right: 80,
-        bottom: 20,
-        left: 20
-    }
-}
+bb_user_interact = {h: 400, w: 400, margin: {top: 110, right: 80, bottom: 20, left: 20}};
 
-bb_gpm = {
-    h: 400,
-    w: 400,
-    margin: {
-        top: 80,
-        right: 50,
-        bottom: 50,
-        left: 50
-    }
-}
+bb_gpm = {h: 400, w: 400, margin: {top: 80, right: 50, bottom: 50, left: 50}};
 
-bb_xpm = {
-    h: 400,
-    w: 400,
-    margin: {
-        top: 80,
-        right: 50,
-        bottom: 50,
-        left: 50
-    }
-}
+bb_xpm = {h: 400, w: 400, margin: {top: 80, right: 50, bottom: 50, left: 50}}
 
-bb_kda = {
-    x: 0,
-    y: 1500,
-    h: 300,
-    w: 900
-}
-
-var isChecked = $("#color-blind").is(":checked");
+bb_kda = {x: 0, y: 1500, h: 300, w: 900}
 
 // button handlers for splash page to switch the divs around as desired
 
 d3.selectAll(".move_on_button button")
-    .on("click", function() {
+    .on("click", function () {
         //force scroll to top if you're on the second page of the splash screen
         $(window).scrollTop("0px")
         d3.select("#not-splash")
@@ -118,20 +43,20 @@ d3.selectAll(".move_on_button button")
 
 
 d3.select(".more_info_button button")
-    .on("click", function() {
+    .on("click", function () {
         d3.select("#splash")
             .style("display", "none");
         d3.select("#not-splash")
             .style("display", null);
 
         //hack around fix positioning
-        d3.select("#page-header").style("position","absolute");
+        d3.select("#page-header").style("position", "absolute");
         //start the intro js
         introguide.start();
     })
 
 // bind handlers for going back to main screen
-function return_to_splash () {
+function return_to_splash() {
     $(window).scrollTop("0px")
     // introguide.exit();
     d3.select("#not-splash")
@@ -141,16 +66,15 @@ function return_to_splash () {
 }
 
 
-
 // start with move on button in "loading" state (Twitter Bootstrap)
-$( ".move_on_button button" ).button("loading")
-$( ".more_info_button button" ).button("loading")
+$(".move_on_button button").button("loading")
+$(".more_info_button button").button("loading")
 
 
 // When DOM is ready, enable button
-$(window).load(function() {
+$(window).load(function () {
 
-    $( ".move_on_button button" ).button("reset")
+    $(".move_on_button button").button("reset")
     $(".more_info_button button").button("reset")
 })
 
@@ -167,11 +91,10 @@ svg_hero_pie = d3.select("#hero_pie_container").append("svg").attr({
     height: bb_hero_pie.h + bb_hero_pie.margin.bottom + bb_hero_pie.margin.top
 })
 
-svg_item_percent= d3.select("#item_percent_container").append("svg").attr({
+svg_item_percent = d3.select("#item_percent_container").append("svg").attr({
     width: bb_item_percent.w + bb_item_percent.margin.left + bb_item_percent.margin.right,
     height: bb_item_percent.h + bb_item_percent.margin.bottom + bb_item_percent.margin.top
 })
-
 
 
 svg_gpm = d3.select("#gpm_container").append("svg").attr({
@@ -191,15 +114,12 @@ var win_loss_graph = svg_win_loss.append("g")
 
 var hero_pie_graph = svg_hero_pie.append("g")
     .attr("class", "hero_pie")
-    .attr("transform", "translate(" + (bb_hero_pie.w/2 + bb_hero_pie.margin.left) + "," + (bb_hero_pie.h / 2 + bb_hero_pie.margin.top) + ")");
+    .attr("transform", "translate(" + (bb_hero_pie.w / 2 + bb_hero_pie.margin.left) + "," + (bb_hero_pie.h / 2 + bb_hero_pie.margin.top) + ")");
 
 var item_percent_graph = svg_item_percent.append("g")
     .attr("class", "item_percent")
     .attr("transform", "translate(" + bb_item_percent.margin.left + "," + bb_item_percent.margin.top + ")");
 
-// var user_interact_graph = svg_user_interact.append("g")
-//     .attr("class", "user_interact")
-//     .attr("transform", "translate(" + bb_user_interact.margin.left + "," + bb_user_interact.margin.top + ")");
 
 var gpm_graph = svg_gpm.append("g")
     .attr("class", "gpm")
@@ -215,57 +135,50 @@ var hero_pie_radius, hero_pie_color, hero_pie_x, hero_pie_y, partition, hero_pie
 //tool tip setup
 var graph_tip = d3.tip()
     .attr("class", "d3-tip")
-    .offset([0,0]);
+    .offset([0, 0]);
 
 svg_xpm.call(graph_tip);
 svg_gpm.call(graph_tip);
 
 //function calls
-dM.loadJson(function() {
+dM.loadJson(function () {
 
     // Benjy's stuff
     hero_keys = dM.getKeys("heroes");
     var intheroes = new Array();
     var agiheroes = new Array();
     var strheroes = new Array();
-    for (var i = 0; i < hero_keys.length; i++)
-    {
+    for (var i = 0; i < hero_keys.length; i++) {
         var hero = dM.getHeroInfoCopy(hero_keys[i]);
-        if (hero)
-        {
-            if (hero.stat == "strength")
-            {
+        if (hero) {
+            if (hero.stat == "strength") {
                 strheroes.push(hero);
             }
-            else if (hero.stat == "agility")
-            {
+            else if (hero.stat == "agility") {
                 agiheroes.push(hero);
             }
-            else if (hero.stat == "intelligence")
-            {
+            else if (hero.stat == "intelligence") {
                 intheroes.push(hero);
             }
         }
-    };
+    }
+    ;
     strheroes.sort(sorting);
     agiheroes.sort(sorting);
     intheroes.sort(sorting);
-    strheroes.forEach(function (d)
-    {
+    strheroes.forEach(function (d) {
         var heroname = d.name;
         d3.select("#strimages").append("img").attr("id", heroname).attr("class", "pic brightnessfilter");
         d3.select("#strimages").select("#" + heroname).attr('src', d.img).attr("width", "80px").attr("value", d.id);
         d3.select("#strimages").select("#" + heroname).on("click", highlight);
     });
-    agiheroes.forEach(function (d)
-    {
+    agiheroes.forEach(function (d) {
         var heroname = d.name;
         d3.select("#agiimages").append("img").attr("id", heroname).attr("class", "pic brightnessfilter");
         d3.select("#agiimages").select("#" + heroname).attr('src', d.img).attr("width", "80px").attr("value", d.id);
         d3.select("#agiimages").select("#" + heroname).on("click", highlight);
     });
-    intheroes.forEach(function (d)
-    {
+    intheroes.forEach(function (d) {
         var heroname = d.name;
         d3.select("#intimages").append("img").attr("id", heroname).attr("class", "pic brightnessfilter");
         d3.select("#intimages").select("#" + heroname).attr('src', d.img).attr("width", "80px").attr("value", d.id);
@@ -273,11 +186,10 @@ dM.loadJson(function() {
     });
 
     // creates sunburst parent-child nested array-dict object whatever format
-    //for use in the hero sunburst, although without any data
     hero_flare = {};
 
     hero_flare.name = "flare"
-    hero_flare.children = [{},{},{}];
+    hero_flare.children = [{}, {}, {}];
 
     hero_flare.children[0].name = "agility";
     hero_flare.children[1].name = "strength";
@@ -287,8 +199,7 @@ dM.loadJson(function() {
     hero_flare.children[1].children = [];
     hero_flare.children[2].children = [];
 
-    for (var i = 0; i < hero_keys.length; i++)
-    {
+    for (var i = 0; i < hero_keys.length; i++) {
         var hero = dM.getHeroInfoCopy(hero_keys[i]);
 
         hero.items = [];
@@ -313,21 +224,23 @@ dM.loadJson(function() {
 });
 
 d3.select("#color-blind")
-    .on("click", function() {
+    .on("click", function () {
         tripleFilterUpdate();
     })
 
-function tripleFilterUpdate(){
+function tripleFilterUpdate() {
     // repopulate filtered_data by hero selection
     updateFilteredSelectionByHero();
     // further filter by game mode and lobby type
-    filtered_data.matches = filtered_data.matches.filter(function(d){if((selected_modes.indexOf(dM.getGameModeInfo(d.game_mode).short_name) >= 0)&& (selected_lobby_modes.indexOf(dM.getLobbyInfo(d.lobby_type).short_name) >= 0)) return 1;});
+    filtered_data.matches = filtered_data.matches.filter(function (d) {
+        if ((selected_modes.indexOf(dM.getGameModeInfo(d.game_mode).short_name) >= 0) && (selected_lobby_modes.indexOf(dM.getLobbyInfo(d.lobby_type).short_name) >= 0)) return 1;
+    });
 
     updateGraphs(filtered_data);
 }
 
 // reset selected heroes in the filter for user change - all to unselected
-function resetSelectedHeroes(){
+function resetSelectedHeroes() {
     d3.selectAll(".pic.selected").classed("selected", false).style("border", "2px solid black");
 }
 
@@ -339,7 +252,7 @@ draw_xpm();
 
 function loadData(username) {
 
-    dM.loadUserData(username, function(error, data) {
+    dM.loadUserData(username, function (error, data) {
 
         user_data = data;
         filtered_data = data;
@@ -351,11 +264,11 @@ function loadData(username) {
         resetLobby();
         initLobby();
         resetSelectedHeroes();
-         tripleFilterUpdate();
+        tripleFilterUpdate();
     })
 }
 
-function updateGraphs (filtered_data) {
+function updateGraphs(filtered_data) {
     //update function calls
     update_win_loss(filtered_data);
     update_item_percent(filtered_data);
@@ -367,10 +280,7 @@ function updateGraphs (filtered_data) {
 }
 
 
-
-
 //win loss rect graph
-//transition working
 function draw_win_loss() {
 
     win_loss_graph.append("rect")
@@ -382,7 +292,7 @@ function draw_win_loss() {
         .attr("class", "loss");
 
     win_loss_graph.append("rect")
-        .attr("width", bb_win_loss.w/2)
+        .attr("width", bb_win_loss.w / 2)
         .attr("height", bb_win_loss.h)
         .attr("x", 0)
         .attr("id", "win_rect")
@@ -423,7 +333,7 @@ function update_win_loss(data) {
     var win_count = 0;
     var total_matches = data.matches.length;
 
-    data.matches.map(function(d,i) {
+    data.matches.map(function (d, i) {
         if (d.player_win == true) {
             win_count += 1;
         }
@@ -436,11 +346,11 @@ function update_win_loss(data) {
         duration = 1000;
     }
 
-    if (isNaN((win_count/total_matches)*bb_win_loss.w) == false) {
+    if (isNaN((win_count / total_matches) * bb_win_loss.w) == false) {
         d3.select("rect.win")
             .transition()
             .duration(duration)
-            .attr("width", (win_count/total_matches)*bb_win_loss.w);
+            .attr("width", (win_count / total_matches) * bb_win_loss.w);
     }
     else {
         d3.select("rect.win")
@@ -451,10 +361,10 @@ function update_win_loss(data) {
 
     if (win_count != 0) {
         d3.select(".win.text")
-            .text(((win_count/total_matches) * 100).toFixed(1) + "%");
+            .text(((win_count / total_matches) * 100).toFixed(1) + "%");
 
         d3.select(".loss.text")
-            .text(((total_matches - win_count)/total_matches * 100).toFixed(1) + "%");
+            .text(((total_matches - win_count) / total_matches * 100).toFixed(1) + "%");
     }
     else {
         d3.select(".win.text")
@@ -466,80 +376,10 @@ function update_win_loss(data) {
 }
 
 
-function capitalizeFirstLetter(string)
-{
+function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-
-// function hero_pie_transition(data){
-//
-//     hero_pie_path
-//         .data(data)
-//         .exit()
-//         .transition()
-//         .attr("visibility", "hidden")
-//         .remove();
-//
-//     hero_pie_path
-//         .data(data)
-//         .enter()
-//         .append("path")
-//         .attr("class", "hero_pie")
-//         .attr("visibility", "visible")
-//         .on("click", click)
-//         .on("mouseover", function(d) {
-//
-//             var tooltip = true;
-//
-//             var name;
-//             var number_text;
-//
-//             if (d.value == 1) {
-//                 number_text = " game";
-//             }
-//             else {
-//                 number_text = " games"
-//             }
-//
-//             if ("dname" in d) {
-//                 name = d.dname;
-//             }
-//             else if (d.name == "flare") {
-//                 tooltip = false
-//             }
-//             else {
-//                 name = capitalizeFirstLetter(d.name) + " Heroes";
-//             }
-//
-//             var basic_tip = "<div id='tooltip_text'><strong>"+ name +"</strong>"+ "<br>" + d.value + number_text + "</br></div>";
-//
-//             if ("dname" in d) {
-//                 var img_tip = "<div id='hero_sunburst_tip'><img src='" + d.img + "'' width='64px' height='36px'></div>";
-//             }
-//             else {
-//                 var img_tip = "";
-//             }
-//
-//             graph_tip.html(img_tip + basic_tip);
-//
-//             if (tooltip) {
-//                 graph_tip.show(d);
-//             }
-//
-//             d3.select(this)
-//                 .style("fill", "aquamarine");
-//         })
-//         .on("mouseout", function(d) {
-//             graph_tip.hide(d);
-//
-//             d3.select(this)
-//                 .style("fill", function(d) { return color((d.children ? d : d.parent).name); });
-//         })
-//         .transition()
-//         .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
-//         .attr("d", hero_pie_arc);
-// }
 
 function click(d) {
     hero_pie_path.transition()
@@ -552,23 +392,35 @@ function clickArcTween(d) {
     var xd = d3.interpolate(hero_pie_x.domain(), [d.x, d.x + d.dx]),
         yd = d3.interpolate(hero_pie_y.domain(), [d.y, 1]),
         yr = d3.interpolate(hero_pie_y.range(), [d.y ? 20 : 0, hero_pie_radius]);
-    return function(d, i) {
+    return function (d, i) {
         return i
-            ? function(t) { return hero_pie_arc(d); }
-            : function(t) { hero_pie_x.domain(xd(t)); hero_pie_y.domain(yd(t)).range(yr(t)); return hero_pie_arc(d); };
+            ? function (t) {
+            return hero_pie_arc(d);
+        }
+            : function (t) {
+            hero_pie_x.domain(xd(t));
+            hero_pie_y.domain(yd(t)).range(yr(t));
+            return hero_pie_arc(d);
+        };
     };
 }
 
-function findLargest3(array1){
+function findLargest3(array1) {
 // sort descending
 
-    array1.sort(function(a,b) {
-        if (a[1] < b[1]) { return 1; }
-        else if (a[1] == b[1]) { return 0; }
-        else { return -1; }
+    array1.sort(function (a, b) {
+        if (a[1] < b[1]) {
+            return 1;
+        }
+        else if (a[1] == b[1]) {
+            return 0;
+        }
+        else {
+            return -1;
+        }
     });
 
-    return array1.slice(0,3)
+    return array1.slice(0, 3)
 }
 
 //creates hero sunburst graph based on hero flare json data
@@ -584,7 +436,7 @@ function hero_pie(flare) {
 
                 var max_item_array = [];
 
-                for (var k = 0; k < hero_flare.children[i].children[j].items.length; k ++) {
+                for (var k = 0; k < hero_flare.children[i].children[j].items.length; k++) {
 
                     var current_item = hero_flare.children[i].children[j].items[k];
 
@@ -602,9 +454,9 @@ function hero_pie(flare) {
     hero_pie_radius = Math.min(bb_hero_pie.w, bb_hero_pie.h) / 2;
 
     hero_pie_color = d3.scale.ordinal()
-        .domain(["flare","agility", "strength", "intelligence"])
+        .domain(["flare", "agility", "strength", "intelligence"])
         //get them to be the correct dota colors
-        .range(["rgba(0,0,0,0)", "#188a15", "#b6310d","#0f7fb4"])
+        .range(["rgba(0,0,0,0)", "#188a15", "#b6310d", "#0f7fb4"])
     //.range(["white","#167c13", "#b9500b", "#257dae"]);
 
     hero_pie_x = d3.scale.linear()
@@ -614,29 +466,45 @@ function hero_pie(flare) {
         .range([0, hero_pie_radius]);
 
     partition = d3.layout.partition()
-        .value(function(d) { return d.games_played; });
+        .value(function (d) {
+            return d.games_played;
+        });
 
     var zero_arc = d3.svg.arc()
         .startAngle(0)
         .endAngle(0)
-        .innerRadius(function(d) { return Math.max(0, hero_pie_y(d.y)); })
-        .outerRadius(function(d) { return Math.max(0, hero_pie_y(d.y + d.dy)); });
+        .innerRadius(function (d) {
+            return Math.max(0, hero_pie_y(d.y));
+        })
+        .outerRadius(function (d) {
+            return Math.max(0, hero_pie_y(d.y + d.dy));
+        });
 
     hero_pie_arc = d3.svg.arc()
-        .startAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, hero_pie_x(d.x))); })
-        .endAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, hero_pie_x(d.x + d.dx))); })
-        .innerRadius(function(d) { return Math.max(0, hero_pie_y(d.y)); })
-        .outerRadius(function(d) { return Math.max(0, hero_pie_y(d.y + d.dy)); });
+        .startAngle(function (d) {
+            return Math.max(0, Math.min(2 * Math.PI, hero_pie_x(d.x)));
+        })
+        .endAngle(function (d) {
+            return Math.max(0, Math.min(2 * Math.PI, hero_pie_x(d.x + d.dx)));
+        })
+        .innerRadius(function (d) {
+            return Math.max(0, hero_pie_y(d.y));
+        })
+        .outerRadius(function (d) {
+            return Math.max(0, hero_pie_y(d.y + d.dy));
+        });
 
     hero_pie_path = hero_pie_graph.selectAll("path")
-        .data(partition.nodes(flare), function (d) { return d.name });
+        .data(partition.nodes(flare), function (d) {
+            return d.name
+        });
 
     hero_pie_path
         .enter().append("path")
         .attr("class", "hero_pie")
         .attr("d", zero_arc)
         .on("click", click)
-        .on("mouseover", function(d) {
+        .on("mouseover", function (d) {
 
             var tooltip = true;
 
@@ -660,13 +528,13 @@ function hero_pie(flare) {
                 name = capitalizeFirstLetter(d.name) + " Heroes";
             }
 
-            var basic_tip = "<div id='tooltip_text'><strong>"+ name +"</strong>"+ "<br>" + d.value + number_text + "</br></div>";
+            var basic_tip = "<div id='tooltip_text'><strong>" + name + "</strong>" + "<br>" + d.value + number_text + "</br></div>";
 
             if ("item_max" in d) {
 
                 //if buy less than three items, you noob or maybe doob. No item array for you!
                 if (d.item_max.length < 3) {
-                    basic_tip = "<div id='tooltip_text'><strong>"+ name +"</strong>"+ "<br>" + d.value + number_text + "</br></div>";
+                    basic_tip = "<div id='tooltip_text'><strong>" + name + "</strong>" + "<br>" + d.value + number_text + "</br></div>";
                 }
 
                 else {
@@ -678,7 +546,7 @@ function hero_pie(flare) {
                     item_text2 = (d.item_max[1][1] == 1) ? "time" : "times";
                     item_text3 = (d.item_max[2][1] == 1) ? "time" : "times";
 
-                    basic_tip = "<div id='tooltip_text'><strong>"+ name +"</strong>"+ "<br>" + d.value + number_text + "</br>" + "<br><strong>Most bought items: </strong><br>" + d.item_max[0][0] + ", " + d.item_max[0][1] + " " + item_text1 + "<br>" + d.item_max[1][0] + ", " + d.item_max[1][1] + " " + item_text2 + "<br>" + d.item_max[2][0] + ", " + d.item_max[2][1] + " " + item_text3 + "</br></div>";
+                    basic_tip = "<div id='tooltip_text'><strong>" + name + "</strong>" + "<br>" + d.value + number_text + "</br>" + "<br><strong>Most bought items: </strong><br>" + d.item_max[0][0] + ", " + d.item_max[0][1] + " " + item_text1 + "<br>" + d.item_max[1][0] + ", " + d.item_max[1][1] + " " + item_text2 + "<br>" + d.item_max[2][0] + ", " + d.item_max[2][1] + " " + item_text3 + "</br></div>";
                 }
             }
 
@@ -695,17 +563,19 @@ function hero_pie(flare) {
                 graph_tip.direction('e')
                 graph_tip.show(d);
             }
-            if(tooltip) {
+            if (tooltip) {
                 d3.select(this)
                     .style("fill", "rgba(255,255,255,0.7)");
             }
         })
-        .on("mouseout", function(d) {
+        .on("mouseout", function (d) {
             graph_tip.hide(d);
             graph_tip.direction('n');
 
             d3.select(this)
-                .style("fill", function(d) { return hero_pie_color((d.children ? d : d.parent).name); });
+                .style("fill", function (d) {
+                    return hero_pie_color((d.children ? d : d.parent).name);
+                });
         })
         .each(stash); // store the initial angles
 
@@ -713,8 +583,9 @@ function hero_pie(flare) {
         .transition()
         .duration(1000)
         .attrTween("d", heroPieArcTween)
-        .style("fill", function(d) {
-            return hero_pie_color((d.children ? d : d.parent).name); });
+        .style("fill", function (d) {
+            return hero_pie_color((d.children ? d : d.parent).name);
+        });
 
     d3.select(self.frameElement).style("height", height + "px");
 
@@ -722,12 +593,12 @@ function hero_pie(flare) {
 
     hero_pie_graph.append("text")
         .attr("text-anchor", "middle")
-        .attr("y", -bb_hero_pie.h/2 - 30)
+        .attr("y", -bb_hero_pie.h / 2 - 30)
         .text("Heroes Played");
 
     hero_pie_graph.append("text")
         .attr("text-anchor", "middle")
-        .attr("y", -bb_hero_pie.h/2 - 10)
+        .attr("y", -bb_hero_pie.h / 2 - 10)
         .style("font-size", "12px")
         .text("Click center to zoom out. Click arcs to zoom in.");
 
@@ -745,7 +616,7 @@ function stash(d) {
 // Interpolate the arcs in data space.
 function heroPieArcTween(a) {
     var i = d3.interpolate({x: a.x0, dx: a.dx0}, a);
-    return function(t) {
+    return function (t) {
         var b = i(t);
         a.x0 = b.x;
         a.dx0 = b.dx;
@@ -762,28 +633,26 @@ function update_flare(data) {
         for (var j = 0; j < hero_flare.children[i].children.length; j++) {
             hero_flare.children[i].children[j].games_played = 0;
             hero_flare.children[i].children[j].items = [];
-
-            // for (var k = 0; k < hero_flare.children[i].children[j].items.length; k++) {
-            // 	hero_flare.children[i].children[j].items[k].number = 0;
-            // }
-
         }
     }
 
-    data.matches.forEach(function(d,i) {
+    data.matches.forEach(function (d, i) {
 
         var current_hero = dM.getHeroInfo(d.player_info.hero_id)
 
         // find which child array holds the heroes for this stat
-        var children_pos = hero_flare.children.map(function (d) { return d.name }).indexOf(current_hero.stat);
+        var children_pos = hero_flare.children.map(function (d) {
+            return d.name
+        }).indexOf(current_hero.stat);
         var cur = hero_flare.children[children_pos].children;
 
         // find which element of that array holds this hero
-        var hero_pos = cur.map(function (d) { return d.dname }).indexOf(current_hero.dname)
+        var hero_pos = cur.map(function (d) {
+            return d.dname
+        }).indexOf(current_hero.dname)
         cur[hero_pos].games_played += 1;
 
     })
-
 
 
     //get items to each hero and enumerate a count
@@ -795,7 +664,7 @@ function update_flare(data) {
 
         for (var j = 0; j < 6; j++) {
 
-            var current_item = dM.getItemInfoCopy(data.matches[i].player_info["item_"+j]);
+            var current_item = dM.getItemInfoCopy(data.matches[i].player_info["item_" + j]);
 
             if (current_item.dname == "empty") {
                 continue;
@@ -803,17 +672,23 @@ function update_flare(data) {
             var current_hero = dM.getHeroInfo(data.matches[i].player_info.hero_id);
 
             // find which child array holds the heroes for this stat
-            var children_pos = hero_flare.children.map(function (d) { return d.name }).indexOf(current_hero.stat);
+            var children_pos = hero_flare.children.map(function (d) {
+                return d.name
+            }).indexOf(current_hero.stat);
             var cur = hero_flare.children[children_pos].children;
 
             // find which element of that array holds this hero
-            var hero_pos = cur.map(function (d) { return d.dname }).indexOf(current_hero.dname)
+            var hero_pos = cur.map(function (d) {
+                return d.dname
+            }).indexOf(current_hero.dname)
 
             if (!("items" in cur[hero_pos])) {
                 cur[hero_pos]["items"] = [];
             }
 
-            var item_pos = cur[hero_pos].items.map(function(d) {return d.name}).indexOf(current_item.name);
+            var item_pos = cur[hero_pos].items.map(function (d) {
+                return d.name
+            }).indexOf(current_item.name);
 
             if (item_pos == -1) {
                 current_item.number = 1;
@@ -838,11 +713,11 @@ function draw_item_percent() {
     item_percent_color = d3.scale.linear();
 
     item_percent_x = d3.scale.ordinal()
-        .rangeBands([0, bb_item_percent.w], .3 , .5)
+        .rangeBands([0, bb_item_percent.w], .3, .5)
         .domain(["item1"]);
 
     item_percent_y = d3.scale.linear()
-        .range([bb_item_percent.h,0])
+        .range([bb_item_percent.h, 0])
 
     item_percent_xAxis = d3.svg.axis()
         .scale(item_percent_x)
@@ -885,18 +760,11 @@ function draw_legend(graph) {
 
 //updates the item percent bar chart based on user's data selection
 function update_item_percent(data) {
-
-    //console.log(data)
-
     var items = []
 
     //initialize all items with a count of 0
-    d3.json("data/items.json", function(error,dat) {
-
-
-        item_percent_color.range(["#F68065","#6CC062"])
-
-
+    d3.json("data/items.json", function (error, dat) {
+        item_percent_color.range(["#F68065", "#6CC062"])
         for (id in dat) {
             dat[id].count = 0;
             dat[id].num_wins = 0;
@@ -906,12 +774,14 @@ function update_item_percent(data) {
         var total_count = data.matches.length;
 
         //count all of the items
-        data.matches.forEach(function(d,i) {
+        data.matches.forEach(function (d, i) {
             for (j in dat) {
 
                 var hero = d.player_info.hero_id;
 
-                var index = dat[j].hero_array.map(function(d){return d[0]}).indexOf(hero);
+                var index = dat[j].hero_array.map(function (d) {
+                    return d[0]
+                }).indexOf(hero);
 
                 if (dat[j].id == d.player_info.item_0) {
                     dat[j].count += 1;
@@ -998,8 +868,8 @@ function update_item_percent(data) {
         //consolidate into correct form that we want
         for (k in dat) {
             if (dat[k].count != 0 && dat[k].name != "empty") {
-                dat[k].percent = dat[k].count/total_count;
-                dat[k].winrate = (dat[k].num_wins/dat[k].count);
+                dat[k].percent = dat[k].count / total_count;
+                dat[k].winrate = (dat[k].num_wins / dat[k].count);
                 items.push(dat[k])
             }
         }
@@ -1010,7 +880,7 @@ function update_item_percent(data) {
         }
 
         //item_percent_color.domain(d3.extent(extent_array));
-        item_percent_color.domain([0,.5,1])
+        item_percent_color.domain([0, .5, 1])
         item_percent_color.range(["#d7191c", "#8d8d8d", "#1a9641"]);
 
 
@@ -1021,16 +891,16 @@ function update_item_percent(data) {
             duration = 1000;
         }
 
-        item_percent_x.domain(items.map(function(d) {
+        item_percent_x.domain(items.map(function (d) {
             return d.name;
         }));
-        item_percent_y.domain([0, d3.max(items, function(d) {
+        item_percent_y.domain([0, d3.max(items, function (d) {
             return d.percent;
         })]);
 
         var bars = item_percent_graph.select(".bars")
             .selectAll(".bar")
-            .data(items, function(d) {
+            .data(items, function (d) {
                 return d.name;
             })
 
@@ -1043,15 +913,13 @@ function update_item_percent(data) {
         bars.enter()
             .append("rect")
             .attr("class", "bar")
-            .attr("fill", function(d) {
-                //console.log(d)
-                //console.log(d.winrate)
+            .attr("fill", function (d) {
                 return item_percent_color(d.winrate);
             })
             .attr("x", 0)
             .attr("y", bb_item_percent.h)
             .attr("height", 0)
-            .on("mouseover", function(d) {
+            .on("mouseover", function (d) {
 
                 if (d.dname == "Aegis of the Immortal" || d.dname == "Cheese") {
                     var cost = "Dropped Item";
@@ -1060,19 +928,10 @@ function update_item_percent(data) {
                     cost = d.cost
                 }
 
-                //console.log(d)
-
-                //for video
-                // if (d.dname == "Force Staff") {
-                // 	d.winrate = .96;
-                // }
-                // if (d.dname == "Armlet of Mordiggian") {
-                // 	d.winrate = .037
-                // }
 
                 var basic_tip = "<div id='tooltip_text'><strong><span style='color:red';>" + d.dname +
                     "</span></strong>" + "<br> Number of Games: " + d.count +
-                    "<br> Cost: " + cost + "<br> Winrate: " + (100*d.winrate).toFixed(1) +
+                    "<br> Cost: " + cost + "<br> Winrate: " + (100 * d.winrate).toFixed(1) +
                     "%<br></div>"
                 var img_tip = "<div id='item_percent_tooltip_img'><img src='" + d.img + "' height='40px' width='53.125px'></div>"
 
@@ -1090,7 +949,7 @@ function update_item_percent(data) {
                 graph_tip.html(img_tip + basic_tip + most_purchased);
                 graph_tip.show(d);
             })
-            .on("mouseout", function(d) {
+            .on("mouseout", function (d) {
                 graph_tip.hide(d);
             })
             .transition().duration(duration);
@@ -1098,17 +957,17 @@ function update_item_percent(data) {
         bars
             .transition()
             .duration(duration)
-            .attr("x", function(d) {
+            .attr("x", function (d) {
                 return item_percent_x(d.name);
             })
-            .attr("y", function(d) {
+            .attr("y", function (d) {
                 return item_percent_y(d.percent);
             })
-            .attr("height", function(d) {
+            .attr("height", function (d) {
                 return bb_item_percent.h - item_percent_y(d.percent);
             })
             .attr("width", item_percent_x.rangeBand)
-            .attr("fill", function(d) {
+            .attr("fill", function (d) {
                 return item_percent_color(d.winrate);
             });
 
@@ -1130,7 +989,7 @@ function update_item_percent(data) {
 
     d3.select("input#value").on("change", change);
 
-    var sortTimeout = setTimeout(function() {
+    var sortTimeout = setTimeout(function () {
         d3.select("input#value").property("checked", true).each(change);
     }, 2000);
 
@@ -1139,17 +998,27 @@ function update_item_percent(data) {
 
         // Copy-on-write since tweens are evaluated after a delay.
         var x0 = item_percent_x.domain(items.sort(this.checked
-            ? function(a, b) { return b.percent - a.percent; }
-            : function(a, b) { return d3.ascending(a.name, b.name); })
-            .map(function(d) { return d.name; }))
+            ? function (a, b) {
+            return b.percent - a.percent;
+        }
+            : function (a, b) {
+            return d3.ascending(a.name, b.name);
+        })
+            .map(function (d) {
+                return d.name;
+            }))
             .copy();
 
         var transition = svg_item_percent.transition().duration(750),
-            delay = function(d, i) { return i * 10; };
+            delay = function (d, i) {
+                return i * 10;
+            };
 
         transition.selectAll(".bar")
             .delay(delay)
-            .attr("x", function(d) { return x0(d.name); });
+            .attr("x", function (d) {
+                return x0(d.name);
+            });
 
         transition.select(".x.axis")
             .call(item_percent_xAxis)
@@ -1165,17 +1034,27 @@ function update_item_percent(data) {
 
         // Copy-on-write since tweens are evaluated after a delay.
         var x0 = item_percent_x.domain(items.sort(this.checked
-            ? function(a, b) { return d3.ascending(a.name, b.name); }
-            : function(a, b) { return d3.ascending(a.percent, b.percent); })
-            .map(function(d) { return d.name; }))
+            ? function (a, b) {
+            return d3.ascending(a.name, b.name);
+        }
+            : function (a, b) {
+            return d3.ascending(a.percent, b.percent);
+        })
+            .map(function (d) {
+                return d.name;
+            }))
             .copy();
 
         var transition = svg_item_percent.transition().duration(750),
-            delay = function(d, i) { return i * 10; };
+            delay = function (d, i) {
+                return i * 10;
+            };
 
         transition.selectAll(".bar")
             .delay(delay)
-            .attr("x", function(d) { return x0(d.name); });
+            .attr("x", function (d) {
+                return x0(d.name);
+            });
 
         transition.select(".x.axis")
             .call(item_percent_xAxis)
@@ -1191,7 +1070,7 @@ function update_item_percent(data) {
 
         // Copy-on-write since tweens are evaluated after a delay.
         var x0 = item_percent_x.domain(items.sort(this.checked
-            ? function(a, b) {
+            ? function (a, b) {
             if (a.dname == "Aegis of the Immortal" || a.dname == "Cheese") {
                 a.cost = 100000;
             }
@@ -1200,16 +1079,24 @@ function update_item_percent(data) {
             }
             return d3.ascending(a.cost, b.cost);
         }
-            : function(a, b) { return d3.ascending(a.name, b.name); })
-            .map(function(d) { return d.name; }))
+            : function (a, b) {
+            return d3.ascending(a.name, b.name);
+        })
+            .map(function (d) {
+                return d.name;
+            }))
             .copy();
 
         var transition = svg_item_percent.transition().duration(750),
-            delay = function(d, i) { return i * 10; };
+            delay = function (d, i) {
+                return i * 10;
+            };
 
         transition.selectAll(".bar")
             .delay(delay)
-            .attr("x", function(d) { return x0(d.name); });
+            .attr("x", function (d) {
+                return x0(d.name);
+            });
 
         transition.select(".x.axis")
             .call(item_percent_xAxis)
@@ -1239,7 +1126,7 @@ function k_combinations(set, k) {
 
     combs = [];
     for (i = 0; i < set.length - k + 1; i++) {
-        head = set.slice(i, i+1);
+        head = set.slice(i, i + 1);
         tailcombs = k_combinations(set.slice(i + 1), k - 1);
         for (j = 0; j < tailcombs.length; j++) {
             combs.push(head.concat(tailcombs[j]));
@@ -1277,8 +1164,8 @@ function draw_gpm() {
         .range([bb_gpm.h, 0]);
 
     gpm_color = d3.scale.ordinal()
-            .domain([true, false])
-            .range(["#1a9641", "#d7191c"]);
+        .domain([true, false])
+        .range(["#1a9641", "#d7191c"]);
 
 
     gpm_xAxis = d3.svg.axis()
@@ -1294,7 +1181,7 @@ function draw_gpm() {
         .attr("id", "gpm_clip")
         .append("rect")
         .attr("width", bb_gpm.w)
-        .attr("height", bb_gpm.h+5);
+        .attr("height", bb_gpm.h + 5);
 
     gpm_graph.append("g")
         .attr("class", "gpm_brush");
@@ -1342,7 +1229,7 @@ function draw_gpm() {
     gpm_graph.append("text")
         .attr("y", -40)
         .attr("text-anchor", "middle")
-        .attr("x", bb_gpm.w/2)
+        .attr("x", bb_gpm.w / 2)
         .text("GPM Statistics")
 
 }
@@ -1355,7 +1242,7 @@ function update_gpm(data) {
 
     var gpm_dict = {};
 
-    data.matches.map(function(d) {
+    data.matches.map(function (d) {
         var player = d.player_info;
         if (!(player.hero_id in gpm_dict)) {
             gpm_dict[player.hero_id] = []
@@ -1367,21 +1254,22 @@ function update_gpm(data) {
 
     //now calculate all of the averages
     for (id in gpm_dict) {
-        var total = gpm_dict[id].reduce(function(rest,match) {
+        var total = gpm_dict[id].reduce(function (rest, match) {
             return (rest + match.player_info.gold_per_min);
         }, 0)
-        var hero_average = total/gpm_dict[id].length;
+        var hero_average = total / gpm_dict[id].length;
 
-        gpm_dict[id].map(function(d) {
+        gpm_dict[id].map(function (d) {
             d.player_info.hero_avg_gpm = hero_average;
             gpm_array.push(d)
         });
     }
 
     var max_value = Math.max(
-        d3.max(gpm_array, function(d) {
-            return d.player_info.hero_avg_gpm;}),
-        d3.max(gpm_array, function(d) {
+        d3.max(gpm_array, function (d) {
+            return d.player_info.hero_avg_gpm;
+        }),
+        d3.max(gpm_array, function (d) {
             return d.player_info.gold_per_min;
         }));
 
@@ -1400,20 +1288,24 @@ function update_gpm(data) {
 
     // use match id to key data
     var datapoints = gpm_graph.selectAll(".dot")
-        .data(gpm_array, function(d) { return d.match_id })
+        .data(gpm_array, function (d) {
+            return d.match_id
+        })
 
     datapoints.exit().remove();
 
     datapoints
         .enter().append("circle")
-        .attr("class", function(d) {
+        .attr("class", function (d) {
             return (d.player_win) ? "dot win" : "dot loss"
         })
-        .attr("match_id", function(d) { return d.match_id })
+        .attr("match_id", function (d) {
+            return d.match_id
+        })
         .attr("cx", gpm_x(0))
         .attr("cy", gpm_y(0))
         .attr("r", 3.5)
-        .on("mouseover", function(d) {
+        .on("mouseover", function (d) {
             // update dot styling
             var sel = d3.selectAll("[match_id='" + d.match_id + "']")
                 .classed("match_dot_hover", true)
@@ -1436,7 +1328,7 @@ function update_gpm(data) {
             graph_tip.html(img_tip + text);
             graph_tip.show(d)
         })
-        .on("mouseout", function(d) {
+        .on("mouseout", function (d) {
             // update dot styling, but only if not selected
             if (d3.select(this).classed("end_screen_selected") == false) {
                 d3.selectAll("#timeline .match_dot_hover").attr("r", 3)
@@ -1455,10 +1347,10 @@ function update_gpm(data) {
     datapoints
         .transition()
         .duration(1000)
-        .attr("cx", function(d) {
+        .attr("cx", function (d) {
             return gpm_x(d.player_info.hero_avg_gpm)
         })
-        .attr("cy", function(d) {
+        .attr("cy", function (d) {
             return gpm_y(d.player_info.gold_per_min)
         });
 
@@ -1494,8 +1386,7 @@ function gpm_brushend() {
     }
 
     get_button = d3.select(".clear-button_gpm");
-    if (get_button.empty() === true)
-    {
+    if (get_button.empty() === true) {
         gpm_clear_button = gpm_graph.append("g")
             .attr("transform", "translate(" + (bb_gpm.w - 100) + "," + (bb_gpm.h - 440) + ")")
             .attr("class", "clear-button_gpm");
@@ -1522,8 +1413,7 @@ function gpm_brushend() {
     d3.select(".gpm_brush").call(gpm_brush.clear());
 
     // add the on click events for the button
-    gpm_clear_button.on('click', function ()
-    {
+    gpm_clear_button.on('click', function () {
         // reset everything
         gpm_x.domain(gpm_xdomain);
         gpm_y.domain(gpm_ydomain);
@@ -1551,20 +1441,20 @@ function gpm_brushend() {
         gpm_graph.selectAll("circle")
             .transition()
             .duration(1000)
-            .attr("cx",function(d) {
+            .attr("cx", function (d) {
                 x_vals.push(d.player_info.hero_avg_gpm);
                 return (gpm_x(d.player_info.hero_avg_gpm));
             })
-            .attr("cy",function(d) {
+            .attr("cy", function (d) {
                 y_vals.push(d.player_info.gold_per_min);
                 return gpm_y(d.player_info.gold_per_min);
             });
 
         var max_arr = Math.max(
-            d3.max(x_vals, function(d) {
+            d3.max(x_vals, function (d) {
                 return d;
             }),
-            d3.max(y_vals, function(d) {
+            d3.max(y_vals, function (d) {
                 return d;
             }));
 
@@ -1591,9 +1481,9 @@ function draw_xpm() {
     xpm_y = d3.scale.linear()
         .range([bb_xpm.h, 0]);
 
-   xpm_color = d3.scale.ordinal()
-            .domain([true, false])
-            .range(["#1a9641", "#d7191c"]);
+    xpm_color = d3.scale.ordinal()
+        .domain([true, false])
+        .range(["#1a9641", "#d7191c"]);
 
 
     xpm_xAxis = d3.svg.axis()
@@ -1644,7 +1534,7 @@ function draw_xpm() {
         .attr("id", "xpm_clip")
         .append("rect")
         .attr("width", bb_xpm.w)
-        .attr("height", bb_xpm.h+5);
+        .attr("height", bb_xpm.h + 5);
 
     xpm_graph.append("g")
         .attr("class", "xpm_brush");
@@ -1652,16 +1542,15 @@ function draw_xpm() {
     xpm_graph.append("text")
         .attr("y", -40)
         .attr("text-anchor", "middle")
-        .attr("x", bb_xpm.w/2)
+        .attr("x", bb_xpm.w / 2)
         .text("XPM Statistics")
-
 
 
 }
 
 
-d3.selection.prototype.moveToFront = function() {
-    return this.each(function(){
+d3.selection.prototype.moveToFront = function () {
+    return this.each(function () {
         this.parentNode.appendChild(this);
     });
 };
@@ -1677,7 +1566,7 @@ function update_xpm(data) {
 
     var xpm_dict = {};
 
-    data.matches.map(function(d) {
+    data.matches.map(function (d) {
         var player = d.player_info;
         if (!(player.hero_id in xpm_dict)) {
             xpm_dict[player.hero_id] = []
@@ -1689,21 +1578,22 @@ function update_xpm(data) {
 
     //now calculate all of the averages
     for (id in xpm_dict) {
-        var total = xpm_dict[id].reduce(function(rest,match) {
+        var total = xpm_dict[id].reduce(function (rest, match) {
             return (rest + match.player_info.xp_per_min);
         }, 0)
-        var hero_average = total/xpm_dict[id].length;
+        var hero_average = total / xpm_dict[id].length;
 
-        xpm_dict[id].map(function(d) {
+        xpm_dict[id].map(function (d) {
             d.player_info.hero_avg_xpm = hero_average;
             xpm_array.push(d)
         });
     }
 
     var max_value = Math.max(
-        d3.max(xpm_array, function(d) {
-            return d.player_info.hero_avg_xpm;}),
-        d3.max(xpm_array, function(d) {
+        d3.max(xpm_array, function (d) {
+            return d.player_info.hero_avg_xpm;
+        }),
+        d3.max(xpm_array, function (d) {
             return d.player_info.xp_per_min;
         }));
 
@@ -1718,19 +1608,23 @@ function update_xpm(data) {
 
     // use match id to bind key data
     var datapoints = xpm_graph.selectAll(".dot")
-        .data(xpm_array, function(d) { return d.match_id })
+        .data(xpm_array, function (d) {
+            return d.match_id
+        })
 
     datapoints.exit().remove();
 
     datapoints
         .enter().append("circle")
-        .attr("class", function(d) {
+        .attr("class", function (d) {
             return (d.player_win) ? "dot win" : "dot loss"
         })
-        .attr("match_id", function(d) { return d.match_id })
+        .attr("match_id", function (d) {
+            return d.match_id
+        })
         .attr("r", 3.5)
         .attr("opacity", ".98")
-        .on("mouseover", function(d) {
+        .on("mouseover", function (d) {
             // update dota styling
             var sel = d3.selectAll("[match_id='" + d.match_id + "']")
                 .classed("match_dot_hover", true)
@@ -1752,7 +1646,7 @@ function update_xpm(data) {
             graph_tip.html(img_tip + text);
             graph_tip.show(d)
         })
-        .on("mouseout", function(d) {
+        .on("mouseout", function (d) {
             // update dot styling, but only if not selected
             if (d3.select(this).classed("end_screen_selected") == false) {
                 d3.selectAll("#timeline .match_dot_hover").attr("r", 3)
@@ -1773,10 +1667,10 @@ function update_xpm(data) {
         .attr("cy", xpm_y(0))
         .transition()
         .duration(1000)
-        .attr("cx", function(d) {
+        .attr("cx", function (d) {
             return xpm_x(d.player_info.hero_avg_gpm)
         })
-        .attr("cy", function(d) {
+        .attr("cy", function (d) {
             return xpm_y(d.player_info.gold_per_min)
         });
 
@@ -1813,8 +1707,7 @@ function xpm_brushend() {
 
     get_button = d3.select(".clear-button_xpm");
 
-    if (get_button.empty() === true)
-    {
+    if (get_button.empty() === true) {
         xpm_clear_button = xpm_graph.append("g")
             .attr("transform", "translate(" + (bb_xpm.w - 100) + "," + (bb_xpm.h - 440) + ")")
             .attr("class", "clear-button_xpm");
@@ -1830,7 +1723,7 @@ function xpm_brushend() {
             .append('text')
             .attr("y", 0)
             .attr("x", 0)
-            .style("margin","15px 13px")
+            .style("margin", "15px 13px")
             .text("Clear Zoom");
     }
 
@@ -1841,8 +1734,7 @@ function xpm_brushend() {
 
     d3.select(".xpm_brush").call(xpm_brush.clear());
     // add the on click events for the button
-    xpm_clear_button.on('click', function ()
-    {
+    xpm_clear_button.on('click', function () {
         // reset everything
         xpm_x.domain(xpm_xdomain);
         xpm_y.domain(xpm_ydomain);
@@ -1870,20 +1762,20 @@ function xpm_brushend() {
         xpm_graph.selectAll("circle")
             .transition()
             .duration(1000)
-            .attr("cx",function(d) {
+            .attr("cx", function (d) {
                 x_vals.push(d.player_info.hero_avg_gpm);
                 return (xpm_x(d.player_info.hero_avg_gpm));
             })
-            .attr("cy",function(d) {
+            .attr("cy", function (d) {
                 y_vals.push(d.player_info.xp_per_min);
                 return xpm_y(d.player_info.xp_per_min);
             });
 
         var max_arr = Math.max(
-            d3.max(x_vals, function(d) {
+            d3.max(x_vals, function (d) {
                 return d;
             }),
-            d3.max(y_vals, function(d) {
+            d3.max(y_vals, function (d) {
                 return d;
             }));
 
@@ -1899,14 +1791,14 @@ function xpm_brushend() {
     }
 }
 
-
-
 // Returns a flattened hierarchy containing all leaf nodes under the root.
 function classes(root) {
     var classes = [];
 
     function recurse(name, node) {
-        if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+        if (node.children) node.children.forEach(function (child) {
+            recurse(node.name, child);
+        });
         else classes.push({packageName: name, className: node.name, value: node.count, wins: node.num_wins});
     }
 

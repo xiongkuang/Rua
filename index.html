@@ -23,7 +23,9 @@
     <div id="particles-js"></div>
     <div class="splash-nav">
         <div class="right-nav">
-            <div id="receptionlist" class="move_on_button"><button id="logo" class="btn btn-default" data-loading-text=""></button></div>
+            <div id="receptionlist" class="move_on_button">
+                <button id="logo" class="btn btn-default" data-loading-text=""></button>
+            </div>
         </div>
     </div>
 </div>
@@ -41,12 +43,15 @@
                 <span id="selectuser"></span>
 
                 <!--FILTER HERO MODAL BUTTON -->
-                <span id="filterbutton"><button class="btn btn-default" data-toggle="modal" data-target="#selector" onclick="reselectHeroes()">Heroes</button></span>
+                <span id="filterbutton"><button class="btn btn-default" data-toggle="modal" data-target="#selector"
+                                                onclick="reselectHeroes()">Heroes</button></span>
 
                 <!--FILTER GAME MODE MODAL BUTTON -->
-                <span id="filterbutton_game_mode"><button class="btn btn-default" data-toggle="modal" data-target="#select_game_type" onclick="reselectLobby()">Game Type</button></span>
+                <span id="filterbutton_game_mode"><button class="btn btn-default" data-toggle="modal"
+                                                          data-target="#select_game_type" onclick="reselectLobby()">Game Type</button></span>
 
             </div>
+
         </div>
     </div>
 
@@ -76,7 +81,7 @@
 
                 <div id="winner">Dire Victory</div>
                 <div id="closebutton">
-                <button class="btn btn-default btn-sm" id="close_btn" onclick="exit_end_screen()">Close</button>
+                    <button class="btn btn-default btn-sm" id="close_btn" onclick="exit_end_screen()">Close</button>
                 </div>
 
             </div>
@@ -126,7 +131,7 @@
 
                 <table id="dire">
                     <thead>
-                    <tr class="team dire" >
+                    <tr class="team dire">
                         <th colspan="17" style="text-align:left!important;">The Dire</th>
                     </tr>
                     <tr class="headers">
@@ -178,24 +183,27 @@
             <div id="record_content">
                 <div id="longest_match" data-value="Longest Match"></div>
                 <div id="most_kills" data-value="Most Kills"></div>
-                <div id="most_deaths" data-value = "Most Deaths"></div>
-                <div id="most_last_hits" data-value ="Most Last Hits"></div>
-                <div id="most_hero_damage" data-value = "Most Hero Damage" ></div>
-                <div id="most_tower_damage" data-value = "Most Tower Damage"></div>
+                <div id="most_deaths" data-value="Most Deaths"></div>
+                <div id="most_last_hits" data-value="Most Last Hits"></div>
+                <div id="most_hero_damage" data-value="Most Hero Damage"></div>
+                <div id="most_tower_damage" data-value="Most Tower Damage"></div>
             </div>
             <hr class="divide_line">
             <div class="graphs_row">
                 <div id="hero_pie_container"></div>
                 <div id="item_percent_container">
                     <div id="item_percent_filters">
-                        <label id="value_sort_label"><input type="radio" id="value" name="itemgraph"> Sort bars by frequency</label>
-                        <label id="item_sort_label"><input type="radio" id="item" name="itemgraph"> Sort bars by item</label>
-                        <label id="cost_sort_label"><input type="radio" id="cost" name="itemgraph"> Sort bars by cost</label>
+                        <label id="value_sort_label"><input type="radio" id="value" name="itemgraph"> Sort bars by
+                            frequency</label>
+                        <label id="item_sort_label"><input type="radio" id="item" name="itemgraph"> Sort bars by
+                            item</label>
+                        <label id="cost_sort_label"><input type="radio" id="cost" name="itemgraph"> Sort bars by
+                            cost</label>
                     </div>
                 </div>
             </div>
             <hr>
-            <div class="graphs_row" id = "xpmgpm_container">
+            <div class="graphs_row" id="xpmgpm_container">
                 <div id="gpm_container"></div>
                 <div id="xpm_container"></div>
             </div>
@@ -208,7 +216,8 @@
 
 
     <!-- MODAL POPUP DIV HEROES -->
-    <div id="selector" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="hero_filter_label" aria-hidden="true">
+    <div id="selector" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="hero_filter_label"
+         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -217,14 +226,32 @@
                 <div class="modal-body">
                     <table>
                         <tr>
-                            <td><text id="strlabel"><img src="img/icons/overviewicon_str.png" alt="Strength Icon" height="33px" width="33px"> Strength</text></td>
-                            <td><text id="agilabel"><img src="img/icons/overviewicon_agi.png" alt="Ability Icon" height="33px" width="33px"> Agility</text></td>
-                            <td><text id="intlabel"><img src="img/icons/overviewicon_int.png" alt="Intelligence Icon" height="33px" width="33px"> Intelligence</text></td>
+                            <td>
+                                <text id="strlabel"><img src="img/icons/overviewicon_str.png" alt="Strength Icon"
+                                                         height="33px" width="33px"> Strength
+                                </text>
+                            </td>
+                            <td>
+                                <text id="agilabel"><img src="img/icons/overviewicon_agi.png" alt="Ability Icon"
+                                                         height="33px" width="33px"> Agility
+                                </text>
+                            </td>
+                            <td>
+                                <text id="intlabel"><img src="img/icons/overviewicon_int.png" alt="Intelligence Icon"
+                                                         height="33px" width="33px"> Intelligence
+                                </text>
+                            </td>
                         </tr>
                         <tr class="images">
-                            <td><div id="strimages"></div></td>
-                            <td><div id="agiimages"></div></td>
-                            <td><div id="intimages"></div></td>
+                            <td>
+                                <div id="strimages"></div>
+                            </td>
+                            <td>
+                                <div id="agiimages"></div>
+                            </td>
+                            <td>
+                                <div id="intimages"></div>
+                            </td>
                     </table>
                 </div>
                 <div class="modal-footer">
@@ -236,7 +263,8 @@
     </div>
 
     <!-- MODAL POPUP DIV GAME TYPE -->
-    <div id = "select_game_type" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mode_filter_label" aria-hidden="true">
+    <div id="select_game_type" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mode_filter_label"
+         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -244,10 +272,10 @@
                 </div>
                 <div class="modal-body">
                     <!-- GAME MODE SELECTOR TABLE -->
-                    <div id ="game_mode_content">
-                        <table id ="game_mode_table">
+                    <div id="game_mode_content">
+                        <table id="game_mode_table">
                             <!--th colspan="3"><text id = "modeheading"> Game Mode</text></th-->
-                            <th colspan ="3">Game Mode</th>
+                            <th colspan="3">Game Mode</th>
                             <tr>
                                 <td id="AP" onclick="changeColor(this.id);">All Pick</td>
                                 <td id="CM" onclick="changeColor(this.id);">Captains Mode</td>
@@ -267,8 +295,8 @@
                             </tr>
                         </table>
 
-                        <table id ="lobby_table">
-                            <th colspan ="4"> Lobby Type</th>
+                        <table id="lobby_table">
+                            <th colspan="4"> Lobby Type</th>
                             <tr>
                                 <td id="public" onclick="changeLobbyColor(this.id);">Public Matchmaking</td>
                                 <td id="practice" onclick="changeLobbyColor(this.id);">Practice</td>
@@ -285,14 +313,14 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button href="#" onclick="filterLobby()" class="btn btn-success" data-dismiss="modal">Filter</button>
+                    <button href="#" onclick="filterLobby()" class="btn btn-success" data-dismiss="modal">Filter
+                    </button>
                     <button href="#" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 
 <script src="js/graph_functions.js"></script>

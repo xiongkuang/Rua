@@ -2,9 +2,6 @@
  * Created by xiongkuang on 11/29/16.
  */
 var user_data;
-
-var remaining = 2;
-
 var ability_svg;
 
 margin = {
@@ -21,7 +18,7 @@ height = 230 - margin.bottom - margin.top;
 var ability_g_dimension = 70;
 var ability_img_dimension = 50;
 
-var ability_tip = d3.tip().attr('class', 'd3-tip').html("init").offset([-5,0]);
+var ability_tip = d3.tip().attr('class', 'd3-tip').html("init").offset([-5, 0]);
 
 var end_screen_height = d3.select("#end_screen").style("height")
 
@@ -30,8 +27,8 @@ create_end_screen();
 function create_end_screen() {
     // copy all the player slots
     for (var i = 1; i < 5; i++) {
-        $( "#radiant .slot0" ).clone().removeClass().addClass("slot" + i).appendTo("#radiant tbody")
-        $( "#dire .slot0" ).clone().removeClass().addClass("slot" + i).appendTo("#dire tbody")
+        $("#radiant .slot0").clone().removeClass().addClass("slot" + i).appendTo("#radiant tbody")
+        $("#dire .slot0").clone().removeClass().addClass("slot" + i).appendTo("#dire tbody")
     }
 
 
@@ -49,7 +46,7 @@ function create_end_screen() {
 function update_end_screen(game) {
 
     // turn 6 item entries into one item array
-    game.players.forEach(function(d) {
+    game.players.forEach(function (d) {
         d.items = [];
 
         for (var i = 0; i < 6; i++) {
@@ -80,8 +77,12 @@ function update_end_screen(game) {
 
     // filter dire and radiant players for data binding
 
-    var radiant_players = game.players.filter( function(d) { return (d.player_slot & 0x80) == 0})
-    var dire_players = game.players.filter( function(d) { return d.player_slot & 0x80 })
+    var radiant_players = game.players.filter(function (d) {
+        return (d.player_slot & 0x80) == 0
+    })
+    var dire_players = game.players.filter(function (d) {
+        return d.player_slot & 0x80
+    })
 
     d3.selectAll("#radiant tbody tr").data(radiant_players);
     d3.selectAll("#dire tbody tr").data(dire_players)
@@ -89,7 +90,7 @@ function update_end_screen(game) {
     var rows = d3.selectAll("#players tbody tr");
 
     // search for our player
-    rows.each(function(d) {
+    rows.each(function (d) {
         if (d.account_id == user_data.id32) {
             d3.select(this).attr("id", "user")
         } else {
@@ -98,13 +99,13 @@ function update_end_screen(game) {
     })
 
     // propagate data binding to children
-    rows.selectAll("td").data(function(row) {
-        return d3.range(12).map(function(column, i) {
+    rows.selectAll("td").data(function (row) {
+        return d3.range(12).map(function (column, i) {
             return row;
         });
     });
 
-    rows.selectAll("td").html(function(d) {
+    rows.selectAll("td").html(function (d) {
         this_cell = d3.select(this)
         if (this_cell.attr("class") == "player_name") {
             if (d.account_id == 4294967295) {
@@ -133,7 +134,7 @@ function update_end_screen(game) {
 
     // set up ability build event handler
     d3.selectAll("td.hero")
-        .on("click", function(d) {
+        .on("click", function (d) {
             // toggle visibility of hero build
             if (d3.select(".ability_build").style("visibility") == "hidden" || d3.select(".ability_build").attr("player") != d.player_slot) {
                 update_ability_build(d)
@@ -150,9 +151,15 @@ function update_end_screen(game) {
     for (var i = 0; i < 6; i++) {
         rows.selectAll(".items").append("img")
             .attr("class", "end_screen_item_pic")
-            .attr("src", function(d) { return (i in d.items) ? dM.getItemInfo(d.items[i]).img : "" })
-            .attr("alt", function(d) { return (i in d.items) ? dM.getItemInfo(d.items[i]).dname : "" })
-            .attr("title", function(d) { return (i in d.items) ? dM.getItemInfo(d.items[i]).dname : "empty" })
+            .attr("src", function (d) {
+                return (i in d.items) ? dM.getItemInfo(d.items[i]).img : ""
+            })
+            .attr("alt", function (d) {
+                return (i in d.items) ? dM.getItemInfo(d.items[i]).dname : ""
+            })
+            .attr("title", function (d) {
+                return (i in d.items) ? dM.getItemInfo(d.items[i]).dname : "empty"
+            })
             .attr("height", "36px")
             .attr("width", "48px")
     }
@@ -171,7 +178,7 @@ function update_end_screen(game) {
     d3.select("#winner").on("click", exit_end_screen)
 }
 
-function update_ability_build (player) {
+function update_ability_build(player) {
     ability_svg.selectAll(".level").remove()
     ability_svg.selectAll(".no_abilities_error").remove()
 
@@ -196,25 +203,29 @@ function update_ability_build (player) {
             .data(player.ability_upgrades)
             .enter().append("g")
             .attr("class", "level")
-            .attr("transform", function(d, i) {
+            .attr("transform", function (d, i) {
                 var x_pos = (ability_g_dimension + 5) * (i % 9)
                 var y_pos = (ability_g_dimension + 5) * Math.floor(i / 9)
                 return "translate(" + x_pos + "," + y_pos + ")"
             })
 
         levels.append("text")
-            .text(function(d) { return d.level })
+            .text(function (d) {
+                return d.level
+            })
             .attr("text-anchor", "middle")
             .attr("x", ability_img_dimension / 2)
             .attr("y", 10)
 
         levels.append("image")
-            .attr("xlink:href", function(d) { return (d.ability == 5522) ? dM.getAbilityInfo(5329).img : dM.getAbilityInfo(d.ability).img })
+            .attr("xlink:href", function (d) {
+                return (d.ability == 5522) ? dM.getAbilityInfo(5329).img : dM.getAbilityInfo(d.ability).img
+            })
             .attr("class", "ability_build_img")
             .attr("height", ability_img_dimension)
             .attr("width", ability_img_dimension)
             .attr("y", "15px")
-            .on("mouseover", function(d) {
+            .on("mouseover", function (d) {
                 // if the ability is stats
                 if (d.ability == 5002) {
                     ability_tip.html("Attribute Upgrade")
@@ -258,7 +269,7 @@ function exit_end_screen() {
             .transition().duration(2000)
             .style("height", "0px")
             // set div display to none at end to remove margin space
-            .each("end", function() {
+            .each("end", function () {
                 d3.select(this).style("display", "none")
             })
 
