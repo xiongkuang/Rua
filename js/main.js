@@ -51,13 +51,12 @@ function return_to_splash() {
 $(".move_on_button button").button("loading");
 
 
-// When DOM is ready, enable button
+
 $(window).load(function () {
     $(".move_on_button button").button("reset");
 });
 
 
-//set up those boxes
 svg_win_loss = d3.select("#win_loss_container").append("svg").attr({
     width: bb_win_loss.w + bb_win_loss.margin.left + bb_win_loss.margin.right + 20,
     height: bb_win_loss.h + bb_win_loss.margin.bottom + bb_win_loss.margin.top,
@@ -393,7 +392,7 @@ function findLargest3(array1) {
     return array1.slice(0, 3)
 }
 
-//creates hero sunburst graph based on hero flare json data
+//creates hero sunburst graph
 function hero_pie(flare) {
 
     for (var i = 0; i < hero_flare.children.length; i++) {
@@ -551,11 +550,7 @@ function hero_pie(flare) {
         .attr("y", -bb_hero_pie.h / 2 - 30)
         .text("Heroes Played");
 
-    hero_pie_graph.append("text")
-        .attr("text-anchor", "middle")
-        .attr("y", -bb_hero_pie.h / 2 - 10)
-        .style("font-size", "12px")
-        .text("Click center to zoom out. Click arcs to zoom in.");
+
 
 }
 
@@ -701,7 +696,7 @@ function draw_item_percent() {
         .attr("text-anchor", "middle")
         .attr("y", -40)
         .attr("x", 350)
-        .text("Items Purchased as Percentage of Games Played");
+        .text("Items Purchased");
 
 }
 
@@ -833,7 +828,6 @@ function update_item_percent(data) {
             extent_array.push(dat[id].winrate);
         }
 
-        //item_percent_color.domain(d3.extent(extent_array));
         item_percent_color.domain([0, .5, 1]);
         item_percent_color.range(["#d7191c", "#8d8d8d", "#1a9641"]);
 
@@ -938,7 +932,7 @@ function update_item_percent(data) {
 
     });
 
-    //sorting by value
+    //sort by value
     d3.select("input#value").on("change", change);
 
     var sortTimeout = setTimeout(function () {
@@ -978,7 +972,7 @@ function update_item_percent(data) {
             .delay(delay);
     }
 
-    //sorting by item
+    //sort by name
 
     d3.select("input#item").on("change", change_item);
 
@@ -1014,7 +1008,7 @@ function update_item_percent(data) {
             .delay(delay);
     }
 
-    //sorting by cost
+    //sort by cost
     d3.select("input#cost").on("change", change_cost);
 
     function change_cost() {
@@ -1054,54 +1048,6 @@ function update_item_percent(data) {
             .selectAll("g")
             .delay(delay);
     }
-}
-
-function k_combinations(set, k) {
-    var i, j, combs, head, tailcombs;
-
-    if (k > set.length || k <= 0) {
-        return [];
-    }
-
-    if (k == set.length) {
-        return [set];
-    }
-
-    if (k == 1) {
-        combs = [];
-        for (i = 0; i < set.length; i++) {
-            combs.push([set[i]]);
-        }
-        return combs;
-    }
-
-    combs = [];
-    for (i = 0; i < set.length - k + 1; i++) {
-        head = set.slice(i, i + 1);
-        tailcombs = k_combinations(set.slice(i + 1), k - 1);
-        for (j = 0; j < tailcombs.length; j++) {
-            combs.push(head.concat(tailcombs[j]));
-        }
-    }
-    return combs;
-}
-
-function rerender(data) {
-
-    d3.selectAll(".chord")
-        .transition()
-        .style("opacity", 0)
-        .duration(1000)
-        .remove();
-
-    d3.selectAll(".arcs")
-        .transition()
-        .style("opacity", 0)
-        .duration(1000)
-        .remove();
-
-    create_matrix(data);
-
 }
 
 var gpm_x, gpm_y, gpm_color, gpm_xAxis, gpm_yAxis;
@@ -1160,7 +1106,7 @@ function draw_gpm() {
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("GPM of hero in game");
+        .text("GPM");
 
     if (isNaN(gpm_x(1)) == false) {
         gpm_graph.append('line')
@@ -1464,7 +1410,7 @@ function draw_xpm() {
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("XPM of hero in game");
+        .text("XPM");
 
     xpm_graph.append('line')
         .attr("class", "forty-five")

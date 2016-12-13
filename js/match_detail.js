@@ -4,15 +4,8 @@
 var user_data;
 var ability_svg;
 
-margin = {
-    top: 10,
-    right: 25,
-    bottom: 25,
-    left: 25
-};
-
+margin = {top: 10, right: 25, bottom: 25, left: 25};
 width = 700 - margin.left - margin.right;
-
 height = 230 - margin.bottom - margin.top;
 
 var ability_g_dimension = 70;
