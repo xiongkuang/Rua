@@ -30,8 +30,6 @@ function create_end_screen() {
         $("#radiant .slot0").clone().removeClass().addClass("slot" + i).appendTo("#radiant tbody");
         $("#dire .slot0").clone().removeClass().addClass("slot" + i).appendTo("#dire tbody")
     }
-
-
     // add hidden div with svg for ability build
     ability_svg = d3.select(".ability_build").append("svg").attr({
         width: width + margin.left + margin.right,

@@ -192,8 +192,6 @@ dM.loadJson(function () {
         if (hero.stat == "intelligence") {
             hero_flare.children[2].children.push(hero);
         }
-
-
     }
 
     // first option in the dropdown selector
@@ -1150,7 +1148,7 @@ function draw_gpm() {
         .attr("x", bb_gpm.w)
         .attr("dy", "-.71em")
         .style("text-anchor", "end")
-        .text("Average GPM of hero");
+        .text("Average GPM");
 
     gpm_graph.append("g")
         .attr("class", "y axis")
@@ -1183,7 +1181,7 @@ function draw_gpm() {
         .attr("y", -40)
         .attr("text-anchor", "middle")
         .attr("x", bb_gpm.w / 2)
-        .text("GPM Statistics")
+        .text("GPM")
 
 }
 
@@ -1454,7 +1452,7 @@ function draw_xpm() {
         .attr("x", bb_xpm.w)
         .attr("dy", "-.71em")
         .style("text-anchor", "end")
-        .text("Average XPM on hero");
+        .text("Average XPM");
 
     xpm_graph.append("g")
         .attr("class", "y axis")
@@ -1492,7 +1490,7 @@ function draw_xpm() {
         .attr("y", -40)
         .attr("text-anchor", "middle")
         .attr("x", bb_xpm.w / 2)
-        .text("XPM Statistics")
+        .text("XPM")
 
 
 }
