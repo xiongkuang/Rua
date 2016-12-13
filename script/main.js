@@ -4,8 +4,39 @@
 var user_data;
 var filtered_data;
 
-//margins and bounding boxes for each graph visualization
-var bb_win_loss, bb_hero_pie, bb_item_percent, bb_hero_chord, bb_gpm, bb_xpm, bb_kda;
+users = [
+    {username: "Aui_2000", realname: "aui_2000"},
+    {username: "Na`Vi.Dendi", realname: "dendi"},
+    {username: "Merlini", realname: "merlini"},
+    {username: "bangkura", realname: "bangkura"},
+    {username: "Chun", realname: "chun"},
+];
+
+users.sort(function (a, b) {
+    return d3.ascending(a.username.toLowerCase(), b.username.toLowerCase())
+});
+
+d3.select("#selectuser")
+    .append("select")
+    .attr("id", "userdropdown")
+    .attr("class", "form-control")
+    .on("change", function () {
+        loadData(d3.select("#userdropdown").node().value)
+    })
+    .selectAll("option")
+    .data(users)
+    .enter().append("option")
+    .attr("value", function (d) {
+        return d.realname
+    })
+    .text(function (d) {
+        return d.username
+    });
+
+// set default value
+d3.select("[value=bangkura]").property("selected", true);
+
+var bb_win_loss, bb_hero_pie, bb_item_percent, bb_gpm, bb_xpm;
 
 
 bb_records = {x: 0, y: 250, h: 200, w: 1060};
@@ -16,15 +47,10 @@ bb_hero_pie = {w: 300, h: 300, margin: {top: 60, right: 20, bottom: 20, left: 20
 
 bb_item_percent = {w: 600, h: 300, margin: {top: 90, right: 20, bottom: 20, left: 50}};
 
-bb_hero_chord = {w: 400, h: 400, margin: {top: 110, right: 20, bottom: 20, left: 20}};
-
-bb_user_interact = {h: 400, w: 400, margin: {top: 110, right: 80, bottom: 20, left: 20}};
-
 bb_gpm = {h: 400, w: 400, margin: {top: 80, right: 50, bottom: 50, left: 50}};
 
 bb_xpm = {h: 400, w: 400, margin: {top: 80, right: 50, bottom: 50, left: 50}};
 
-bb_kda = {x: 0, y: 1500, h: 300, w: 900};
 
 // button handlers for splash page to switch the divs around as desired
 d3.selectAll(".move_on_button button")
@@ -554,8 +580,6 @@ function hero_pie(flare) {
 
 }
 
-
-// http://johan.github.io/d3/ex/sunburst.html
 // Stash the old values for transition.
 function stash(d) {
     d.x0 = d.x;
