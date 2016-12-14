@@ -20,10 +20,38 @@ var end_screen_height = d3.select("#end_screen").style("height");
 create_end_screen();
 
 function create_end_screen() {
-    // copy all the player slots
-    for (var i = 1; i < 5; i++) {
-        $("#radiant .slot0").clone().removeClass().addClass("slot" + i).appendTo("#radiant tbody");
-        $("#dire .slot0").clone().removeClass().addClass("slot" + i).appendTo("#dire tbody")
+    // create the player slots
+    for (var i = 0; i < 5; i++) {
+        radiant_tr = d3.select("#radiant tbody").append("tr").attr('class', "slot" + i);
+        dire_tr = d3.select("#dire tbody").append("tr").attr('class', "slot" + i);
+        //create the table of radiant and dire
+
+
+        radiant_tr.append("td").attr('class', "player_name");
+        radiant_tr.append("td").attr('class', "hero");
+        radiant_tr.append("td").attr('class', "kda");
+        radiant_tr.append("td").attr('class', "in_battle");
+        radiant_tr.append("td").attr('class', "damage_percent");
+        radiant_tr.append("td").attr('class', "hero_damage");
+        radiant_tr.append("td").attr('class', "hits");
+        radiant_tr.append("td").attr('class', "xp_per_min");
+        radiant_tr.append("td").attr('class', "gold_per_min");
+        radiant_tr.append("td").attr('class', "tower_damage");
+        radiant_tr.append("td").attr('class', "hero_healing");
+        radiant_tr.append("td").attr('class', "items items_left");
+
+        dire_tr.append("td").attr('class', "player_name");
+        dire_tr.append("td").attr('class', "hero");
+        dire_tr.append("td").attr('class', "kda");
+        dire_tr.append("td").attr('class', "in_battle");
+        dire_tr.append("td").attr('class', "damage_percent");
+        dire_tr.append("td").attr('class', "hero_damage");
+        dire_tr.append("td").attr('class', "hits");
+        dire_tr.append("td").attr('class', "xp_per_min");
+        dire_tr.append("td").attr('class', "gold_per_min");
+        dire_tr.append("td").attr('class', "tower_damage");
+        dire_tr.append("td").attr('class', "hero_healing");
+        dire_tr.append("td").attr('class', "items items_left");
     }
     // add hidden div with svg for ability build
     ability_svg = d3.select(".ability_build").append("svg").attr({
@@ -41,7 +69,6 @@ function update_end_screen(game) {
     // turn 6 item entries into one item array
     game.players.forEach(function (d) {
         d.items = [];
-
         for (var i = 0; i < 6; i++) {
             if (d["item_" + i] != 0)
                 d.items.push(d["item_" + i])
@@ -49,15 +76,20 @@ function update_end_screen(game) {
     });
 
     // set winner
-    d3.select("#winner")
-        .text(((game.radiant_win) ? "Radiant" : "Dire") + " Victory")
-        .attr("class", (game.radiant_win) ? "radiant" : "dire");
-
+    if(game.radiant_win) {
+        d3.select("#radiant_label").text("Radiant(Victory)");
+    }
+    else {
+        d3.select("#dire_label").text("Dire(Victory)");
+    }
     // set match id text
     d3.select("#match_id .text").text(game.match_id);
 
     // set game mode text
     d3.select("#game_mode .text").text(dM.getGameModeInfo(game.game_mode).name);
+
+    // set the lobby type text
+    d3.select("#lobby_type .text").text(dM.getLobbyInfo(game.lobby_type).name);
 
     // convert duration (in seconds) to hours + seconds
     var hours = Math.floor(game.duration / 60);
@@ -76,6 +108,19 @@ function update_end_screen(game) {
     var dire_players = game.players.filter(function (d) {
         return d.player_slot & 0x80
     });
+    var total_kills_radiant = 0;
+    var total_kills_dire = 0;
+    var total_dmg_radiant = 0;
+    var total_dmg_dire = 0;
+    radiant_players.forEach(function(d) {
+        total_kills_radiant = total_kills_radiant + d.kills;
+        total_dmg_radiant = total_dmg_radiant + d.hero_damage;
+        console.log(total_kills_radiant)
+    })
+    dire_players.forEach(function(d) {
+        total_kills_dire = total_kills_dire + d.kills;
+        total_dmg_dire = total_dmg_dire + d.hero_damage;
+    })
 
     d3.selectAll("#radiant tbody tr").data(radiant_players);
     d3.selectAll("#dire tbody tr").data(dire_players);
@@ -102,7 +147,7 @@ function update_end_screen(game) {
         this_cell = d3.select(this);
         if (this_cell.attr("class") == "player_name") {
             if (d.account_id == 4294967295) {
-                var name_text = "Private account";
+                var name_text = "Anonymous";
             } else {
                 try {
                     var name_text = dM.getUserName(d.account_id);
@@ -120,7 +165,25 @@ function update_end_screen(game) {
             var hero = dM.getHeroInfo(d.hero_id);
             var hero_name = "<img src='" + hero.img + "' height='36px'> " + d.level;
             return hero_name
-        } else {
+        } else if (this_cell.attr("class") == "kda") {
+            return "<div style='color:#f0a868;font-size: 14px;font-weight: 700;'>" + ((d.kills + d.assists)/d.deaths).toFixed(1) + "</div>" + d.kills + "/" + d.deaths + "/" + d.assists;
+        }
+        else if (this_cell.attr("class") == "in_battle"){
+            if(d.player_slot & 0x80)
+                return (((d.kills+d.assists)/total_kills_dire)*100).toFixed(1) + "%";
+            else
+                return (((d.kills+d.assists)/total_kills_radiant)*100).toFixed(1) + "%";
+        }
+        else if (this_cell.attr("class") == "damage_percent") {
+            if(d.player_slot & 0x80)
+                return (((d.hero_damage)/total_dmg_dire)*100).toFixed(1) + "%";
+            else
+                return (((d.hero_damage)/total_dmg_radiant)*100).toFixed(1) + "%";
+        }
+        else if(this_cell.attr("class") == "hits") {
+            return d.last_hits + "/" + d.denies;
+        }
+        else {
             return d[this_cell.attr("class")]
         }
     });
@@ -153,8 +216,10 @@ function update_end_screen(game) {
             .attr("title", function (d) {
                 return (i in d.items) ? dM.getItemInfo(d.items[i]).dname : "empty"
             })
-            .attr("height", "36px")
-            .attr("width", "48px")
+            .attr("height", "27px")
+            .attr("style", function(d) {
+                return (i in d.items) ? "display:inline;" : "display:none;"
+            })
     }
 
 

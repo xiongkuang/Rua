@@ -1,7 +1,7 @@
 #end_screen {
     position: relative;
-    height: 675px;
-    width: 1060px;
+    height: 785px;
+    width: 1098px;
 }
 
 #end_screen .header {
@@ -61,6 +61,7 @@
 }
 
 #players {
+    width:100%;
     position: relative;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -94,7 +95,7 @@
 
 #players td, #players th {
     padding: 3px;
-    text-align: center !important;
+    text-align: center;
     vertical-align: middle;
     font-weight: 100;
 }
@@ -103,17 +104,25 @@
     background-color: rgb(17, 17, 17);
 }
 
-#players .team th {
+#radiant_label, #dire_label {
+    margin-top:10px;
     text-align: left;
     border: none;
-    font-size: 20px;
-    font-weight: 500;
-    padding: 10px;
+    font-size: 15px;
+    font-weight: 400;
     text-shadow: 2px 2px 1.5px #000000;
 }
 
+#radiant_label {
+    color:#92A525;
+}
+
+#dire_label {
+    color:#9c3627;
+}
+
 #players tr.headers {
-    height: 56px;
+    height: 50px;
 }
 
 #players td {
@@ -147,7 +156,7 @@
     width: 40px;
 }
 
-#players .hero {
+#players tbody .hero {
     text-align: left;
     width: 100px;
 }
@@ -206,5 +215,33 @@
 }
 
 #players img {
-    border: 1px solid black;
+    border: 1px solid rgba(0,0,0,0);
+}
+
+#radiant, #dire{
+    width:100%;
+    word-wrap: break-word;
+    display: table;
+    table-layout: fixed;
+}
+
+#players tbody .items {
+    text-align: left!important;
+}
+
+#players tr {
+    height:53px;
+}
+
+#players tbody {
+    font-weight:400;
+}
+
+#players tbody .in_battle, #players tbody .damage_percent {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#players {
+    color:#ccc;
 }

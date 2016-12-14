@@ -58,93 +58,64 @@
                         <td>Math ID</td>
                         <td>Duration</td>
                         <td>Game Mode</td>
+                        <td>Lobby Type</td>
                     </tr>
                     <tr class="content">
                         <td id="match_id"><p class="text"></p></td>
                         <td id="duration"><p class="text"></p></td>
                         <td id="game_mode"><p class="text"></p></td>
+                        <td id="lobby_type"><p class="text"></p></td>
                     </tr>
                     </tbody>
                 </table>
 
 
-                <div id="winner">Dire Victory</div>
                 <div id="closebutton">
                     <button class="btn btn-default btn-sm" id="close_btn" onclick="exit_end_screen()">Close</button>
                 </div>
 
             </div>
-
+            <p colspan="17" style="text-align:left!important;" id="radiant_label">Radiant</p>
             <div id="players">
                 <table id="radiant">
                     <thead>
-                    <tr class="team radiant">
-                        <th colspan="17" style="text-align:left!important;">Radiant</th>
-                    </tr>
                     <tr class="headers">
-                        <th class="player_name">Player</th>
-                        <th class="hero">Hero</th>
-                        <th class="kills">K</th>
-                        <th class="deaths">D</th>
-                        <th class="assists">A</th>
-                        <th class="items">Items</th>
-                        <th class="gold">Gold</th>
-                        <th class="last_hits">Last Hits</th>
-                        <th class="denies">Denies</th>
-                        <th class="gold_per_min">Gold/Min</th>
-                        <th class="xp_per_min">XP/Min</th>
+                        <th class="player_name" style="width:50px">Player</th>
+                        <th class="hero" style="width:60px">Hero</th>
+                        <th class="kda" style="width:34px;color: #f0a868;">KDA<br>K/D/A</th>
+                        <th class="in_battle" style="width:30px;color: #f0a868;">In Battle%</th>
+                        <th class="damage_percent" style="width:30px;color:#9c3627;">Damage%</th>
+                        <th class="hero_damage" style="width:26px">Damage</th>
+                        <th class="hits" style="width:25px">LH/D</th>
+                        <th class="xp_per_min" style="width:20px">XPM</th>
+                        <th class="gold_per_min" style="width:20px">GPM</th>
+                        <th class="tower_damage" style="width:25px">TD</th>
+                        <th class="hero_healing" style="width:25px">HH</th>
+                        <th class="items" style="width:110px">Items</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="slot0">
-                        <td class="player_name">MindBlown</td>
-                        <td class="hero">Vengeful Spirit</td>
-                        <td class="kills">4</td>
-                        <td class="deaths">9</td>
-                        <td class="assists">10</td>
-                        <td class="items"></td>
-                        <td class="gold">528</td>
-                        <td class="last_hits">58</td>
-                        <td class="denies">14</td>
-                        <td class="gold_per_min">258</td>
-                        <td class="xp_per_min">394</td>
-                    </tr>
                     </tbody>
                 </table>
-
+                <p colspan="17" style="text-align:left!important;" id="dire_label">The Dire</p>
                 <table id="dire">
                     <thead>
-                    <tr class="team dire">
-                        <th colspan="17" style="text-align:left!important;">The Dire</th>
-                    </tr>
                     <tr class="headers">
-                        <th class="player_name">Player</th>
-                        <th class="hero">Hero</th>
-                        <th class="kills">K</th>
-                        <th class="deaths">D</th>
-                        <th class="assists">A</th>
-                        <th class="items">Items</th>
-                        <th class="gold">Gold</th>
-                        <th class="last_hits">Last Hits</th>
-                        <th class="denies">Denies</th>
-                        <th class="gold_per_min">Gold/Min</th>
-                        <th class="xp_per_min">XP/Min</th>
+                        <th class="player_name" style="width:50px">Player</th>
+                        <th class="hero" style="width:60px">Hero</th>
+                        <th class="kda" style="width:34px;color: #f0a868;">KDA<br>K/D/A</th>
+                        <th class="in_battle" style="width:30px;color: #f0a868;">In Battle%</th>
+                        <th class="damage_percent" style="width:30px">Damage%</th>
+                        <th class="hero_damage" style="width:26px">Damage</th>
+                        <th class="hits" style="width:25px">LH/D</th>
+                        <th class="xp_per_min" style="width:20px">XPM</th>
+                        <th class="gold_per_min" style="width:20px">GPM</th>
+                        <th class="tower_damage" style="width:25px">TD</th>
+                        <th class="hero_healing" style="width:25px">HH</th>
+                        <th class="items" style="width:110px">Items</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="slot0">
-                        <td class="player_name">MindBlown</td>
-                        <td class="hero">Vengeful Spirit</td>
-                        <td class="kills">4</td>
-                        <td class="deaths">9</td>
-                        <td class="assists">10</td>
-                        <td class="items"></td>
-                        <td class="gold">528</td>
-                        <td class="last_hits">58</td>
-                        <td class="denies">14</td>
-                        <td class="gold_per_min">258</td>
-                        <td class="xp_per_min">394</td>
-                    </tr>
                     </tbody>
                 </table>
 

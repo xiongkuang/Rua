@@ -154,7 +154,6 @@ label {
     width: 100%;
     height: 1505px;
     margin: 0px;
-    padding-top: 20px;
 }
 
 #record_content {
@@ -618,7 +617,7 @@ text {
 .match-info {
     position: absolute;
     margin-left: 10px;
-    margin-top: 50px;
+    margin-top: 40px;
     background-color: rgba(15, 15, 15, 0.5);
 }
 
@@ -648,8 +647,9 @@ thead {
 
 #close_btn {
     width: 100px;
+    margin-top: 60px;
     position: absolute;
-    margin-left: -150px;
+    margin-left: -110px;
     left: 100%;
     display: inline-block;
     border-radius: 0px !important;
@@ -665,4 +665,16 @@ thead {
     margin-top: 60px;
     margin-left: -500px;
     padding-left: 50%;
+}
+
+#radiant tbody .player_name {
+    color:#a9cf54;
+}
+
+#dire tbody .player_name  {
+    color:#c23c2a;
+}
+
+tbody tr {
+    padding: 10px 0px;
 }
