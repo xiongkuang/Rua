@@ -1,13 +1,12 @@
 /**
  * Created by xiongkuang on 10/22/16.
  */
+
+
 var user_data;
 var filtered_data;
 
 users = [
-    {username: "Aui_2000", realname: "aui_2000"},
-    {username: "Na`Vi.Dendi", realname: "dendi"},
-    {username: "Merlini", realname: "merlini"},
     {username: "bangkura", realname: "bangkura"},
     {username: "Chun", realname: "chun"},
 ];

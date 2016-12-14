@@ -1,6 +1,8 @@
 /**
  * Created by xiongkuang on 11/29/16.
  */
+
+//much of this data adopted from: https://github.com/rkgibson2/data-driven-dota/blob/master/js/d2.js
 var dM = (function () {
 
     var heroData = [];
@@ -141,12 +143,6 @@ var dM = (function () {
     // loads user data using d3.json
     function loadUserData(username, callback) {
         username_lower = username.toLowerCase();
-
-        if (username_lower != "bangkura" && username_lower != "dendi" &&
-            username_lower != "aui_2000" && username_lower != "merlini" &&
-            username_lower != "chun") {
-            throw new Error("No data currently for user " + username)
-        }
 
         d3.json("data/" + username_lower + "_match_details.json", function (error, data) {
             // find the player data for our given player and pull it to the top level

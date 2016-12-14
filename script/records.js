@@ -1,36 +1,19 @@
 /**
  * Created by xiongkuang on 11/29/16.
  */
-var records;
 
+//much of this data adopted from:
+var records;
 function updateRecords(data) {
 
     records =
     {
-        "longest_match": {
-            "value": 0,
-            "match": 0
-        },
-        "most_kills": {
-            "value": 0,
-            "match": 0
-        },
-        "most_deaths": {
-            "value": 0,
-            "match": 0
-        },
-        "most_last_hits": {
-            "value": 0,
-            "match": 0
-        },
-        "most_hero_damage": {
-            "value": 0,
-            "match": 0
-        },
-        "most_tower_damage": {
-            "value": 0,
-            "match": 0
-        }
+        "longest_match": {"value": 0, "match": 0},
+        "most_kills": {"value": 0, "match": 0},
+        "most_deaths": {"value": 0, "match": 0},
+        "most_last_hits": {"value": 0, "match": 0},
+        "most_hero_damage": {"value": 0, "match": 0},
+        "most_tower_damage": {"value": 0, "match": 0}
     };
     if (data.matches.length) {
         data.matches.forEach(function (d) {

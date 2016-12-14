@@ -1,6 +1,8 @@
 /**
  * Created by xiongkuang on 11/29/16.
+ *
  */
+
 var user_data;
 var ability_svg;
 
