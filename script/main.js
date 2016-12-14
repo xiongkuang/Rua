@@ -273,7 +273,7 @@ function updateGraphs(filtered_data) {
     update_gpm(filtered_data);
     update_xpm(filtered_data);
     updateRecords(filtered_data);
-    exit_end_screen();
+    exit_match_detail();
 }
 
 
@@ -1260,7 +1260,7 @@ function update_gpm(data) {
 
             graph_tip.hide(d);
         })
-        .on("click", update_end_screen)
+        .on("click", update_match_detail)
         .attr("clip-path", "url(#gpm_clip)");
 
     datapoints
@@ -1575,7 +1575,7 @@ function update_xpm(data) {
 
             graph_tip.hide(d);
         })
-        .on("click", update_end_screen)
+        .on("click", update_match_detail)
         .attr("clip-path", "url(#xpm_clip)");
 
     datapoints

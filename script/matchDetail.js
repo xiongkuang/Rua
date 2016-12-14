@@ -64,7 +64,7 @@ function create_end_screen() {
     ability_svg.call(ability_tip);
 }
 
-function update_end_screen(game) {
+function update_match_detail(game) {
 
     // turn 6 item entries into one item array
     game.players.forEach(function (d) {
@@ -231,9 +231,9 @@ function update_end_screen(game) {
     // give end screen a match_shown attribute, so we can reset the dots on exit
     d3.select("#end_screen").attr("match_shown", game.match_id);
 
-    enter_end_screen();
+    enter_match_detail();
 
-    d3.select("#winner").on("click", exit_end_screen)
+    d3.select("#winner").on("click", exit_match_detail)
 }
 
 function update_ability_build(player) {
@@ -301,7 +301,7 @@ function update_ability_build(player) {
         .attr("player", player.player_slot)
 }
 
-function enter_end_screen() {
+function enter_match_detail() {
     // remove ability build when we switch end screen
     d3.select(".ability_build").style("visibility", "hidden");
 
@@ -320,7 +320,7 @@ function enter_end_screen() {
     $("html, body").animate({scrollTop: $(end_screen).offset().top - 180}, 2000)
 }
 
-function exit_end_screen() {
+function exit_match_detail() {
     if (d3.select("#end_screen").style("display") != "none") {
         d3.select("#end_screen")
             .style("height", end_screen_height)

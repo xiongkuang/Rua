@@ -85,7 +85,7 @@ function displayRecords() {
             .classed("brightnessfilter", true)
             .style("background-image", "url(" + dM.getHeroInfo(records[key].match.player_info.hero_id).img + ")")
             .on("click", function () {
-                update_end_screen(records[this.id].match);
+                update_match_detail(records[this.id].match);
             });
 
     }
