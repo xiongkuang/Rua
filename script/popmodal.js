@@ -1,6 +1,8 @@
 /**
  * Created by xiongkuang on 11/29/16.
  */
+
+
 var selectedarr = [];
 var labels = ["str", "int", "agi"];
 labels.forEach(function (d) {
