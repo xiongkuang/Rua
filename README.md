@@ -2,11 +2,11 @@ Final Project - Interactive Data Visualization
 ==============================================
 Project Link
 ---
-Link to demo: https://xiongkuang.github.io/DataVisFinal/
+Link to demo: https://xiongkuang.github.io/rua/
 
 Link to video: https://youtu.be/OomaWXz6nf0
 
-[Link to processbook](https://drive.google.com/file/d/0B7slT3e37vmycVNUOGJySTRHWkU/view?usp=sharing)
+[Link to processbook](https://drive.google.com/file/d/0B7slT3e37vmyQ1VFZTlpQ0RYUW8/view?usp=sharing)
 
 Team Member
 -----------
