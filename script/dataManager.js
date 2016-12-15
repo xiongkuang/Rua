@@ -2,7 +2,7 @@
  * Created by xiongkuang on 11/29/16.
  */
 
-//much of this data adopted from: https://github.com/rkgibson2/data-driven-dota/blob/master/js/d2.js
+//much of this code adopted from: https://github.com/rkgibson2/data-driven-dota/blob/master/js/d2.js
 var dM = (function () {
 
     var heroData = [];
