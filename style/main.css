@@ -36,6 +36,23 @@ label {
     width: 670px;
 }
 
+#item_percent_container label {
+    position:absolute;
+    width:200px;
+}
+
+#item_sort_label {
+    width:100px;
+}
+
+#value_sort_label {
+    margin-left:105px;
+}
+
+#cost_sort_label {
+    margin-left:230px;
+}
+
 #hero_chord_container {
     position: relative;
     height: 520px;
@@ -259,8 +276,9 @@ path {
 #item_percent_filters {
     position: absolute;
     width: 170px;
-    top: 10px;
-    left: 50px;
+    top: 40px;
+    left: 50%;
+    margin-left:-150px;
     z-index: 1;
 }
 
@@ -677,4 +695,46 @@ thead {
 
 tbody tr {
     padding: 10px 0px;
+}
+
+.trend-chart {
+    height:450px;
+    width:100%;
+    align:center;
+}
+
+
+.trend-chart_2 {
+    height:450px;
+    width:100%;
+    align:center;
+    margin-left:400px;
+}
+
+#trend-svg-1, #trend-svg-2 {
+    height:400px;
+
+    margin-left: 0;
+    margin-right: auto;
+    margin-top:80px;
+    position: absolute;
+    top: 280px; left: 0; bottom: 0; right: 0;
+}
+
+#gpm_path {
+    stroke: #F7B018;
+}
+
+#xpm_path {
+    stroke:#87CEFA;
+}
+
+#trend-svg-1 {
+    left:50%;
+    margin-left:-500px;
+}
+
+#trend-svg-2 {
+    left:50%;
+    margin-left:-500px;
 }

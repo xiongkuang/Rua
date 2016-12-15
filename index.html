@@ -18,12 +18,8 @@
 <body>
 <div id="splash">
     <div id="particles-js"></div>
-    <div class="splash-nav">
-        <div class="right-nav">
-            <div id="receptionlist" class="move_on_button">
+    <div id="receptionlist" class="move_on_button">
                 <button id="logo" class="btn btn-default" data-loading-text=""></button>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -124,7 +120,6 @@
             </div>
 
         </div>
-
         <!-- STAT GRAPHS -->
         <div id="stat_graphs">
             <div id="win_loss_container"></div>
@@ -135,6 +130,10 @@
                 <div id="most_last_hits" data-value="Most Last Hits"></div>
                 <div id="most_hero_damage" data-value="Most Hero Damage"></div>
                 <div id="most_tower_damage" data-value="Most Tower Damage"></div>
+            </div>
+            <div class="trend-chart">
+                <p id = "trend-label" style="padding-top:40px;left:50%;position: absolute;width:500px; text-align: center;">Trend of GPM & XPM</p>
+                <p style="padding-top:40px;left:50%;position: absolute;margin-left:-500px;width:500px; text-align: center;">Trend of Winrate</p>
             </div>
             <hr class="divide_line">
             <div class="graphs_row">
@@ -272,9 +271,7 @@
 
 <script src="script/main.js"></script>
 <script src="script/matchDetail.js"></script>
-<script src="script/popmodal.js"></script>
 <script src="script/filter.js"></script>
-<script src="script/lobbies.js"></script>
 <script src="script/records.js"></script>
 <script src="script/par.js"></script>
 </body>

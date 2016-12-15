@@ -249,6 +249,8 @@ draw_gpm();
 draw_xpm();
 
 
+
+
 function loadData(username) {
 
     dM.loadUserData(username, function (error, data) {
@@ -267,6 +269,8 @@ function loadData(username) {
 
 function updateGraphs(filtered_data) {
     //update function calls
+    drawLineChart(filtered_data);
+    drawLineChart_2(filtered_data);
     update_win_loss(filtered_data);
     update_item_percent(filtered_data);
     hero_pie(update_flare(filtered_data));
@@ -719,6 +723,7 @@ function draw_item_percent() {
         .attr("text-anchor", "middle")
         .attr("y", -40)
         .attr("x", 350)
+        .attr("transform", "translate(-40, -30)")
         .text("Items Purchased");
 
 }
@@ -1155,6 +1160,162 @@ function draw_gpm() {
 }
 
 var gpm_brush;
+
+function drawLineChart(data) {
+    d3.select('#trend-svg-1').remove();
+    var trend_data = [];
+    var chart_type = 0;
+    var win_num = 0;
+    data.matches.forEach(function(d, i) {
+        if(d.player_side == "dire" && !d.radiant_win || d.player_side == "radiant" && d.radiant_win)
+            win_num = win_num + 1;
+        if(i >= 100) {
+            var winrate = win_num / i;
+            trend_data.push({winrate: winrate*100, index: i});
+        }
+    })
+
+    console.log("s")
+    console.log(trend_data)
+    var trend_svg_width = 500;
+        trend_svg_height = 300;
+        trend_svg = d3.select(".trend-chart").append("svg").attr("height","100%").attr("width", "500px").attr("id", "trend-svg-1"),
+        trend_width = trend_svg_width - 50 - 20,
+        trend_height = trend_svg_height - 20 - 30,
+        trend_g = trend_svg.append("g").attr("transform", "translate(" + 50 + "," + 20 + ")");
+
+
+    var x = d3.scale.linear()
+        .range([0, trend_width]);
+
+    var y = d3.scale.linear()
+        .range([trend_height, 0]);
+
+    // Define the axes
+    var xAxis = d3.svg.axis().scale(x)
+        .orient("bottom").ticks(5);
+
+    var yAxis = d3.svg.axis().scale(y)
+        .orient("left").ticks(5);
+    var valueline = d3.svg.line()
+        .x(function(d) { console.log("ddd"); return x(+d.index); })
+        .y(function(d) { return y(+d.winrate); });
+
+
+
+    y.domain([40,60]);
+    x.domain([d3.min(trend_data, function(d) {return d.index}), d3.max(trend_data, function(d) {return d.index})]);
+
+    trend_g.append("path")
+        .attr("class", "line")
+        .attr("d", valueline(trend_data))
+        .attr("fill", "none")
+        .attr("stroke-width", "1px");
+
+    trend_g.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + trend_height + ")")
+        .call(xAxis);
+
+    // Add the Y Axis
+    trend_g.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+}
+
+function drawLineChart_2(data) {
+    d3.select('#trend-svg-2').remove();
+    d3.select("#trend-label").text("Trend of GPM & XPM");
+    var trend_data = [];
+    var mode = 0;
+    console.log(data);
+    data.matches.forEach(function(d, i) {
+        if(0< d.player_info.gold_per_min && d.player_info.gold_per_min < 1000 && 0< d.player_info.xp_per_min && d.player_info.xp_per_min < 1000) {
+            trend_data.push({gpm: d.player_info.gold_per_min, xpm:d.player_info.xp_per_min, index: i});
+        }
+    })
+
+    console.log(trend_data)
+    var trend_svg_width = 500;
+    trend_svg_height = 300;
+    trend_svg = d3.select(".trend-chart").append("svg").attr("height","100%").attr("width", "1000px").attr("id", "trend-svg-2").on("click", function(d) {
+        if(mode == 0) {
+            d3.select("#trend-label").text("Trend of GPM");
+            d3.select("#xpm_path").style("display","none");
+            mode = 1;
+        }
+        else if(mode == 1) {
+            d3.select("#trend-label").text("Trend of XPM");
+            d3.select("#xpm_path").style("display","inline");
+            d3.select("#gpm_path").style("display","none");
+            mode = 2;
+        }
+        else {
+            d3.select("#trend-label").text("Trend of GPM & XPM");
+            d3.select("#gpm_path").style("display","inline");
+            mode = 0;
+        }
+    }),
+        trend_width = trend_svg_width - 50 - 20,
+        trend_height = trend_svg_height - 20 - 30,
+        trend_g = trend_svg.append("g").attr("transform", "translate(" + 550 + "," + 20 + ")");
+
+
+    var x = d3.scale.linear()
+        .range([0, trend_width]);
+
+    var y = d3.scale.linear()
+        .range([trend_height, 0]);
+
+    // Define the axes
+    var xAxis = d3.svg.axis().scale(x)
+        .orient("bottom").ticks(5);
+
+    var yAxis = d3.svg.axis().scale(y)
+        .orient("left").ticks(5);
+
+    console.log(trend_data)
+    var valueline_1 = d3.svg.line()
+        .x(function(d) { return x(+d.index); })
+        .y(function(d) { return y(+d.gpm); });
+
+    var valueline_2 = d3.svg.line()
+        .x(function(d) {  return x(+d.index); })
+        .y(function(d) { return y(+d.xpm); });
+
+
+    y.domain([0,1000]);
+    x.domain([0, d3.max(trend_data, function(d) {
+        return d.index;
+    })]);
+
+    trend_g.append("path")
+        .attr("class", "line")
+        .attr("d", valueline_1(trend_data))
+        .attr("stroke", "green")
+        .attr("fill", "none")
+        .attr("id", "gpm_path")
+        .attr("stroke-width", "1px");
+
+    trend_g.append("path")
+        .attr("class", "line")
+        .attr("d", valueline_2(trend_data))
+        .attr("stroke", "blue")
+        .attr("fill", "none")
+        .attr("id", "xpm_path")
+        .attr("stroke-width", "1px");
+
+    trend_g.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + trend_height + ")")
+        .call(xAxis);
+
+    // Add the Y Axis
+    trend_g.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+}
+
 
 function update_gpm(data) {
 

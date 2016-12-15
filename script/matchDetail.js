@@ -77,10 +77,12 @@ function update_match_detail(game) {
 
     // set winner
     if(game.radiant_win) {
+        d3.select("#dire_label").text("Dire");
         d3.select("#radiant_label").text("Radiant(Victory)");
     }
     else {
         d3.select("#dire_label").text("Dire(Victory)");
+        d3.select("#radiant_label").text("Radiant");
     }
     // set match id text
     d3.select("#match_id .text").text(game.match_id);
@@ -334,7 +336,6 @@ function exit_match_detail() {
         d3.selectAll("#end_screen>*").style("opacity", 1)
             .transition().duration(750)
             .style("opacity", 0);
-
         // reset dots to original sizes
         d3.selectAll(".end_screen_selected").classed("end_screen_selected", false).attr("r", 3);
         d3.selectAll("#stat_graphs .end_screen_selected").classed("end_screen_selected", false).attr("r", 3.5);
